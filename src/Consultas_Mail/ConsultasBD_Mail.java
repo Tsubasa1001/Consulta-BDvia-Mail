@@ -9,8 +9,6 @@ import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -20,18 +18,21 @@ public class ConsultasBD_Mail {
     public boolean bandera = false;
 
     public class Consulta {
-
         public int m_index;
         public String m_query;
         public String m_user;
         public String m_result;
-
         public Consulta(String user, String query) {
             this.m_user = user;
             this.m_query = query;   
         }
     }
 
+    /**
+     * 
+     * @param clientePop3
+     * @return 
+     */
     public List<Consulta> obtenerConsultas(ClientePOP3 clientePop3) {
         ArrayList<Consulta> listaConsultas = new ArrayList<>();
 
@@ -108,6 +109,11 @@ public class ConsultasBD_Mail {
         return subjectStr.substring(inicio + patron1.length(), fin).trim();
     }
     
+    /**
+     * 
+     * @param correo
+     * @return 
+     */
     public String getSender(String correo) {
         // este sería un buen momento para usar el patrón "Strategy" :v
         
@@ -147,12 +153,9 @@ public class ConsultasBD_Mail {
                 String sql = "select * from persona where per_nom like '%"+ consulta.m_query+"%'";
                 consulta.m_result = clientePg.runStatement(sql);
             }
-            
         }
     }
     
-    
-
     /**
      * Se obtiene una lista de consultas SQL y envía las respuestas a una
      * casilla de correo dada a través del protocolo SMTP, al cual se conecta y
@@ -172,14 +175,14 @@ public class ConsultasBD_Mail {
                         consulta.m_result
                 );
                 if (!couldSend) break;
-            } catch (Exception ex) {
-                System.out.println(ex.toString());
-                
+            } catch (IOException ex) {
+                //System.out.println(ex.toString());
+                System.err.println("error en la funcion :: responderConsultas");
             }
         }
     }
     
-    public void run() throws InterruptedException, IOException{
+    public void run(){
         // cliente POP3
         ClientePOP3 clientePop3 = new ClientePOP3(
                 "grupo01sc",
@@ -198,37 +201,43 @@ public class ConsultasBD_Mail {
                 "agendaagenda",
                 "db_agenda"
             );
-            clientePg.connect();
-            
-            // conectar cliente POP3
-            clientePop3.conectar();
-            clientePop3.iniciarSesion();
-            
+        
+
+        clientePg.connect();
+
+        // conectar cliente POP3
+        clientePop3.conectar();
+        clientePop3.iniciarSesion();
+
             
         // ciclo infinito esperando cada 5 segundos
         while (true) {
-            
             if (clientePop3.estaSesionIniciada()){
-                // buscar consultas entre los correos disponibles
-                System.out.println("Buscando correos con consultas...");
-                List<Consulta> consultas = this.obtenerConsultas(clientePop3);
-                if (consultas.size() > 0) {
-                    System.out.println(
-                            "Se han encontrado "
-                            + consultas.size()
-                            + "consultas. Procesando..."
-                    );
-                    this.procesarConsultas(consultas,clientePg);
-                    this.responderConsultas(consultas, clienteSmtp);
-                    System.out.println("Se ha finalizado el procesamiento. Saliendo...");
-                } else {
-                    System.out.println("No se encontraron consultas. Saliendo...");
-                }
-                
-                sleep(5000);
-                if (bandera){
-                    System.err.println("[SYSTEM :: CERRANDO SESIÓN]");
-                    break;
+                try {
+                    // buscar consultas entre los correos disponibles
+                    System.out.println("Buscando correos con consultas...");
+                    List<Consulta> consultas = this.obtenerConsultas(clientePop3);
+                    if (consultas.size() > 0) {
+                        System.out.println(
+                                "Se han encontrado "
+                                        + consultas.size()
+                                        + "consultas. Procesando..."
+                        );
+                        this.procesarConsultas(consultas,clientePg);
+                        this.responderConsultas(consultas, clienteSmtp);
+                        System.out.println("Se ha finalizado el procesamiento. Saliendo...");
+                    } else {
+                        System.out.println("No se encontraron consultas. Saliendo...");
+                    }
+                    
+                    sleep(5000);
+                    if (bandera){
+                        System.err.println("[SYSTEM :: CERRANDO SESIÓN]");
+                        break;
+                    }
+                } catch (InterruptedException ex) {
+                    //Logger.getLogger(ConsultasBD_Mail.class.getName()).log(Level.SEVERE, null, ex);
+                    System.err.println("error en la funcion :: run");
                 }
             }else{
                 System.out.println("No se ha podido iniciar sesión!");
@@ -239,12 +248,6 @@ public class ConsultasBD_Mail {
 
     public static void main(String[] args){
         ConsultasBD_Mail gestor = new ConsultasBD_Mail();
-        try {
-            gestor.run();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ConsultasBD_Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ConsultasBD_Mail.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        gestor.run();
     }
 }
