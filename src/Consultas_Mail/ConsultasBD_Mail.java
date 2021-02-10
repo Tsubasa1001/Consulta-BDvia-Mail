@@ -17,6 +17,9 @@ import java.util.List;
 public class ConsultasBD_Mail {
     public boolean bandera = false;
 
+    /**
+     * Clase misterio.
+     */
     public class Consulta {
         public int m_index;
         public String m_query;
@@ -29,7 +32,7 @@ public class ConsultasBD_Mail {
     }
 
     /**
-     * 
+     * Guarda en una Lista las consultas que existen en la bandeja de entrada.
      * @param clientePop3
      * @return 
      */
@@ -110,12 +113,13 @@ public class ConsultasBD_Mail {
     }
     
     /**
-     * 
+     * Obtener el correo de la persona que nos ha enviado el mail.
      * @param correo
      * @return 
      */
     public String getSender(String correo) {
         // este sería un buen momento para usar el patrón "Strategy" :v
+        // e: ok no .v
         
         // estrategia anterior: usar el campo FROM
         // abandonada porque diferentes servicios de mail hacen lo que les da la gana con esto xD
