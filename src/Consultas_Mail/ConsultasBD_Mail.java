@@ -5,23 +5,19 @@
  */
 package Consultas_Mail;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import static java.lang.Thread.sleep;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
  * @author Sariah
  */
 public class ConsultasBD_Mail {
+    public boolean bandera = false;
 
     public class Consulta {
 
@@ -144,9 +140,14 @@ public class ConsultasBD_Mail {
         for (Consulta consulta : listaConsultas) {
             // ClientePgSql clientePg = new ClientePgSql();
             clientePg.connect();
-            System.err.println("el patron => " + consulta.m_query);
-            String sql = "select * from persona where per_nom like '%"+ consulta.m_query+"%'";
-            consulta.m_result = clientePg.runStatement(sql);
+            if ("stop".equals(consulta.m_query)){
+                this.bandera = true;
+            }else{
+                System.err.println("el patron => " + consulta.m_query);
+                String sql = "select * from persona where per_nom like '%"+ consulta.m_query+"%'";
+                consulta.m_result = clientePg.runStatement(sql);
+            }
+            
         }
     }
     
@@ -181,25 +182,32 @@ public class ConsultasBD_Mail {
     public void run() throws InterruptedException, IOException{
         // cliente POP3
         ClientePOP3 clientePop3 = new ClientePOP3(
-                "grupo07sc",
-                "grup007grup007",
+                "grupo01sc",
+                "grup001grup001",
                 "tecnoweb.org.bo",
                 110
-        );
-        ClienteSMTP clienteSmtp = new ClienteSMTP("tecnoweb.org.bo",25);
+            );
+        ClienteSMTP clienteSmtp = new ClienteSMTP(
+                "tecnoweb.org.bo",
+                25
+            );
         ClientePgSql clientePg = new ClientePgSql(
-            "tecnoweb.org.bo",
-            "5432",
-            "agenda",
-            "agendaagenda",
-            "db_agenda"
+                "tecnoweb.org.bo",
+                "5432",
+                "agenda",
+                "agendaagenda",
+                "db_agenda"
             );
             clientePg.connect();
-        // ciclo infinito esperando cada 5 segundos
-        while (true) {
+            
             // conectar cliente POP3
             clientePop3.conectar();
             clientePop3.iniciarSesion();
+            
+            
+        // ciclo infinito esperando cada 5 segundos
+        while (true) {
+            
             if (clientePop3.estaSesionIniciada()){
                 // buscar consultas entre los correos disponibles
                 System.out.println("Buscando correos con consultas...");
@@ -216,12 +224,17 @@ public class ConsultasBD_Mail {
                 } else {
                     System.out.println("No se encontraron consultas. Saliendo...");
                 }
-                clientePop3.cerrarCliente();
+                
                 sleep(5000);
+                if (bandera){
+                    System.err.println("[SYSTEM :: CERRANDO SESIÓN]");
+                    break;
+                }
             }else{
                 System.out.println("No se ha podido iniciar sesión!");
             }
         }
+        clientePop3.cerrarCliente();
     }
 
     public static void main(String[] args){
