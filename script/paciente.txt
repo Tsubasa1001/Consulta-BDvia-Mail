@@ -22,7 +22,7 @@ create table paciente(
 	email varchar(50),
 	celular varchar(50),
 	edad int,
-  	genero boolean,
+  	genero char(1),
 	primary key(codigo)
 	ON UPDATE CASCADE
 );
@@ -31,7 +31,7 @@ create table paciente(
 drop table if exists paciente
 
 #insertar datos
-INSERT INTO paciente values ('P0001','123123','Joshua Rodriguez','Boliviana','estetica','av siempre viva','joshuar@gmail.com','7215485',30);
+INSERT INTO paciente values ('P0001','123123','Joshua Rodriguez','Boliviana','estetica','av siempre viva','joshuar@gmail.com','7215485',30,'M');
 
 
 
