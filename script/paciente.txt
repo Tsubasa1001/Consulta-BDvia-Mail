@@ -1,0 +1,39 @@
+
+#conexion SSH
+conexion :: ssh grupo06sc@tecnoweb.org.bo
+password :: grup006grup006
+
+
+#conexion bd
+psql db_grupo06sc grupo06sc
+
+#listar tablas
+\dt
+
+#crear tabla
+
+create table paciente(
+	codigo varchar(15),
+	ci varchar(10),
+	nombre varchar(50),
+	nacionalidad varchar(50),
+	ocupacion varchar(255),
+	direccion varchar(255),
+	email varchar(50),
+	celular varchar(50),
+	edad int,
+  	genero boolean,
+	primary key(codigo)
+	ON UPDATE CASCADE
+);
+
+#eliminar tabla
+drop table if exists paciente
+
+#insertar datos
+INSERT INTO paciente values ('P0001','123123','Joshua Rodriguez','Boliviana','estetica','av siempre viva','joshuar@gmail.com','7215485',30);
+
+
+
+#consulta
+select * from paciente 
