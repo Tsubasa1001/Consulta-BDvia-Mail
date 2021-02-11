@@ -136,7 +136,7 @@ public class DPaciente {
     public int Dmodificar(String codigo, String ci, String nombre, String nacionalidad, String ocupacion, String direccion, String email, String celular, int edad){
         int Dstatement = -1;
         if(conexion.connect() != null){
-            String sql = "UPDATE paciente SET ci='"+ci+"',nombre='"+nombre+"',nacionalidad='"+nacionalidad+"',ocupacion='"+ocupacion+"',direccion='"+direccion+"',email='"+email+"',celular='"+celular+"',edad='"+edad+"' WHERE codigo ="+"'codigo'";
+            String sql = "UPDATE paciente SET ci='"+ci+"',nombre='"+nombre+"',nacionalidad='"+nacionalidad+"',ocupacion='"+ocupacion+"',direccion='"+direccion+"',email='"+email+"',celular='"+celular+"',edad='"+edad+"' WHERE codigo ='"+codigo+"' ";
             System.err.println(sql); 
             conexion.runStatement(sql);
             
@@ -148,8 +148,8 @@ public class DPaciente {
     public int Deliminar(String codigo){
         int Dstatement = -1;
         if(conexion.connect() != null){
-            String sql = "DELETE FROM paciente WHERE codigo ="+codigo;
-             
+            String sql = "DELETE FROM paciente WHERE codigo = '"+codigo+"' ";
+             System.err.println(sql);
             conexion.runStatement(sql);
             
             System.out.println("A pasado por Dmodificar DPaciente exitosamente");
