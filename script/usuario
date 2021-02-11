@@ -22,18 +22,18 @@ CREATE TABLE paciente(
 	email char(50) UNIQUE NOT NULL,
 	celular char(8) NOT NULL,
 	edad int NOT NULL,
-	genero boolean NOT NULL
+	genero char(1) NOT NULL
 );
 
 #eliminar tabla
 drop table if exists paciente;
 
 #insertar datos
-INSERT INTO paciente VALUES ('a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 1, true);
-INSERT INTO paciente VALUES ('b', 'b', 'a', 'a', 'a', 'a', 'b', 'a', 1, true);
-INSERT INTO paciente VALUES ('c', 'c', 'a', 'a', 'a', 'a', 'c', 'a', 1, true);
-INSERT INTO paciente VALUES ('d', 'd', 'a', 'a', 'a', 'a', 'd', 'a', 1, true);
-INSERT INTO paciente VALUES ('e', 'e', 'a', 'a', 'a', 'a', 'e', 'a', 1, true);
+INSERT INTO paciente VALUES ('a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 1, 'M');
+INSERT INTO paciente VALUES ('b', 'b', 'a', 'a', 'a', 'a', 'b', 'a', 1, 'F');
+INSERT INTO paciente VALUES ('c', 'c', 'a', 'a', 'a', 'a', 'c', 'a', 1, 'M');
+INSERT INTO paciente VALUES ('d', 'd', 'a', 'a', 'a', 'a', 'd', 'a', 1, 'F');
+INSERT INTO paciente VALUES ('e', 'e', 'a', 'a', 'a', 'a', 'e', 'a', 1, 'M');
 
 
 
