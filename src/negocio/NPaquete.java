@@ -66,7 +66,7 @@ public class NPaquete {
         NPaquete NPaquete = new NPaquete();
         //NPaquete.Registrar("PAQUETE_REGISTRAR_Paquete2,5,300.5");
         //NPaquete.Modificar("PAQUETE_MODIFICAR_1,Paquete1edited,3,200.5");
-        NPaquete.Eliminar("PAQUETE_ELIMINAR_5");
+        //NPaquete.Eliminar("PAQUETE_ELIMINAR_5");
         String a = NPaquete.Listar("PAQUETE_LISTAR_ALL");
         System.out.println(a);
     }
