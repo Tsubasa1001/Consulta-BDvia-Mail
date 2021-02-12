@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,7 +37,6 @@ public class ClientePgSql {
             "db_grupo05sa"
         );
     }
-    
     public ClientePgSql(String host, String port, String user, String pass, String database){
         this.m_host = host;
         this.m_port = port;
@@ -43,6 +44,47 @@ public class ClientePgSql {
         this.m_pass = pass;
         this.m_database = database;
         this.m_conn = null;
+    }
+
+    public String getM_host() {
+        return m_host;
+    }
+    public void setM_host(String m_host) {
+        this.m_host = m_host;
+    }
+    public String getM_port() {
+        return m_port;
+    }
+    public void setM_port(String m_port) {
+        this.m_port = m_port;
+    }
+    public String getM_user() {
+        return m_user;
+    }
+    public void setM_user(String m_user) {
+        this.m_user = m_user;
+    }
+    public String getM_pass() {
+        return m_pass;
+    }
+    public void setM_pass(String m_pass) {
+        this.m_pass = m_pass;
+    }
+    public String getM_database() {
+        return m_database;
+    }
+    public void setM_database(String m_database) {
+        this.m_database = m_database;
+    }
+    public Connection getM_conn() {
+        return m_conn;
+    }
+    public void setM_conn(Connection m_conn) {
+        this.m_conn = m_conn;
+    }
+    
+    public String get_urlBD_postgres(){
+        return "jdbc:postgresql://"+this.m_user+":"+this.m_pass+"@"+this.m_host+":"+this.m_port+"/"+this.m_database;
     }
     
     public String getConnString(){
@@ -95,5 +137,12 @@ public class ClientePgSql {
         return result;
     }
     
-    
+    public void desconectar(){
+        try {
+            this.getConnection().close();
+        } catch (SQLException ex) {
+            //Logger.getLogger(ClientePgSql.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("error : desconectar");
+        }
+    }
 }
