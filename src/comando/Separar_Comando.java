@@ -20,6 +20,7 @@ public class Separar_Comando {
     DPaciente paciente;
     String cuActual;
     String accionActual;
+    String atributosActuales;
     String comando;
     
     String[]  listaCU = {"USUARIO-TRABAJADOR","USUARIO-PACIENTE","SERVICIO","EQUIPAMIENTO","AGENDA","FICHAMEDICA"};
@@ -41,8 +42,9 @@ public class Separar_Comando {
         String parametros = separado[2];
         
         //pruebas para la separacion de parametros
-        /*String[] parametrosSeparados = parametros.split(",");
-        String parametro1 = parametrosSeparados[0];
+        String[] parametrosSeparados = parametros.split(",");
+        System.err.println("Parametros: "+parametros);
+        /*String parametro1 = parametrosSeparados[0];
         String parametro2 = parametrosSeparados[1];
         String parametro3 = parametrosSeparados[2];
        
@@ -83,7 +85,16 @@ public class Separar_Comando {
                         System.out.println(paciente.Dlistar());
                         break;
                     case "REGISTRAR":
-                        paciente.Dregistrar(comando, cu, comando, accionActual, accion, accion, accion, cu, 0);
+                        String parametro1 = parametrosSeparados[0];
+                        String parametro2 = parametrosSeparados[1];
+                        String parametro3 = parametrosSeparados[2];
+                        String parametro4 = parametrosSeparados[3];
+                        String parametro5 = parametrosSeparados[4];
+                        String parametro6 = parametrosSeparados[5];
+                        String parametro7 = parametrosSeparados[6];
+                        String parametro8 = parametrosSeparados[7];
+                        String parametro9 = parametrosSeparados[8];
+                        paciente.Dregistrar(parametro1, parametro2, parametro3,parametro4,parametro5,parametro6,parametro7,parametro8, Integer.parseInt(parametro9));
                         break;
                     case "MODIFICAR":
                         paciente.Dmodificar(comando, cu, comando, accionActual, accion, accion, accion, cu, 0);
@@ -92,7 +103,9 @@ public class Separar_Comando {
                         paciente.Deliminar(comando);
                         break;
                 }            
-        }      
+        }
+        
+        
     }
     
     
@@ -102,14 +115,20 @@ public class Separar_Comando {
     public static void main(String[] args){
        DPaciente paciente = new DPaciente();
        
-       
+        //FUNCIONAN
         //System.out.println(paciente.Dlistar());
         //System.out.println(paciente.Dregistrar("P0003","42123", "Gustavo", "Bolivia", "Ing", "Por alla", "gustav@gmail.com", "75698542", 20));
         //System.out.println(paciente.Dmodificar("P003","00033", "Gustavo", "Bolivia", "Ing.", "Por aquiii", "gustav@gmail.com", "75698542", 23));
         //System.out.println(paciente.Deliminar("P003"));
+        //System.out.println(paciente.Dlistar()); 
+        
         Separar_Comando separar_comando = new Separar_Comando();
-        separar_comando.separacion("USUARIO-PACIENTE_LISTAR_{BULL}");
-       //System.out.println(paciente.Dlistar());
+        
+        //FUNCIONA
+        separar_comando.separacion("USUARIO-PACIENTE_REGISTRAR_P0005,42123,Eyver,Bolivia,Ing,por alla,eyver@gmail.com,75698542,22");
+        
+        separar_comando.separacion("USUARIO-PACIENTE_LISTAR_P0004,42123,Celia,Bolivia,Artista,4to anillo,celiav@gmail.com,75698542,21");
+       
         
     }
     
