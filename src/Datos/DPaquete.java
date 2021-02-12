@@ -22,6 +22,10 @@ public class DPaquete {
     private int cantidad;
     private float precio;
     private ClientePgSql bd;
+    
+    public DPaquete(){
+        this.bd = new ClientePgSql();
+    }
 
     public int getId() {
         return this.id;
@@ -53,10 +57,6 @@ public class DPaquete {
 
     public void setPrecio(float precio) {
         this.precio = precio;
-    }
-    
-    public DPaquete(){
-        this.bd = new ClientePgSql();
     }
     
     public String Listar(){
