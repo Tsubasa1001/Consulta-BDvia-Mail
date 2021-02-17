@@ -12,40 +12,49 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Sariah
  */
 public class ClientePgSql {
-    private String m_host;
-    private String m_port;      // usualmente 5432
-    private String m_user;
-    private String m_pass;
-    private String m_database;
+    private String m_host;      /*variable para conexión con el servidor*/
+    private String m_port;      /*variable para conexión con el servidor*/
+    private String m_user;      /*variable para conexión con el servidor*/
+    private String m_pass;      /*variable para conexión con el servidor*/
+    private String m_database;  /*variable para consultar a la BD*/
+    private Connection m_conn;  /*variable para consultar a la BD*/
     
-    private Connection m_conn;
-    
+    /**
+     * Conexión por defecto al servidor.
+     */
     public ClientePgSql(){
-        this(
-            "tecnoweb.org.bo",
-            "5432",
-            "grupo05sa",
-            "grupo05grupo05",
-            "db_grupo05sa"
-        );
+        this.m_host = "tecnoweb.org.bo";
+        this.m_port = "5432";
+        this.m_user = "grupo06sc";
+        this.m_pass = "grup006grup006";
+        this.m_database = "db_grupo06sc";
+        this.m_conn     = null;
     }
-    public ClientePgSql(String host, String port, String user, String pass, String database){
-        this.m_host = host;
-        this.m_port = port;
-        this.m_user = user;
-        this.m_pass = pass;
+    
+    /**
+     * Asignación de datos para la conexión con el Servidor PGsql.
+     * @param host
+     * @param port
+     * @param user
+     * @param pass
+     * @param database 
+     */
+    public ClientePgSql(String host, String port,String user, String pass,String database){
+        this.m_host     = host;
+        this.m_port     = port;
+        this.m_user     = user;
+        this.m_pass     = pass;
         this.m_database = database;
-        this.m_conn = null;
+        this.m_conn     = null;
     }
-
+    
+    /* G E T / S E T   D E   L A S   V A R I A B L E S */
     public String getM_host() {
         return m_host;
     }
@@ -82,35 +91,62 @@ public class ClientePgSql {
     public void setM_conn(Connection m_conn) {
         this.m_conn = m_conn;
     }
+    /* ******************************************************************     */
     
+    /**
+     * Retorna la [url] de conexión.
+     * @return 
+     */
     public String get_urlBD_postgres(){
         return "jdbc:postgresql://"+this.m_user+":"+this.m_pass+"@"+this.m_host+":"+this.m_port+"/"+this.m_database;
     }
     
+    /**
+     * Retorna la [url] de conexión.
+     * @return 
+     */
     public String getConnString(){
         return "jdbc:postgresql://" + this.m_user + ":" + this.m_pass + "@"
                 + this.m_host + ":" + this.m_port + "/" + this.m_database;
     }
     
+    /**
+     * Iniciar la sesión con el servidor BD.
+     * @return 
+     */
     public Connection connect(){
         Connection conn = null;
         try{
-            // conn = DriverManager.getConnection("jdbc:postgresql://mail.ficct.uagrm.edu.bo:5432/db_agenda", "agenda", "agendaagenda");
+            /**
+             * conn = DriverManager.getConnection("jdbc:postgresql://mail.ficct.uagrm.edu.bo:5432/db_agenda", "agenda", "agendaagenda");
+             * conn = DriverManager.getConnection("jdbc:postgresql://"+this.m_host+":"+this.m_port+"/"+this.m_database, this.m_user, this.m_pass);
+             * conn = DriverManager.getConnection(this.getConnString());
+             */
             conn = DriverManager.getConnection("jdbc:postgresql://"+this.m_host+":"+this.m_port+"/"+this.m_database, this.m_user, this.m_pass);
-            //conn = DriverManager.getConnection(this.getConnString());
-            System.out.println("Conectado exitosamente");
-            this.m_conn = conn;
+            
+            System.out.println("connect :: ok");
+            this.setM_conn(conn);
         }catch (SQLException sqlex){
-            System.out.println("Error al conectar: " + sqlex.toString());
+            //System.out.println("Error al conectar: " + sqlex.toString());
+            System.out.println("connect :: not ok");
         }
         
         return conn;
     }
     
+    /**
+     * Obtener la variable conexión para realizar consultas.
+     * @return 
+     */
     public Connection getConnection(){
         return this.m_conn;
     }
     
+    /**
+     * Ejecutar una consulta sql en el servidor BD.
+     * @param sqlQuery
+     * @return 
+     */
     public String runStatement(String sqlQuery){
         // TODO: utilizar excepciones para controlar el caso "conn == null"
         String result = "";
@@ -137,12 +173,16 @@ public class ClientePgSql {
         return result;
     }
     
+    /**
+     * Desconectar las sesiones con la BD.
+     */
     public void desconectar(){
         try {
             this.getConnection().close();
+            System.out.println("desconectar :: ok");
         } catch (SQLException ex) {
             //Logger.getLogger(ClientePgSql.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println("error : desconectar");
+            System.out.println("desconectar :: not ok");
         }
     }
 }

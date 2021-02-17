@@ -187,34 +187,32 @@ public class ConsultasBD_Mail {
     }
     
     public void run(){
-        // cliente POP3
+        /*Cliente_POP3*/
         ClientePOP3 clientePop3 = new ClientePOP3(
-                "grupo01sc",
-                "grup001grup001",
-                "tecnoweb.org.bo",
-                110
+                /*USR*/"grupo01sc",
+                /*PWD*/"grup001grup001",
+                /*HOST*/"tecnoweb.org.bo",
+                /*POST*/110
             );
         ClienteSMTP clienteSmtp = new ClienteSMTP(
-                "tecnoweb.org.bo",
-                25
+                /*HOST*/"tecnoweb.org.bo",
+                /*PORT*/25
             );
         ClientePgSql clientePg = new ClientePgSql(
-                "tecnoweb.org.bo",
-                "5432",
-                "agenda",
-                "agendaagenda",
-                "db_agenda"
+                /*HOST*/"tecnoweb.org.bo",
+                /*PORT*/"5432",
+                /*USR*/"grupo06sc",
+                /*PWD*/"grup006grup006",
+                /*BD*/"db_grupo06sc"
             );
         
-
+        /*CONEXIONES*/
         clientePg.connect();
-
-        // conectar cliente POP3
         clientePop3.conectar();
         clientePop3.iniciarSesion();
 
             
-        // ciclo infinito esperando cada 5 segundos
+        /*REPETICION DEL CICLO CADA 5 SEGUNDOS*/
         while (true) {
             if (clientePop3.estaSesionIniciada()){
                 try {

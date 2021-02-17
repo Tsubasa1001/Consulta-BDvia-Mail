@@ -11,6 +11,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -112,26 +114,28 @@ public class ClienteSMTP {
     
    /**
     * Permite procesar los mensajes multilinea del protocolo SMTP
-    * 
-    * @param in Un bufer de entrada que contiene las lineas a procesar
-    * @return Cadena que contiene todas las lineas obtenidas
-    * @throws IOException 
+    * @param in
+    * @return 
     */
-   static protected String getMultiline(BufferedReader in) throws IOException{
+   static protected String getMultiline(BufferedReader in){
         String lines = "";
         while (true){
-            String line = in.readLine();
-            if (line == null){
-               // Server closed connection
-               throw new IOException("[Client]: Connection closed unexpectedly.");
-            }
-            if (line.charAt(3)==' '){
+            try {
+                String line = in.readLine();
+                if (line == null){
+                    // Server closed connection
+                    throw new IOException("[Client]: Connection closed unexpectedly.");
+                }
+                if (line.charAt(3)==' '){
+                    lines += "\n" + line;
+                    // No more lines in the server response
+                    break;
+                }
+                // Add read line to the list of lines
                 lines += "\n" + line;
-                // No more lines in the server response
-                break;
-            }            
-            // Add read line to the list of lines
-            lines += "\n" + line;
+            } catch (IOException ex) {
+                Logger.getLogger(ClienteSMTP.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }        
         return lines;
     }

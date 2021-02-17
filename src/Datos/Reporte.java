@@ -9,6 +9,6 @@ package Datos;
  *
  * @author eyver-dev
  */
-public class Trabajador {
+public class Reporte {
     
 }

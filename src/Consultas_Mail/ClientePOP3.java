@@ -10,6 +10,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -65,9 +67,8 @@ public class ClientePOP3 {
     /**
      * Constructor parcialmente parametrizado, solo pide user y pass, el resto
      * se asume que se desea conectar al servidor de la ficct en el puerto 110
-     *
-     * @param user
-     * @param pass
+     * @param user = credencial de la cuenta.
+     * @param pass = credencial de la cuenta.
      */
     public ClientePOP3(String user, String pass) {
         this(user, pass, "mail.tecnoweb.org.bo", 110);
@@ -132,6 +133,9 @@ public class ClientePOP3 {
         return this.isLoggedIn;
     }
 
+    /**
+     * 
+     */
     public void cerrarCliente() {
         String comando = "";
         try {
@@ -148,6 +152,10 @@ public class ClientePOP3 {
         }
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int contarCorreos() {
         String comando = "";
         String entrada = "";
@@ -179,6 +187,11 @@ public class ClientePOP3 {
         return resultado;
     }
 
+    /**
+     * 
+     * @param index
+     * @return 
+     */
     public String leerCorreo(int index) {
         String entrada = "~Nada para mostrar~";
         String comando = "";
@@ -197,14 +210,27 @@ public class ClientePOP3 {
         return entrada;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String leerPrimerCorreo() {
         return leerCorreo(1);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String leerUltimoCorreo() {
         return leerCorreo(contarCorreos());
     }
 
+    /**
+     * 
+     * @param index
+     * @return 
+     */
     public boolean borrarCorreo(int index) {
         String comando = "";
         String entrada = "";
@@ -229,22 +255,30 @@ public class ClientePOP3 {
         return resultado;
     }
 
-    // Permite leer multiples lineas de respuesta del Protocolo POP
-    static protected String getMultiline(BufferedReader in) throws IOException {
+    /**
+     * Permite leer multiples lineas de respuesta del Protocolo POP
+     * @param in
+     * @return 
+     */
+    static protected String getMultiline(BufferedReader in){
         String lines = "";
         while (true) {
-            String line = in.readLine();
-            if (line == null) {
-                // Server closed connection
-                throw new IOException("[Server]: Server unawares closed the connection.");
+            try {
+                String line = in.readLine();
+                if (line == null) {
+                    // Server closed connection
+                    throw new IOException("[Server]: Server unawares closed the connection.");
+                }
+                if (line.equals(".")) {
+                    break; // No more lines in the server response
+                }
+                if ((line.length() > 0) && (line.charAt(0) == '.')) {
+                    line = line.substring(1); // The line starts with a "." - strip it off.
+                }
+                lines = lines + "\n" + line; // Add read line to the list of lines
+            } catch (IOException ex) {
+                Logger.getLogger(ClientePOP3.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (line.equals(".")) {
-                break; // No more lines in the server response
-            }
-            if ((line.length() > 0) && (line.charAt(0) == '.')) {
-                line = line.substring(1); // The line starts with a "." - strip it off.
-            }
-            lines = lines + "\n" + line; // Add read line to the list of lines
         }
         return lines;
     }
