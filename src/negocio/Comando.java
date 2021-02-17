@@ -5,9 +5,11 @@
  */
 package negocio;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import negocio.*;
 
 /**
  *
@@ -48,11 +50,12 @@ public class Comando {
         String[] ListaComandos = comando.split("_");
         ListaComandos[0] = ListaComandos[0].toLowerCase();
         ListaComandos[1] = ListaComandos[1].toLowerCase();
+        this.Atributos.clear();
         if (this.verificarCu(ListaComandos[0])){
             if (this.verificarAccion(ListaComandos[1])){
+                this.setCu(ListaComandos[0]);
+                this.setAccion(ListaComandos[1]);
                 if ("all".equals(ListaComandos[2].toLowerCase())){
-                    this.setCu(ListaComandos[0]);
-                    this.setAccion(ListaComandos[1]);
                     this.Atributos.add(ListaComandos[2].toLowerCase());
                 }else{
                     String att[] = ListaComandos[2].split(",");
@@ -72,4 +75,35 @@ public class Comando {
         return Arrays.asList(this.listaAcciones).contains(accion);
     }
     
+    public String recogerDatos(String c) throws SQLException{
+        this.separar(c);
+        String result = "";
+        String cu= this.getCu();
+        String accion = this.getAccion();
+        List<String> att = this.getAtributos();
+        
+        switch(cu){
+            case "paquete":
+                NPaquete npaquete = new NPaquete();
+                switch(accion){
+                    case "listar":
+                        result = npaquete.Listar();
+                        break;
+                    case "registrar":
+                        npaquete.Registrar(att);
+                        result = "Se registro paquete correctamente :D";
+                        break;
+                    case "modificar":
+                        npaquete.Modificar(att);
+                        result = "Se modifico el paquete correctamente :'D";
+                        break;
+                    case "eliminar":
+                        npaquete.Eliminar(att);
+                        result = "Se elimino el paquete correctamente :(";
+                        break;
+                }
+                
+        }
+        return result;
+    }
 }
