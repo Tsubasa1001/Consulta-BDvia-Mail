@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+
 /**
  *
  * @author G. Franco
@@ -20,11 +21,11 @@ public class DPaquete {
     private int cantidad;
     private float precio;
     private ClientePgSql bd;
-    
+
     public DPaquete(){
         this.bd = new ClientePgSql();
     }
-
+    
     public int getId() {
         return this.id;
     }
@@ -59,7 +60,7 @@ public class DPaquete {
     
     public String Listar(){
         Connection conexion = this.bd.connect();
-        String sql = "SELECT * FROM paquete;";
+        String sql = "SELECT * FROM paquete ORDER BY id ASC;";
         String result = this.bd.runStatement(sql);
         conexion = null;
         return result;
@@ -100,3 +101,4 @@ public class DPaquete {
         conexion = null;
     }
 }
+
