@@ -7,8 +7,10 @@ package Consultas_Mail;
 
 import java.io.IOException;
 import static java.lang.Thread.sleep;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import negocio.Comando;
 
 /**
  *
@@ -146,7 +148,7 @@ public class ConsultasBD_Mail {
      * @param listaConsultas Un ArrayList de consultas a procesar
      * @param clientePg
      */
-    public void procesarConsultas(List<Consulta> listaConsultas, ClientePgSql clientePg) {
+    public void procesarConsultas(List<Consulta> listaConsultas, ClientePgSql clientePg) throws SQLException {
         for (Consulta consulta : listaConsultas) {
             // ClientePgSql clientePg = new ClientePgSql();
             clientePg.connect();
@@ -154,8 +156,10 @@ public class ConsultasBD_Mail {
                 this.bandera = true;
             }else{
                 System.err.println("el patron => " + consulta.m_query);
-                String sql = "select * from persona where per_nom like '%"+ consulta.m_query+"%'";
-                consulta.m_result = clientePg.runStatement(sql);
+                Comando comando = new Comando();
+                consulta.m_result = comando.recogerDatos(consulta.m_query);
+                //String sql = "select * from persona where per_nom like '%"+ consulta.m_query+"%'";
+                //consulta.m_result = clientePg.runStatement(sql);
             }
         }
     }
@@ -171,13 +175,13 @@ public class ConsultasBD_Mail {
     public void responderConsultas(List<Consulta> listaConsultas, ClienteSMTP clienteSmtp) {
         for (Consulta consulta : listaConsultas) {
             try {
-                System.err.println("se respondio la consulta");
                 boolean couldSend = clienteSmtp.enviarCorreo(
-                        "grupo07sc@tecnoweb.org.bo",
+                        "grupo06sc@tecnoweb.org.bo",
                         consulta.m_user,
                         "Resultado de su consulta SQL",
                         consulta.m_result
                 );
+                System.err.println("se respondio la consulta");
                 if (!couldSend) break;
             } catch (IOException ex) {
                 //System.out.println(ex.toString());
@@ -186,33 +190,35 @@ public class ConsultasBD_Mail {
         }
     }
     
-    public void run(){
-        /*Cliente_POP3*/
+    public void run() throws SQLException{
+        // cliente POP3
         ClientePOP3 clientePop3 = new ClientePOP3(
-                /*USR*/"grupo01sc",
-                /*PWD*/"grup001grup001",
-                /*HOST*/"tecnoweb.org.bo",
-                /*POST*/110
+                "grupo06sc",
+                "grup006grup006",
+                "tecnoweb.org.bo",
+                110
             );
         ClienteSMTP clienteSmtp = new ClienteSMTP(
-                /*HOST*/"tecnoweb.org.bo",
-                /*PORT*/25
+                "tecnoweb.org.bo",
+                25
             );
         ClientePgSql clientePg = new ClientePgSql(
-                /*HOST*/"tecnoweb.org.bo",
-                /*PORT*/"5432",
-                /*USR*/"grupo06sc",
-                /*PWD*/"grup006grup006",
-                /*BD*/"db_grupo06sc"
+                "localhost",
+                "5432",
+                "postgres",
+                "password",
+                "nativa"
             );
         
-        /*CONEXIONES*/
+
         clientePg.connect();
+
+        // conectar cliente POP3
         clientePop3.conectar();
         clientePop3.iniciarSesion();
 
             
-        /*REPETICION DEL CICLO CADA 5 SEGUNDOS*/
+        // ciclo infinito esperando cada 5 segundos
         while (true) {
             if (clientePop3.estaSesionIniciada()){
                 try {
@@ -248,7 +254,7 @@ public class ConsultasBD_Mail {
         clientePop3.cerrarCliente();
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws SQLException{
         ConsultasBD_Mail gestor = new ConsultasBD_Mail();
         gestor.run();
     }
