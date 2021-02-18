@@ -8,11 +8,9 @@ import Consultas_Mail.ClientePgSql;
  */
 public class DatosTrabajador {
     private ClientePgSql postgres;
-    
     public DatosTrabajador() {
         this.postgres = new ClientePgSql();
     }
-
     public ClientePgSql getPostgres() {
         return postgres;
     }
@@ -40,8 +38,9 @@ public class DatosTrabajador {
     }
     
     /**
-     * Crear una nueva tupla.
+     * 
      * @param tabla
+     * @param pk
      * @param id
      * @param ci
      * @param nombre
@@ -55,10 +54,7 @@ public class DatosTrabajador {
      * @param edad
      * @param genero 
      */
-    public void create(String tabla, String id, String ci,
-            String nombre, String nacionalidad, String especialidad,
-            String cargo, String ocupacion, String direccion,
-            String email, String celular, int edad, String genero){
+    public void create(String tabla, int pk, String id, String ci,String nombre, String nacionalidad, String especialidad,String cargo, String ocupacion, String direccion,String email, String celular, int edad, String genero){
         
         String sql;
         String query;
@@ -67,6 +63,8 @@ public class DatosTrabajador {
                 + "INSERT INTO "
                 + tabla
                 + " VALUES ('"
+                + pk
+                + "', '"
                 + id
                 + "', '"
                 + ci
@@ -101,10 +99,10 @@ public class DatosTrabajador {
      * @param tabla
      * @param id 
      */
-    public void read(String tabla, String id){
+    public void read(String tabla, int id){
         String sql;
         String query;
-        sql = "select * from "+tabla+" where codigo = '"+id+"';";
+        sql = "select * from "+tabla+" where id = '"+id+"';";
         query = this.getPostgres().runStatement(sql);
         if (query.isEmpty()){
             query = "Resultado :: vacio";
@@ -118,6 +116,7 @@ public class DatosTrabajador {
     /**
      * 
      * @param tabla
+     * @param pk
      * @param id
      * @param ci
      * @param nombre
@@ -132,10 +131,7 @@ public class DatosTrabajador {
      * @param genero
      * @param idViejo 
      */
-    public void update(String tabla, String id, String ci, String nombre,
-            String nacionalidad, String especialidad, String cargo, String ocupacion,
-            String direccion, String email, String celular, int edad, String genero,
-            String idViejo){
+    public void update(String tabla, int pk, String id, String ci, String nombre,String nacionalidad, String especialidad, String cargo, String ocupacion,String direccion, String email, String celular, int edad, String genero,String idViejo){
         String sql;
         String query;
         
@@ -143,7 +139,9 @@ public class DatosTrabajador {
                 + "update "
                 + tabla
                 + " set "
-                + "codigo = '"
+                + "id = '"
+                + pk
+                + "', codigo = '"
                 + id
                 + "', ci = '"
                 + ci
@@ -180,11 +178,11 @@ public class DatosTrabajador {
      * @param tabla
      * @param id 
      */
-    public void delete(String tabla, String id){
+    public void delete(String tabla, int id){
         String sql;
         String query;
         
-        sql = "delete from "+tabla+" where codigo = '"+id+"';";
+        sql = "delete from "+tabla+" where id = '"+id+"';";
         this.getPostgres().runStatement(sql);
         query = "delete :: ok";
         System.out.println(query);

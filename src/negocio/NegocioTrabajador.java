@@ -123,12 +123,6 @@ public class NegocioTrabajador {
     public void setWorkerBD(DatosTrabajador workerBD) {
         this.workerBD = workerBD;
     }
-    public ClientePgSql getPostgres() {
-        return workerBD;
-    }
-    public void setPostgres(ClientePgSql postgres) {
-        this.workerBD = postgres;
-    }
     public String getTabla() {
         return tabla;
     }
@@ -142,21 +136,23 @@ public class NegocioTrabajador {
         
         worker.getWorkerBD().getPostgres().connect();
         
-        worker.getWorkerBD().read(worker.getTabla(), "f");
-        worker.getWorkerBD().delete(worker.getTabla(), "f");
-        worker.getWorkerBD().read(worker.getTabla(), "f");
-        worker.getWorkerBD().create(worker.getTabla(),"f", "f", "f", "f", "f", "f", "f", "f", "f", "f", 1, "M");
-        worker.getWorkerBD().read(worker.getTabla(), "f");
+        worker.getWorkerBD().index("trabajador");
+        System.out.println("*************************************************");
+        worker.getWorkerBD().read(worker.getTabla(), 37);
+        System.out.println("*************************************************");
+        worker.getWorkerBD().create(worker.getTabla(), 37, "x", "x", "x", "x", "x", "x", "x", "x", "37", "x", 1, "F");
+        System.out.println("*************************************************");
+        worker.getWorkerBD().read(worker.getTabla(), 37);
+        System.out.println("*************************************************");
+        worker.getWorkerBD().delete(worker.getTabla(), 37);
+        System.out.println("*************************************************");
+        worker.getWorkerBD().read(worker.getTabla(), 37);
+        System.out.println("*************************************************");
+        worker.getWorkerBD().create(worker.getTabla(), 37, "x", "x", "x", "x", "x", "x", "x", "x", "37", "x", 1, "F");
+        System.out.println("*************************************************");
+        worker.getWorkerBD().read(worker.getTabla(), 37);
+        System.out.println("*************************************************");
         
         worker.getWorkerBD().getPostgres().desconectar();
-        
-        //t.index();
-        //t.create("f", "f", "f", "f", "f", "f", "f", "f", "f", "f", 1, "M");
-        //t.index();
-        //t.read("f");
-        //t.delete("a");
-        //t.index();
-        //t.update("e", "eee", "z", "z", "z", "z", "z", "z", "z", "z", "z", 1, "M");
-        //t.index();
     }
 }
