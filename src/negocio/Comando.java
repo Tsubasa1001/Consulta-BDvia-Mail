@@ -5,6 +5,7 @@
  */
 package negocio;
 
+import Consultas_Mail.ConsultasBD_Mail;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +20,10 @@ public class Comando {
     private String Cu;
     private String Accion;
     private List<String> Atributos;
-    private final String[] listaCu = {"local","servicio","equipamiento","paquete"};
-    private final String[] listaAcciones = {"listar","registrar","modificar","eliminar"};
+    private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","paquete","consulta","citaconsulta","estaditicas","reportes"};
+    private final String[] listaAcciones = {"listar","registrar","modificar","eliminar","estadistica","reportes"};
+    
+    //reportes_reportes_all //estadistica-estadistica_all
     
     public Comando(){
         this.Atributos = new ArrayList<>();
@@ -102,8 +105,42 @@ public class Comando {
                         result = "Se elimino el paquete correctamente :(";
                         break;
                 }
+                break;
+            case "usuario-paciente":
+                NPaciente npaciente = new NPaciente();
+                switch(accion){
+                    case "listar":
+                        result = npaciente.Listar();
+                        break;
+                    case "registrar":
+                        npaciente.Registrar(att);
+                        result = "Se registro paciente correctamente :D";
+                        break;
+                    case "modificar":
+                        npaciente.Modificar(att);
+                        System.out.println("paso por modificar");
+                        result = "Se modifico el paciente correctamente :'D";
+                        break;
+                    case "eliminar":
+                        npaciente.Eliminar(att);
+                        result = "Se elimino el paciente correctamente :(";
+                        break;
+                }
                 
         }
         return result;
+    }
+    
+    public static void main(String[] args) throws SQLException{
+         Comando comando = new Comando();
+        String c = "USUARIO-PACIENTE_REGISTRAR_'c','a','Maria','a','a','a','a','a',24,'M'";
+        comando.separar(c);
+        System.out.println("cu "+comando.getCu());
+        System.out.println("accion "+comando.getAccion());
+        System.out.println("atributos "+comando.getAtributos());
+        System.out.println("negocio.Comando.main()"+comando.recogerDatos(c));
+        c = "USUARIO-PACIENTE_LISTAR_ALL";
+        System.out.println("negocio.Comando.main()"+comando.recogerDatos(c));
+        
     }
 }
