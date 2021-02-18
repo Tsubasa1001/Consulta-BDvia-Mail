@@ -6,11 +6,9 @@
 package Datos;
 //import Consultas_Mail.ClientePgSql;
 import Consultas_Mail.ClientePgSql;
-import Consultas_Mail.Conexion;
-import java.beans.Statement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 
 
@@ -19,24 +17,27 @@ import javax.swing.table.DefaultTableModel;
  * @author sariah
  */
 public class DPaciente {
-        String codigo;
-	String ci;
-	String nombre;
-	String nacionalidad;
-	String ocupacion;
-	String direccion;
-	String email;
-	String celular;
-	int edad; 
+        private int id;
+        private String codigo;
+	private String ci;
+	private String nombre;
+	private String nacionalidad;
+	private String ocupacion;
+	private String direccion;
+	private String email;
+	private String celular;
+	private int edad; 
+        private char genero;
         
-        private static ClientePgSql conexion;
+        private static ClientePgSql bd;
         
 
     public DPaciente() {
-        conexion = new ClientePgSql();
+        bd = new ClientePgSql();
     }
 
-    public DPaciente(String codigo, String ci, String nombre, String nacionalidad, String ocupacion, String direccion, String email, String celular, int edad) {
+    public DPaciente(int id, String codigo, String ci, String nombre, String nacionalidad, String ocupacion, String direccion, String email, String celular, int edad, char genero) {
+        this.id = id;
         this.codigo = codigo;
         this.ci = ci;
         this.nombre = nombre;
@@ -46,7 +47,18 @@ public class DPaciente {
         this.email = email;
         this.celular = celular;
         this.edad = edad;
+        this.genero = genero;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
 
     public String getCodigo() {
         return codigo;
@@ -119,79 +131,92 @@ public class DPaciente {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+      
+    public char getGenero() {
+        return genero;
+    }
+
+    public void setGenero(char genero) {
+        this.genero = genero;
+    }
         
-        
-    public int Dregistrar(String codigo, String ci, String nombre, String nacionalidad, String ocupacion, String direccion, String email, String celular, int edad){
-        int Dstatement = -1;
-        if(conexion.connect() != null){
-            String sql = "INSERT INTO paciente(codigo,ci,nombre,nacionalidad,ocupacion,direccion,email,celular,edad)"
-                    +"VALUES ('"+codigo+"','"+ci+"','"+nombre+"','"+nacionalidad+"','"+ocupacion+"','"+direccion+"','"+email+"','"+celular+"','"+edad+"');";
-            conexion.runStatement(sql);
-           
-            System.out.println("A pasado por Dregistrar DPaciente exitosamente");
-        }
-        return Dstatement;
+    public String Listar(){
+        Connection conexion = this.bd.connect();
+        String sql = "SELECT * FROM paciente ORDER BY id ASC;";
+        String result = this.bd.runStatement(sql);
+        conexion = null;
+        return result;
     }
     
-    public int Dmodificar(String codigo, String ci, String nombre, String nacionalidad, String ocupacion, String direccion, String email, String celular, int edad){
-        int Dstatement = -1;
-        if(conexion.connect() != null){
-            String sql = "UPDATE paciente SET ci='"+ci+"',nombre='"+nombre+"',nacionalidad='"+nacionalidad+"',ocupacion='"+ocupacion+"',direccion='"+direccion+"',email='"+email+"',celular='"+celular+"',edad='"+edad+"' WHERE codigo ='"+codigo+"' ";
-            System.err.println(sql); 
-            conexion.runStatement(sql);
-            
-            System.out.println("A pasado por Dmodificar DPaciente exitosamente");
-        }
-        return Dstatement;
+    
+    public String Dregistrar() throws SQLException{
+        
+        String resultado="";
+        Connection conexion = this.bd.connect();
+        String sql = "INSERT INTO paciente values(default,?,?,?,?,?,?,?,?,?,?);";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setString(1, this.getCodigo());
+        ps.setString(2, this.getCi());
+        ps.setString(3, this.getNombre());
+        ps.setString(4,this.getNacionalidad());
+        ps.setString(5,this.getOcupacion());
+        ps.setString(6, this.getDireccion());
+        ps.setString(7, this.getEmail());
+        ps.setString(8, this.getCelular());
+        ps.setInt(9, this.getEdad());
+        ps.setString(10, Character.toString(this.getGenero()));
+        ps.executeUpdate();
+        ps.close();
+        conexion = null;
+        
+        resultado="A registrado Paciente exitosamente";
+        return resultado;
     }
     
-    public int Deliminar(String codigo){
-        int Dstatement = -1;
-        if(conexion.connect() != null){
-            String sql = "DELETE FROM paciente WHERE codigo = '"+codigo+"' ";
-             System.err.println(sql);
-            conexion.runStatement(sql);
-            
-            System.out.println("A pasado por Dmodificar DPaciente exitosamente");
-        }
-        return Dstatement;
+    public String Dmodificar()throws SQLException{
+        System.out.println("esta en dmodificar");
+        
+        String resultado="";
+        
+        Connection conexion = this.bd.connect();
+        String sql = "UPDATE paciente SET codigo  = ?, ci = ?, nombre = ?, nacionalidad = ?, ocupacion = ?, "
+                + "direccion = ?, email = ? , celular = ? , edad = ? , genero = ? WHERE id = ?;";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        
+        ps.setString(1, this.getCodigo());
+        ps.setString(2, this.getCi());
+        ps.setString(3, this.getNombre());
+        ps.setString(4,this.getNacionalidad());
+        ps.setString(5,this.getOcupacion());
+        ps.setString(6, this.getDireccion());
+        ps.setString(7, this.getEmail());
+        ps.setString(8, this.celular);
+        ps.setInt(9, this.getEdad());
+        ps.setString(10, Character.toString(this.getGenero()));
+        ps.setInt(11, this.getId());
+        
+        ps.executeUpdate();
+        ps.close();
+        conexion = null;
+        resultado = "A modificado Paciente exitosamente";
+        return resultado;
     }
     
-    public String Dlistar(){ //ver otra forma de listar que no sea en una tabla
+    
+    public String Deliminar()throws SQLException{
+        String resultado="";
         
-        conexion.connect();
-        String [] columnas = {"codigo","ci","nombre","nacionalidad","ocupacion","direccion","email","celular","edad"};
-        DefaultTableModel tabla = new DefaultTableModel(columnas,0);
-        Statement statement;
-        ResultSet resultset = null;
-        String sql = "SELECT * FROM paciente ORDER BY codigo,ci,nombre,nacionalidad,ocupacion,direccion,email,celular,edad";
-        String resultado = conexion.runStatement(sql);
-       /* try {
-            
-            int i = 0;
-            while(resultset.next()){
-                String[] pacientetabla = new String[9];
-                tabla.setRowCount(tabla.getRowCount() + 1);
-                tabla.setValueAt(resultset.getObject(1).toString(), i, 0);
-                tabla.setValueAt(resultset.getObject(2).toString(), i, 1);
-                tabla.setValueAt(resultset.getObject(3).toString(), i, 2);
-                tabla.setValueAt(resultset.getObject(4).toString(), i, 3);
-                tabla.setValueAt(resultset.getObject(5).toString(), i, 4);
-                tabla.setValueAt(resultset.getObject(6).toString(), i, 5);
-                tabla.setValueAt(resultset.getObject(7).toString(), i, 6);
-                tabla.setValueAt(resultset.getObject(8).toString(), i, 7);
-                tabla.setValueAt(resultset.getObject(9).toString(), i, 8);
-          
-                i++;
-            }
-            
-        }catch (Exception e) {
-                System.out.println("DPaciente listar "+e.getMessage());
-            System.err.println("no se pudieron cargar los datos");
-                
-        }
-        */
+        Connection conexion = this.bd.connect();
+        String sql = "DELETE FROM paciente WHERE id = ?;";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setInt(1,this.getId());
+        ps.executeUpdate();
+        ps.close();
+        conexion = null;
         
-          return resultado;   
+        resultado = "A eliminado Paciente exitosamente";
+        return resultado;
     }
+    
+ 
 }
