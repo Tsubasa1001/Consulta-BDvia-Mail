@@ -87,7 +87,7 @@ public class ConsultasBD_Mail {
         //String patron2 = "*en*"; 
         String patron1 = "< ";
         String patron2 = " >";
-        int subjectIndex = correo.indexOf("Subject: ");
+        int subjectIndex = correo.indexOf("SUBJECT: ");
         
         if (subjectIndex < 0) {
             return "nosubject";
