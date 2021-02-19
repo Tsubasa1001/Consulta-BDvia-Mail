@@ -21,7 +21,7 @@ public class Comando {
     private String Accion;
     private List<String> Atributos;
     private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","promociones","consulta","citaconsulta","estaditicas","reportes","manual-usuario"};
-    private final String[] listaAcciones = {"listar","registrar","modificar","eliminar","statistics","report","help"};
+    private final String[] listaAcciones = {"listar","registrar","modificar","eliminar","show","help"};
     
     //reportes_reportes_all //estadistica-estadistica_all
     
