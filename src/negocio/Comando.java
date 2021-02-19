@@ -20,7 +20,7 @@ public class Comando {
     private String Cu;
     private String Accion;
     private List<String> Atributos;
-    private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","promociones","consulta","citaconsulta","estaditicas","reportes","manual-usuario"};
+    private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","promocion","consulta","citaconsulta","estaditica","reporte","manual-usuario"};
     private final String[] listaAcciones = {"listar","registrar","modificar","eliminar","show","help"};
     
     //reportes_reportes_all //estadistica-estadistica_all
@@ -131,7 +131,7 @@ public class Comando {
             break;
             
             
-            case "promociones":
+            case "promocion":
                 NPaquete npaquete = new NPaquete();
                 switch(accion){
                     case "listar":
@@ -139,15 +139,15 @@ public class Comando {
                         break;
                     case "registrar":
                         npaquete.Registrar(att);
-                        result = "Se registro paquete correctamente :D";
+                        result = "Se registro promocion correctamente :D";
                         break;
                     case "modificar":
                         npaquete.Modificar(att);
-                        result = "Se modifico el paquete correctamente :'D";
+                        result = "Se modifico el promocion correctamente :'D";
                         break;
                     case "eliminar":
                         npaquete.Eliminar(att);
-                        result = "Se elimino el paquete correctamente :(";
+                        result = "Se elimino el promocion correctamente :(";
                         break;
                 }
                 break;
