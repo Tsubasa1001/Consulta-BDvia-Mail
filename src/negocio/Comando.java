@@ -20,8 +20,8 @@ public class Comando {
     private String Cu;
     private String Accion;
     private List<String> Atributos;
-    private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","paquete","consulta","citaconsulta","estaditicas","reportes"};
-    private final String[] listaAcciones = {"listar","registrar","modificar","eliminar","estadistica","reportes"};
+    private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","promociones","consulta","citaconsulta","estaditicas","reportes","manual-usuario"};
+    private final String[] listaAcciones = {"listar","registrar","modificar","eliminar","statistics","report","help"};
     
     //reportes_reportes_all //estadistica-estadistica_all
     
@@ -86,7 +86,48 @@ public class Comando {
         List<String> att = this.getAtributos();
         
         switch(cu){
-            case "paquete":
+            case "manual-usuario":
+                switch(accion){
+                    case "help":
+                    result= "\n"
+                            + "-----------------------------MANUAL USUARIO-----------------------------\n"
+                            + "\n"
+                            + "PROMOCIONES\n"
+                            + "-----------------------------\n"
+                            + "Listar:\n"
+                            + "< PROMOCIONES_LISTAR_ALL >\n"
+                            + "\n"
+                            + "Registrar:\n"
+                            + "< PROMOCIONES_REGISTRAR_nombrepaquete,4,200.0 >\n"
+                            + "\n"
+                            + "Modificar:\n"
+                            + "< PROMOCIONES_MODIFICAR_1,nombrepaquete,4,200.0 >\n"
+                            + "\n"
+                            + "Eliminar:\n"
+                            + "< PROMOCIONES_ELIMINAR_1 >\n"
+                            + "-----------------------------"
+                            + "\n"
+                            + "USUARIO-PACIENTE\n"
+                            + "-----------------------------\n"
+                            + "Listar:\n"
+                            + "< USUARIO-PACIENTE_LISTAR_ALL >\n"
+                            + "\n"
+                            + "Registrar:\n"
+                            + "< USUARIO-PACIENTE_REGISTRAR_nombrepaquete,4,200.0 >\n"
+                            + "\n"
+                            + "Modificar:\n"
+                            + "< USUARIO-PACIENTE_MODIFICAR_1,nombrepaquete,4,200.0 >\n"
+                            + "\n"
+                            + "Eliminar:\n"
+                            + "< USUARIO-PACIENTE_ELIMINAR_1 >\n"
+                            + "\n"
+                            + "";
+                    break;
+                }
+            break;
+            
+            
+            case "promociones":
                 NPaquete npaquete = new NPaquete();
                 switch(accion){
                     case "listar":
@@ -133,14 +174,15 @@ public class Comando {
     
     public static void main(String[] args) throws SQLException{
          Comando comando = new Comando();
-        String c = "USUARIO-PACIENTE_REGISTRAR_'c','a','Maria','a','a','a','a','a',24,'M'";
+        //String c = "USUARIO-PACIENTE_REGISTRAR_'c','a','Maria','a','a','a','a','a',24,'M'";
+        String c = "MANUAL-USUARIO_HELP_ALL";
         comando.separar(c);
         System.out.println("cu "+comando.getCu());
         System.out.println("accion "+comando.getAccion());
         System.out.println("atributos "+comando.getAtributos());
         System.out.println("negocio.Comando.main()"+comando.recogerDatos(c));
-        c = "USUARIO-PACIENTE_LISTAR_ALL";
+       /* c = "USUARIO-PACIENTE_LISTAR_ALL";
         System.out.println("negocio.Comando.main()"+comando.recogerDatos(c));
-        
+       */ 
     }
 }
