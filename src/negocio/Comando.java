@@ -92,6 +92,7 @@ public class Comando {
                     result= "\n"
                             + "-----------------------------MANUAL USUARIO-----------------------------\n"
                             + "\n"
+                            + "\n"
                             + "PROMOCIONES\n"
                             + "-----------------------------\n"
                             + "Listar:\n"
@@ -121,7 +122,10 @@ public class Comando {
                             + "Eliminar:\n"
                             + "< USUARIO-PACIENTE_ELIMINAR_1 >\n"
                             + "\n"
-                            + "";
+                            + "\n"
+                            + "CERRAR SESION: < stop >"
+                            + "\n"
+                            + "\n";
                     break;
                 }
             break;
