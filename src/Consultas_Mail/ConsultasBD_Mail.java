@@ -90,7 +90,10 @@ public class ConsultasBD_Mail {
         int subjectIndex = correo.indexOf("SUBJECT: ");
         
         if (subjectIndex < 0) {
-            return "nosubject";
+            subjectIndex = correo.indexOf("Subject: ");
+            if (subjectIndex < 0) {
+                return "nosubject";
+            }
         }
         
         // recortar la linea "SUBJECT"
