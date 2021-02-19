@@ -87,13 +87,14 @@ public class ConsultasBD_Mail {
         //String patron2 = "*en*"; 
         String patron1 = "< ";
         String patron2 = " >";
-        int subjectIndex = correo.indexOf("SUBJECT: ");
+        int subjectIndex = -1;/*-1 = valor inicial*/
+        
+        /*Procesando el mail_content*/
+        correo = correo.toUpperCase();
+        subjectIndex = correo.indexOf("SUBJECT: ");
         
         if (subjectIndex < 0) {
-            subjectIndex = correo.indexOf("Subject: ");
-            if (subjectIndex < 0) {
-                return "nosubject";
-            }
+            return "nosubject";
         }
         
         // recortar la linea "SUBJECT"
