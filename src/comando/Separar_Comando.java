@@ -94,13 +94,13 @@ public class Separar_Comando {
                         String parametro7 = parametrosSeparados[6];
                         String parametro8 = parametrosSeparados[7];
                         String parametro9 = parametrosSeparados[8];
-                        paciente.Dregistrar(parametro1, parametro2, parametro3,parametro4,parametro5,parametro6,parametro7,parametro8, Integer.parseInt(parametro9));
+                        paciente.Dregistrar();
                         break;
                     case "MODIFICAR":
-                        paciente.Dmodificar(comando, cu, comando, accionActual, accion, accion, accion, cu, 0);
+                        paciente.Dmodificar();
                         break;
                     case "ELIMINAR":
-                        paciente.Deliminar(comando);
+                        paciente.Deliminar();
                         break;
                 }            
         }
@@ -125,7 +125,7 @@ public class Separar_Comando {
         Separar_Comando separar_comando = new Separar_Comando();
         
         //FUNCIONA
-        separar_comando.separacion("USUARIO-PACIENTE_REGISTRAR_P0005,42123,Eyver,Bolivia,Ing,por alla,eyver@gmail.com,75698542,22");
+        //separar_comando.separacion("USUARIO-PACIENTE_REGISTRAR_P0005,42123,Eyver,Bolivia,Ing,por alla,eyver@gmail.com,75698542,22");
         
         separar_comando.separacion("USUARIO-PACIENTE_LISTAR_P0004,42123,Celia,Bolivia,Artista,4to anillo,celiav@gmail.com,75698542,21");
        
