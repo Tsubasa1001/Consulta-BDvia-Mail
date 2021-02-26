@@ -1,3 +1,4 @@
+///
 #crear tabla
 create table paquete(
 	id SERIAL primary key,
@@ -190,4 +191,7 @@ CREATE TABLE usuario(
 	genero char(1)      NOT NULL,
 	fecha_creacion date NOT NULL
 );
+
+
+
 
