@@ -124,7 +124,7 @@ public class ClientePgSql {
              */
             conn = DriverManager.getConnection("jdbc:postgresql://"+this.m_host+":"+this.m_port+"/"+this.m_database, this.m_user, this.m_pass);
             
-            System.out.println("connect :: ok");
+            //System.out.println("connect :: ok");
             this.setM_conn(conn);
         }catch (SQLException sqlex){
             //System.out.println("Error al conectar: " + sqlex.toString());
@@ -179,7 +179,7 @@ public class ClientePgSql {
     public void desconectar(){
         try {
             this.getConnection().close();
-            System.out.println("desconectar :: ok");
+            //System.out.println("desconectar :: ok");
         } catch (SQLException ex) {
             //Logger.getLogger(ClientePgSql.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("desconectar :: not ok");
