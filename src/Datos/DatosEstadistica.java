@@ -6,6 +6,7 @@
 package Datos;
 
 import Consultas_Mail.ClientePgSql;
+import static java.lang.Thread.sleep;
 
 /**
  *
@@ -31,11 +32,12 @@ public class DatosEstadistica {
         sql = "select count(*) from usuario";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
         trash = trash.replace("|", "");
         trash = trash.replace(",", "");
         trash = trash.substring(0, trash.length() -2);
         resultado = Integer.parseInt(trash);
-        this.getPostgres().desconectar();
         
         return resultado;
     }
@@ -47,17 +49,101 @@ public class DatosEstadistica {
         sql = "select sum(codigo) from usuario";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
         trash = trash.replace("|", "");
         trash = trash.replace(",", "");
         trash = trash.substring(0, trash.length() -2);
         resultado = Integer.parseInt(trash);
-        this.getPostgres().desconectar();
         
         return resultado;
     }
     public int cantTotalAtencionesMes() {
         int resultado = -1;
         resultado = cantTotalAtenciones()/12;
+        
+        return resultado;
+    }
+
+    public int cantTotalAtencionesHombres() {
+        int resultado = -1;
+        String sql = "default";
+        resultado = (int) (Math.random()*1000);
+        
+        sql = "select count(*) from usuario where genero = 'M'";
+        this.getPostgres().connect();
+        String trash = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
+        trash = trash.replace("|", "");
+        trash = trash.replace(",", "");
+        trash = trash.substring(0, trash.length() -2);
+        resultado = Integer.parseInt(trash);
+        
+        return resultado;
+    }
+    public int sumTotalAtencionesHombres() {
+        int resultado = -1;
+        String sql = "default";
+        resultado = (int) (Math.random()*1000+1000);
+        
+        sql = "select sum(codigo) from usuario where genero = 'M'";
+        this.getPostgres().connect();
+        String trash = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
+        trash = trash.replace("|", "");
+        trash = trash.replace(",", "");
+        trash = trash.substring(0, trash.length() -2);
+        resultado = Integer.parseInt(trash);
+        
+        return resultado;
+    }
+    public int cantTotalAtencionesMesHombres() {
+        int resultado = -1;
+        resultado = cantTotalAtencionesHombres()/12;
+        
+        return resultado;
+    }
+
+    public int cantTotalAtencionesMujeres() {
+        int resultado = -1;
+        String sql = "default";
+        resultado = (int) (Math.random()*1000);
+        
+        sql = "select count(*) from usuario where genero = 'F'";
+        this.getPostgres().connect();
+        String trash = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
+        trash = trash.replace("|", "");
+        trash = trash.replace(",", "");
+        trash = trash.substring(0, trash.length() -2);
+        resultado = Integer.parseInt(trash);
+        
+        return resultado;
+    }
+    public int sumTotalAtencionesMujeres() {
+        int resultado = -1;
+        String sql = "default";
+        resultado = (int) (Math.random()*1000+1000);
+        
+        sql = "select sum(codigo) from usuario where genero = 'F'";
+        this.getPostgres().connect();
+        String trash = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
+        trash = trash.replace("|", "");
+        trash = trash.replace(",", "");
+        trash = trash.substring(0, trash.length() -2);
+        resultado = Integer.parseInt(trash);
+        
+        return resultado;
+    }
+    public int cantTotalAtencionesMesMujeres() {
+        int resultado = -1;
+        resultado = cantTotalAtencionesMujeres()/12;
+        
         return resultado;
     }
 }
