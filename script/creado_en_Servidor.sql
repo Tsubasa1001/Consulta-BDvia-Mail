@@ -175,3 +175,19 @@ INSERT INTO consulta VALUES (default, 1, 1, 'CON001', '04:00:00', '04:20:00', '2
 #consulta
 select * from consulta
 
+
+#usuario
+CREATE TABLE usuario(
+	codigo serial	    PRIMARY KEY,
+	ci char(10)         UNIQUE NOT NULL,
+	nombre char(150)    NOT NULL,
+	nacionalidad char(100)  NOT NULL,
+	especialidad char(50)   NOT NULL,
+	direccion char(50)      NOT NULL,
+	email char(50)          UNIQUE NOT NULL,
+	celular char(8)     NOT NULL,
+	edad int            NOT NULL,
+	genero char(1)      NOT NULL,
+	fecha_creacion date NOT NULL
+);
+
