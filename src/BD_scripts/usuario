@@ -1,0 +1,25 @@
+
+ssh grupo06sc@tecnoweb.org.bo
+grup006grup006
+psql db_grupo06sc grupo06sc
+\dt
+
+drop table if exists usuario;
+CREATE TABLE usuario(
+	codigo serial	    PRIMARY KEY,
+	ci char(10)         UNIQUE NOT NULL,
+	nombre char(150)    NOT NULL,
+	nacionalidad char(100)  NOT NULL,
+	especialidad char(50)   NOT NULL,
+	direccion char(50)      NOT NULL,
+	email char(50)          UNIQUE NOT NULL,
+	celular char(8)     NOT NULL,
+	edad int            NOT NULL,
+	genero char(1)      NOT NULL,
+	fecha_creacion date NOT NULL
+);
+
+INSERT INTO usuario VALUES (1, floor(random()* (9999999-1111111 + 1) + 1111111), 'Daciano Mónica', 'Bolivia', 1, 'c/ Alameins', '1@gmail.com', floor(random()* (7999999-6000000 + 1) + 60000000), floor(random()* (100-5 + 1) + 5), 'F', now() - '1 year'::interval * random());
+INSERT INTO usuario VALUES (2, floor(random()* (9999999-1111111 + 1) + 1111111), 'Valentín Noelia', 'Bolivia', 1, 'c/ Alameins', '2@gmail.com', floor(random()* (7999999-6000000 + 1) + 60000000), floor(random()* (100-5 + 1) + 5), 'M', now() - '1 year'::interval * random());
+
+select count(genero) from usuario where genero = 'M';
