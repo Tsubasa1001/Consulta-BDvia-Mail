@@ -218,5 +218,28 @@ public class DPaciente {
         return resultado;
     }
     
+    public String Dver(int id) throws SQLException{
+        Connection conexion = this.bd.connect();
+        String sql = "SELECT * FROM paciente WHERE id="+id+";";
+        String result = this.bd.runStatement(sql);
+        conexion = null;
+       
+        String[] detalle = result.split(",");
+        result = "El usuario es:\n"
+                + "id: "+detalle[0] +"\n"
+                + "codigo: "+detalle[1]+"\n"
+                + "ci: "+detalle[2]+"\n"
+                + "nombre: "+detalle[3]+"\n"
+                + "nacionalidad: "+detalle[4]+"\n"
+                + "ocupacion: "+detalle[5]+"\n"
+                + "direccion: "+detalle[6]+"\n"
+                + "email: "+detalle[7]+"\n"
+                + "celular: "+detalle[8]+"\n"
+                + "edad: "+detalle[9]+"\n"
+                + "genero: "+detalle[10]+"\n";
+        
+        return result;
+    }
+    
  
 }

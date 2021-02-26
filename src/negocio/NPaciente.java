@@ -85,5 +85,14 @@ public class NPaciente {
         Dpaciente.Deliminar();
     }
     
+    public String Ver(List<String> atributos) throws SQLException{
+        int id = Integer.parseInt(atributos.get(0));
+        Dpaciente.setId(id);
+        //System.err.println("id:"+id);
+        String detalle = Dpaciente.Dver(Dpaciente.getId());
+        //System.err.println("resultado: "+detalle);
+    return detalle;
+    }
+    
     
 }
