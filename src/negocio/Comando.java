@@ -78,7 +78,7 @@ public class Comando {
         return Arrays.asList(this.listaAcciones).contains(accion);
     }
     
-    public String recogerDatos(String c) throws SQLException{
+     public String recogerDatos(String c) throws SQLException{
         this.separar(c);
         String result = "";
         String cu= this.getCu();
@@ -96,18 +96,19 @@ public class Comando {
                             + "PROMOCIONES\n"
                             + "-----------------------------\n"
                             + "Listar:\n"
-                            + "< PROMOCION_LISTAR_ALL >\n"
+                            + "< PROMOCIONES_LISTAR_ALL >\n"
                             + "\n"
                             + "Registrar:\n"
-                            + "< PROMOCION_REGISTRAR_nombrepaquete,4,200.0 >\n"
+                            + "< PROMOCIONES_REGISTRAR_nombrepaquete,4,200.0 >\n"
                             + "\n"
                             + "Modificar:\n"
-                            + "< PROMOCION_MODIFICAR_1,nombrepaquete,4,200.0 >\n"
+                            + "< PROMOCIONES_MODIFICAR_1,nombrepaquete,4,200.0 >\n"
                             + "\n"
                             + "Eliminar:\n"
-                            + "< PROMOCION_ELIMINAR_1 >\n"
+                            + "< PROMOCIONES_ELIMINAR_1 >\n"
                             + "-----------------------------"
-                            + "\n\n\n"
+                            + "\n"
+                            + "\n"
                             + "USUARIO-PACIENTE\n"
                             + "-----------------------------\n"
                             + "ver:\n"
@@ -185,7 +186,7 @@ public class Comando {
     public static void main(String[] args) throws SQLException{
          Comando comando = new Comando();
         //String c = "USUARIO-PACIENTE_REGISTRAR_'c','a','Maria','a','a','a','a','a',24,'M'";
-        String c = "MANUAL-USUARIO_HELP_ALL";
+        String c = "USUARIO_HELP_ALL";
         comando.separar(c);
         System.out.println("cu "+comando.getCu());
         System.out.println("accion "+comando.getAccion());

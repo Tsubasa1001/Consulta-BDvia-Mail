@@ -210,7 +210,7 @@ public class ConsultasBD_Mail {
                 "localhost",
                 "5432",
                 "postgres",
-                "password",
+                "",
                 "nativa"
             );
         
