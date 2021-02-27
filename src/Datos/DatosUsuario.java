@@ -40,9 +40,8 @@ public class DatosUsuario {
         
         return resultado;
     }
-    public String create(String tabla, int codigo, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion){
+    public void create(String tabla, int codigo, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion){
         String sql = "";
-        String resultado = "";
         
         sql = ""
             + "INSERT INTO "+tabla+" VALUES ("
@@ -60,8 +59,6 @@ public class DatosUsuario {
         this.getPostgres().connect();
         this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
-        
-        return resultado;
     }
     public String read(String tabla, int codigo){
         String sql = "";
@@ -80,9 +77,8 @@ public class DatosUsuario {
         
         return resultado;
     }
-    public String update(String tabla, int codigo, String ci, String nombre,String nacionalidad, String especialidad,String direccion, String email, String celular, String edad, String genero,String fecha_creacion,int codigoViejo){
+    public void update(String tabla, int codigo, String ci, String nombre,String nacionalidad, String especialidad,String direccion, String email, String celular, String edad, String genero,String fecha_creacion,int codigoViejo){
         String sql = "";
-        String resultado = "";
         
         sql = ""
                 + "update "
@@ -114,18 +110,13 @@ public class DatosUsuario {
         this.getPostgres().connect();
         this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
-        
-        return resultado;
     }
     public String delete(String tabla, int codigo){
         String sql = "";
-        String resultado = "";
         
         sql = "delete from "+tabla+" where codigo = '"+codigo+"';";
         this.getPostgres().connect();
         this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
-        
-        return resultado;
     }
 }
