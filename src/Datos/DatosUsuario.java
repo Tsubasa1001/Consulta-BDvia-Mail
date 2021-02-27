@@ -111,7 +111,7 @@ public class DatosUsuario {
         this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
     }
-    public String delete(String tabla, int codigo){
+    public void delete(String tabla, int codigo){
         String sql = "";
         
         sql = "delete from "+tabla+" where codigo = '"+codigo+"';";
