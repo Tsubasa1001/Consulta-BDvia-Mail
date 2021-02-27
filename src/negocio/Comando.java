@@ -183,17 +183,4 @@ public class Comando {
         return result;
     }
     
-    public static void main(String[] args) throws SQLException{
-         Comando comando = new Comando();
-        //String c = "USUARIO-PACIENTE_REGISTRAR_'c','a','Maria','a','a','a','a','a',24,'M'";
-        String c = "USUARIO-PACIENTE_VER_1";
-        comando.separar(c);
-        System.out.println("cu "+comando.getCu());
-        System.out.println("accion "+comando.getAccion());
-        System.out.println("atributos "+comando.getAtributos());
-        System.out.println("negocio.Comando.main()"+comando.recogerDatos(c));
-       /* c = "USUARIO-PACIENTE_LISTAR_ALL";
-        System.out.println("negocio.Comando.main()"+comando.recogerDatos(c));
-       */ 
-    }
 }
