@@ -107,9 +107,12 @@ public class Comando {
                             + "Eliminar:\n"
                             + "< PROMOCION_ELIMINAR_1 >\n"
                             + "-----------------------------"
-                            + "\n"
+                            + "\n\n\n"
                             + "USUARIO-PACIENTE\n"
                             + "-----------------------------\n"
+                            + "ver:\n"
+                            + "< USUARIO-PACIENTE_VER_1 >\n"
+                            + "\n"
                             + "Listar:\n"
                             + "< USUARIO-PACIENTE_LISTAR_ALL >\n"
                             + "\n"
@@ -154,6 +157,9 @@ public class Comando {
             case "usuario-paciente":
                 NPaciente npaciente = new NPaciente();
                 switch(accion){
+                    case "ver":
+                        result = npaciente.Ver(att);
+                        break;
                     case "listar":
                         result = npaciente.Listar();
                         break;
