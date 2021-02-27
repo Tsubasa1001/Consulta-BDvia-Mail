@@ -21,7 +21,7 @@ public class Comando {
     private String Accion;
     private List<String> Atributos;
     private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","promocion","consulta","citaconsulta","estaditica","reporte","manual-usuario"};
-    private final String[] listaAcciones = {"listar","registrar","modificar","eliminar","show","help"};
+    private final String[] listaAcciones = {"ver","listar","registrar","modificar","eliminar","show","help"};
     
     //reportes_reportes_all //estadistica-estadistica_all
     
@@ -186,7 +186,7 @@ public class Comando {
     public static void main(String[] args) throws SQLException{
          Comando comando = new Comando();
         //String c = "USUARIO-PACIENTE_REGISTRAR_'c','a','Maria','a','a','a','a','a',24,'M'";
-        String c = "USUARIO_HELP_ALL";
+        String c = "USUARIO-PACIENTE_VER_1";
         comando.separar(c);
         System.out.println("cu "+comando.getCu());
         System.out.println("accion "+comando.getAccion());
