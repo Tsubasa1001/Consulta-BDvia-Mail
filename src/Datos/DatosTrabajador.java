@@ -16,95 +16,71 @@ public class DatosTrabajador {
     public ClientePgSql getPostgres() {return postgres;}
     public void setPostgres(ClientePgSql postgres) {this.postgres = postgres;}
     
-    public void index(String tabla){
+    public String index(String tabla){
         String sql;
-        String query;
+        String resultado;
         
         sql = "select * from "+tabla+";";
-        query = this.getPostgres().runStatement(sql);
-        if (query.isEmpty()){
-            query = "Resultado :: vacio";
-            System.out.println(query);
+        this.getPostgres().connect();
+        resultado = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
+        if (resultado.isEmpty()){
+            resultado = "Resultado :: vacio";
         }else{
-            query = query.replace(" ", "");
-            System.out.println(query);
+            resultado = resultado.replace(" ", "");
         }
+        
+        return resultado;
     }
-    
-    public void create(
-            String tabla, int codigo, String ci, String nombre,
-            String nacionalidad, String especialidad, String cargo, String direccion,
-            String ocupacion, String email, String celular, String edad, String genero,
-            String fecha_creacion
-    ){
-        String sql;
-        String query;
+    public void create(String tabla, int id, String ci, String nombre, String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero, String fecha_creacion){
+        String sql = "";
         
         sql = ""
-                + "INSERT INTO "
-                + tabla
-                + " VALUES ('"
-                + codigo
-                + "', '"
-                + ci
-                + "', '"
-                + nombre
-                + "', '"
-                + nacionalidad
-                + "', '"
-                + especialidad
-                + "', '"
-                + cargo
-                + "', '"
-                + ocupacion
-                + "', '"
-                + direccion
-                + "', '"
-                + email
-                + "', '"
-                + celular
-                + "', "
-                + edad
-                + ", '"
-                + genero
-                + ", '"
-                + fecha_creacion
-                + "');";
+            + "INSERT INTO "+tabla+" VALUES ("
+            + id+",'"
+            + ci+"','"
+            + nombre+"','"
+            + nacionalidad+"','"
+            + especialidad+"','"
+            + cargo+"','"
+            + ocupacion+"','"
+            + direccion+"','"
+            + email+"','"
+            + celular+"','"
+            + edad+"','"
+            + genero+"','"
+            + fecha_creacion+"');";
+        System.out.println(sql);
+        this.getPostgres().connect();
         this.getPostgres().runStatement(sql);
-        query = "create :: ok";
-        System.out.println(query);
+        this.getPostgres().desconectar();
     }
-    
-    public void read(String tabla, int codigo){
-        String sql;
-        String query;
-        sql = "select * from "+tabla+" where codigo = '"+codigo+"';";
-        query = this.getPostgres().runStatement(sql);
-        if (query.isEmpty()){
-            query = "Resultado :: vacio";
-            System.out.println(query);
+    public String read(String tabla, int id){
+        String sql = "";
+        String resultado = "";
+        
+        this.getPostgres().connect();
+        resultado = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
+        if (resultado.isEmpty()){
+            resultado = "Resultado :: vacio";
         }else{
-            query = query.replace(" ", "");
-            System.out.println(query);
+            resultado = resultado.replace(" ", "");
         }
+        
+        return resultado;
     }
-    
-    public void update(
-            String tabla, int codigo, String ci, String nombre,
-            String nacionalidad, String especialidad, String cargo, String direccion,
-            String ocupacion, String email, String celular, String edad, String genero,
-            String fecha_creacion,
-            String idViejo
-    ){
-        String sql;
-        String query;
+    public void update(String tabla, int id, String ci, String nombre,String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero,String fecha_creacion,int idViejo){
+        String sql = "";
         
         sql = ""
                 + "update "
                 + tabla
                 + " set "
-                + "codigo = '"
-                + codigo
+                + "id = '"
+                + id
                 + "', ci = '"
                 + ci
                 + "', nombre = '"
@@ -114,9 +90,9 @@ public class DatosTrabajador {
                 + "', especialidad = '"
                 + especialidad
                 + "', cargo = '"
-                + cargo
+                +cargo
                 + "', ocupacion = '"
-                + ocupacion
+                +ocupacion
                 + "', direccion = '"
                 + direccion
                 + "', email = '"
@@ -127,21 +103,19 @@ public class DatosTrabajador {
                 + edad
                 + ", genero = '"
                 + genero
-                + "' where codigo = '"
+                + "' where id = '"
                 + idViejo
                 +"';";
+        this.getPostgres().connect();
         this.getPostgres().runStatement(sql);
-        query = "update :: ok";
-        System.out.println(query);
+        this.getPostgres().desconectar();
     }
-    
-    public void delete(String tabla, int codigo){
-        String sql;
-        String query;
+    public void delete(String tabla, int id){
+        String sql = "";
         
-        sql = "delete from "+tabla+" where codigo = '"+codigo+"';";
+        sql = "delete from "+tabla+" where id = '"+id+"';";
+        this.getPostgres().connect();
         this.getPostgres().runStatement(sql);
-        query = "delete :: ok";
-        System.out.println(query);
+        this.getPostgres().desconectar();
     }
 }
