@@ -75,7 +75,7 @@ public class Separar_Comando {
                 //System.err.println("Accion no encontrada en la lista: "+ lista_acciones[i]);
             }
         }
-        
+        /*
         switch(cuActual){
             case "USUARIO-PACIENTE":
                 System.err.println("paso por USUARIO-PACIENTE");
@@ -104,7 +104,7 @@ public class Separar_Comando {
                         break;
                 }            
         }
-        
+        */
         
     }
     

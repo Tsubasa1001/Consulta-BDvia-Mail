@@ -7,7 +7,7 @@ import Consultas_Mail.ClientePgSql;
  *
  * @author eyver-dev
  */
-public class Usuario {
+public class DatosUsuario {
     private String codigo;
     private String ci;
     private String nombre;
@@ -21,7 +21,7 @@ public class Usuario {
     private ClientePgSql BD;
     private String tabla;
     
-    public Usuario() {
+    public DatosUsuario() {
         this.BD = new ClientePgSql(
             /*HOST*/"tecnoweb.org.bo",
             /*PORT*/"5432",
@@ -31,7 +31,7 @@ public class Usuario {
         );
         this.tabla = "usuario";
     }
-    public Usuario(String codigo, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, int edad, String genero) {
+    public DatosUsuario(String codigo, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, int edad, String genero) {
         this.codigo = codigo;
         this.ci = ci;
         this.nombre = nombre;
@@ -275,7 +275,7 @@ public class Usuario {
     }
     
     public static void main(String[] args) {
-        Usuario t = new Usuario();
+        DatosUsuario t = new DatosUsuario();
         
         t.getBD().connect();
         t.index();

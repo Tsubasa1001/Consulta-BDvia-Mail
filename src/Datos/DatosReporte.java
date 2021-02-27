@@ -56,7 +56,7 @@ public class DatosReporte {
     }
     
     public String indexUsuario(){
-        String cadena = this.getDatosUsuario().index();
+        String cadena = ""; //this.getDatosUsuario().index();
         return cadena;
     }
     

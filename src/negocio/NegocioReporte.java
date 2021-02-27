@@ -26,11 +26,11 @@ public class NegocioReporte {
     public static void main(String[] args) {
         NegocioReporte negocioReporte = new NegocioReporte();
         
-        negocioReporte.getDatosReporte().getDatosUsuario().getPostgres().connect();
+        //negocioReporte.getDatosReporte().getDatosUsuario().getPostgres().connect();
         
         String tmp = negocioReporte.getDatosReporte().indexUsuario();
         System.out.println(tmp);
         
-        negocioReporte.getDatosReporte().getDatosUsuario().getPostgres().desconectar();
+       //negocioReporte.getDatosReporte().getDatosUsuario().getPostgres().desconectar();
     }
 }

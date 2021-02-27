@@ -9,6 +9,6 @@ package negocio;
  *
  * @author eyver-dev
  */
-public class Usuario {
+public class NegocioUsuario {
     
 }
