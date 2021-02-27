@@ -1,0 +1,48 @@
+
+
+#conexion SSH
+conexion :: ssh grupo06sc@tecnoweb.org.bo
+password :: grup006grup006
+
+
+#conexion bd
+psql db_grupo06sc grupo06sc
+
+#listar tablas
+\dt
+
+#crear tabla
+CREATE TABLE paciente(
+	codigo char(15) PRIMARY KEY,
+	ci char(10) NOT NULL,
+	nombre char(150) NOT NULL,
+	nacionalidad char(100) NOT NULL,
+	ocupacion char(50) NOT NULL,
+	direccion char(50) NOT NULL,
+	email char(50) UNIQUE NOT NULL,
+	celular char(8) NOT NULL,
+	edad int NOT NULL,
+	genero char(1) NOT NULL
+);
+
+#eliminar tabla
+drop table if exists paciente;
+
+#insertar datos
+INSERT INTO paciente VALUES ('a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 1, 'M');
+INSERT INTO paciente VALUES ('b', 'b', 'a', 'a', 'a', 'a', 'b', 'a', 1, 'F');
+INSERT INTO paciente VALUES ('c', 'c', 'a', 'a', 'a', 'a', 'c', 'a', 1, 'M');
+INSERT INTO paciente VALUES ('d', 'd', 'a', 'a', 'a', 'a', 'd', 'a', 1, 'F');
+INSERT INTO paciente VALUES ('e', 'e', 'a', 'a', 'a', 'a', 'e', 'a', 1, 'M');
+
+
+
+#consulta
+select email from paciente;
+
+
+
+
+
+
+

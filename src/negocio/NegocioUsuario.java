@@ -12,7 +12,7 @@ import Datos.DatosUsuario;
  * @author eyver-dev
  */
 public class NegocioUsuario {
-    private int codigo;                 /*variable de la tabla*/
+    private int id;                 /*variable de la tabla*/
     private String ci;                  /*variable de la tabla*/
     private String nombre;              /*variable de la tabla*/
     private String nacionalidad;        /*variable de la tabla*/
@@ -33,8 +33,8 @@ public class NegocioUsuario {
     
     /* G E T / S E T   D E   L A S   V A R I A B L E S */
     
-    public int getCodigo() {return codigo;}
-    public void setCodigo(int codigo) {this.codigo = codigo;}
+    public int getid() {return id;}
+    public void setid(int id) {this.id = id;}
     public String getCi() {return ci;}
     public void setCi(String ci) {this.ci = ci;}
     public String getNombre() {return nombre;}
@@ -67,12 +67,12 @@ public class NegocioUsuario {
         String tmp = "";
         
         /**
-         * codigo       ci      nombre      nacionalidad        especialidad
+         * id       ci      nombre      nacionalidad        especialidad
          * direccion    email   celular     edad                genero
          * fecha_reacion
          * 
          * "5000","6742098","IldefonsoLino","Bolivia","1","c/Alameins","5000@gmail.com","60426008","53","M","2020-08-08"
-         * "codigo","ci","nombre","nacionalidad","especialidad","direccion","email","celular","edad","genero","fecha_creacion"
+         * "id","ci","nombre","nacionalidad","especialidad","direccion","email","celular","edad","genero","fecha_creacion"
          */
         
         tmp = worker.index();
@@ -97,18 +97,18 @@ public class NegocioUsuario {
         resultado = this.getUsuarioBD().index(this.getTabla());
         return resultado;
     }
-    private void create(int codigo, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion) {
-        this.getUsuarioBD().create(this.getTabla(), codigo, ci, nombre, nacionalidad, especialidad, direccion, email, celular, edad, genero, fecha_creacion);
+    private void create(int id, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion) {
+        this.getUsuarioBD().create(this.getTabla(), id, ci, nombre, nacionalidad, especialidad, direccion, email, celular, edad, genero, fecha_creacion);
     }
-    private String read(int codigo) {
+    private String read(int id) {
         String resultado = "default";
-        resultado = this.getUsuarioBD().read(this.getTabla(), codigo);
+        resultado = this.getUsuarioBD().read(this.getTabla(), id);
         return resultado;
     }
-    private void update(int codigo, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion, int codigoViejo) {
-        this.getUsuarioBD().update(this.getTabla(), codigo, ci, nombre, nacionalidad, especialidad, direccion, email, celular, edad, genero, fecha_creacion, codigoViejo);
+    private void update(int id, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion, int idViejo) {
+        this.getUsuarioBD().update(this.getTabla(), id, ci, nombre, nacionalidad, especialidad, direccion, email, celular, edad, genero, fecha_creacion, idViejo);
     }
-    private void delete(int codigo) {
-        this.getUsuarioBD().delete(this.getTabla(), codigo);
+    private void delete(int id) {
+        this.getUsuarioBD().delete(this.getTabla(), id);
     }
 }

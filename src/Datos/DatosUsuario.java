@@ -40,12 +40,12 @@ public class DatosUsuario {
         
         return resultado;
     }
-    public void create(String tabla, int codigo, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion){
+    public void create(String tabla, int id, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion){
         String sql = "";
         
         sql = ""
             + "INSERT INTO "+tabla+" VALUES ("
-            + codigo+",'"
+            + id+",'"
             + ci+"','"
             + nombre+"','"
             + nacionalidad+"','"
@@ -60,11 +60,11 @@ public class DatosUsuario {
         this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
     }
-    public String read(String tabla, int codigo){
+    public String read(String tabla, int id){
         String sql = "";
         String resultado = "";
         
-        sql = "select * from "+tabla+" where codigo = '"+codigo+"';";
+        sql = "select * from "+tabla+" where id = '"+id+"';";
         this.getPostgres().connect();
         resultado = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
@@ -77,15 +77,15 @@ public class DatosUsuario {
         
         return resultado;
     }
-    public void update(String tabla, int codigo, String ci, String nombre,String nacionalidad, String especialidad,String direccion, String email, String celular, String edad, String genero,String fecha_creacion,int codigoViejo){
+    public void update(String tabla, int id, String ci, String nombre,String nacionalidad, String especialidad,String direccion, String email, String celular, String edad, String genero,String fecha_creacion,int idViejo){
         String sql = "";
         
         sql = ""
                 + "update "
                 + tabla
                 + " set "
-                + "codigo = '"
-                + codigo
+                + "id = '"
+                + id
                 + "', ci = '"
                 + ci
                 + "', nombre = '"
@@ -104,17 +104,17 @@ public class DatosUsuario {
                 + edad
                 + ", genero = '"
                 + genero
-                + "' where codigo = '"
-                + codigoViejo
+                + "' where id = '"
+                + idViejo
                 +"';";
         this.getPostgres().connect();
         this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
     }
-    public void delete(String tabla, int codigo){
+    public void delete(String tabla, int id){
         String sql = "";
         
-        sql = "delete from "+tabla+" where codigo = '"+codigo+"';";
+        sql = "delete from "+tabla+" where id = '"+id+"';";
         this.getPostgres().connect();
         this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
