@@ -137,10 +137,8 @@ public class ClientePgSql {
                 int colCount = rsmd.getColumnCount();
                 while(rs.next()){
                     for(int i = 1; i <= colCount; i++){
-                        // System.out.print("|" + rs.getString(i) + "|,");
-                        result += "|" + rs.getString(i) + "|,";
+                        result += rs.getString(i) + ",";
                     }
-                    // System.out.println("\r\n");
                     result += "\r\n";
                 }
             }catch(SQLException sqlEx){
