@@ -122,50 +122,53 @@ INSERT into servicio values(default, 'Servicio1', 50.0, 1,1);
 #consulta
 select * from servicio
 
+
+
 create table citaConsulta(
 	id SERIAL,
 	id_paciente integer,
 	id_trabajador integer,
 	codigo varchar(15)NOT NULL,
-	hora time NOT NULL,
-	fecha date NOT NULL,
+	hora varchar(15),
+	fecha varchar(16),
 	motivoConsulta varchar(255)NOT NULL,
 	estadoTratamiento varchar(255)NOT NULL,
 	
 	primary key (id),
 	foreign key (id_paciente)references paciente(id),
-	foreign key (id_trabajador) references trabajador(id)
+	foreign key (id_trabajador) references trabajador(codigo)
 	ON UPDATE CASCADE
 );
+select * from paciente
 
 #eliminar tabla
 drop table if exists citaConsulta;
 
 #insertar datos
 INSERT INTO citaConsulta values (default,1,1,'FC0001','02:30:00','2021-08-15','dolor de espalda','iniciando');
+INSERT INTO citaConsulta values (default,1,1,'FC0002','03:30:00','2021-09-15','dolor de cuello','En proceso');
 
 #consulta
 select * from citaConsulta;
 
-#crear tabla
+
 
 create table consulta(  
 	id SERIAL,
 	id_citaConsulta integer,
 	id_servicio integer,
 	codigo varchar(50),
-	horaEntrada time,
-	horaSalida time,
-	fecha date,
+	horaEntrada varchar(15),
+	horaSalida varchar(15),
+	fecha varchar(15),
 	precio real,
 	notas varchar(255),
 	diagnosticoFinal varchar(255),
-	primary key(id,id_citaConsulta,id_servicio),
+	primary key(id),
 	foreign key (id_citaConsulta)references citaConsulta(id),
 	foreign key (id_servicio) references servicio(id)
 	ON UPDATE CASCADE
 );
-
 #eliminar tabla
 drop table if exists consulta;
 
@@ -174,6 +177,8 @@ INSERT INTO consulta VALUES (default, 1, 1, 'CON001', '04:00:00', '04:20:00', '2
 
 #consulta
 select * from consulta
+
+
 
 
 #usuario
