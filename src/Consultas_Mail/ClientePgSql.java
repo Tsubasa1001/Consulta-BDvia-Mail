@@ -137,7 +137,7 @@ public class ClientePgSql {
                 int colCount = rsmd.getColumnCount();
                 while(rs.next()){
                     for(int i = 1; i <= colCount; i++){
-                        result += rs.getString(i) + ",";
+                        result += String.format("%-20s", rs.getString(i));
                     }
                     result += "\r\n";
                 }

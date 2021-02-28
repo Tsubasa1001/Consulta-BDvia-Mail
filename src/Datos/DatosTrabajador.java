@@ -1,6 +1,8 @@
 package Datos;
 
 import Consultas_Mail.ClientePgSql;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -28,7 +30,10 @@ public class DatosTrabajador {
         if (resultado.isEmpty()){
             resultado = "Resultado :: vacio";
         }else{
-            resultado = resultado.replace(" ", "");
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String fecha = sdf.format(date);
+            resultado = fecha + "\n" + resultado;
         }
         
         return resultado;
@@ -60,6 +65,7 @@ public class DatosTrabajador {
         String sql = "";
         String resultado = "";
         
+        sql = "select * from "+tabla+" where id = '"+id+"';";
         this.getPostgres().connect();
         resultado = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
@@ -67,7 +73,10 @@ public class DatosTrabajador {
         if (resultado.isEmpty()){
             resultado = "Resultado :: vacio";
         }else{
-            resultado = resultado.replace(" ", "");
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String fecha = sdf.format(date);
+            resultado = fecha + "\n" + resultado;
         }
         
         return resultado;
