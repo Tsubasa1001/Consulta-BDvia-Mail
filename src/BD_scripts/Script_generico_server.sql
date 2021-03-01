@@ -1,6 +1,6 @@
 #crear tabla
 create table paquete(
-	id SERIAL primary key,
+	id serial primary key,
 	nombre varchar(50),
     cantidad integer,
     precio real
@@ -18,8 +18,8 @@ INSERT into paquete values(default, 'Paquete2', 3, 20.50);
 select * from paquete
 
 CREATE TABLE trabajador(
-	id SERIAL primary key,
-	codigo varchar(15),
+	id serial primary key,
+	codigo varchar(15) NOT NULL,
 	ci varchar(10) NOT NULL,
 	nombre varchar(150) NOT NULL,
 	nacionalidad varchar(100) NOT NULL,
@@ -30,7 +30,8 @@ CREATE TABLE trabajador(
 	email varchar(50) UNIQUE NOT NULL,
 	celular varchar(8) NOT NULL,
 	edad int NOT NULL,
-	genero char(1) NOT NULL
+	genero char(1) NOT NULL,
+	fecha_creacion date NOT NULL
 );
 
 #eliminar tabla
@@ -45,8 +46,8 @@ select * from trabajador;
 
 
 CREATE TABLE paciente(
-	id SERIAL primary key,
-	codigo varchar(15),
+	id serial primary key,
+	codigo varchar(15) NOT NULL,
 	ci varchar(10) NOT NULL,
 	nombre varchar(150) NOT NULL,
 	nacionalidad varchar(100) NOT NULL,
@@ -55,7 +56,8 @@ CREATE TABLE paciente(
 	email varchar(50) UNIQUE NOT NULL,
 	celular varchar(8) NOT NULL,
 	edad int NOT NULL,
-	genero char(1) NOT NULL
+	genero char(1) NOT NULL,
+	fecha_creacion date NOT NULL
 );
 
 
@@ -70,7 +72,7 @@ INSERT INTO paciente VALUES (default,'b', 'b', 'a', 'a', 'a', 'a', 'b', 'a', 1, 
 select * from paciente
 
 create table local(
-	id SERIAL primary key,
+	id serial primary key,
 	nombre varchar(50),
     ciudad varchar(20),
     direccion varchar(20)
@@ -84,7 +86,7 @@ INSERT into local values(default, 'Nombre1', 'Ciudad1','Direccion1');
 select * from local
 
 create table equipamiento(
-	id SERIAL primary key,
+	id serial primary key,
     codigo varchar(15),
 	nombre varchar(50),
     id_local integer,
@@ -101,7 +103,7 @@ INSERT into equipamiento values(default, 'COD01', 'Equipo1', 1);
 select * from equipamiento
 
 create table servicio(
-	id SERIAL primary key,
+	id serial primary key,
 	nombre varchar(50),
     precio real,
     id_equipamiento integer,
@@ -111,51 +113,50 @@ create table servicio(
     foreign key(id_paquete) references paquete(id)
         ON UPDATE CASCADE
 );
-
 #eliminar tabla
 drop table if exists servicio
-
 #insertar datos
 INSERT into servicio values(default, 'Servicio1', 50.0, 1,1);
-
-
 #consulta
 select * from servicio
 
 
 
-create table citaConsulta(
-	id SERIAL,
+CREATE TABLE citaconsulta(
+	id serial,
 	id_paciente integer,
 	id_trabajador integer,
-	codigo varchar(15)NOT NULL,
-	hora varchar(15),
-	fecha varchar(16),
-	motivoConsulta varchar(255)NOT NULL,
-	estadoTratamiento varchar(255)NOT NULL,
+	codigo varchar(15) NOT NULL,
+	hora varchar(15) NOT NULL,
+	fecha varchar(16) NOT NULL,
+	motivoConsulta varchar(255) NOT NULL,
+	estadoTratamiento varchar(255) NOT NULL,
 	
 	primary key (id),
 	foreign key (id_paciente)references paciente(id),
-	foreign key (id_trabajador) references trabajador(codigo)
+	foreign key (id_trabajador) references trabajador(id)
 	ON UPDATE CASCADE
 );
+
+
+
 select * from paciente
 
 #eliminar tabla
-drop table if exists citaConsulta;
+drop table if exists citaconsulta;
 
 #insertar datos
-INSERT INTO citaConsulta values (default,1,1,'FC0001','02:30:00','2021-08-15','dolor de espalda','iniciando');
-INSERT INTO citaConsulta values (default,1,1,'FC0002','03:30:00','2021-09-15','dolor de cuello','En proceso');
+INSERT INTO citaconsulta values (default,1,1,'FC0001','02:30:00','2021-08-15','dolor de espalda','iniciando');
+INSERT INTO citaconsulta values (default,1,1,'FC0002','03:30:00','2021-09-15','dolor de cuello','En proceso');
 
 #consulta
-select * from citaConsulta;
+select * from citaconsulta;
 
 
 
 create table consulta(  
-	id SERIAL,
-	id_citaConsulta integer,
+	id serial,
+	id_citaconsulta integer,
 	id_servicio integer,
 	codigo varchar(50),
 	horaEntrada varchar(15),
@@ -165,7 +166,7 @@ create table consulta(
 	notas varchar(255),
 	diagnosticoFinal varchar(255),
 	primary key(id),
-	foreign key (id_citaConsulta)references citaConsulta(id),
+	foreign key (id_citaconsulta)references citaconsulta(id),
 	foreign key (id_servicio) references servicio(id)
 	ON UPDATE CASCADE
 );
@@ -183,15 +184,15 @@ select * from consulta
 
 #usuario
 CREATE TABLE usuario(
-	codigo serial	    PRIMARY KEY,
-	ci char(10)         UNIQUE NOT NULL,
-	nombre char(150)    NOT NULL,
-	nacionalidad char(100)  NOT NULL,
-	especialidad char(50)   NOT NULL,
-	direccion char(50)      NOT NULL,
-	email char(50)          UNIQUE NOT NULL,
-	celular char(8)     NOT NULL,
-	edad int            NOT NULL,
-	genero char(1)      NOT NULL,
+	id serial,
+	ci char(10) UNIQUE NOT NULL,
+	nombre char(150) NOT NULL,
+	nacionalidad char(100) NOT NULL,
+	especialidad char(50) NOT NULL,
+	direccion char(50) NOT NULL,
+	email char(50) UNIQUE NOT NULL,
+	celular char(8) NOT NULL,
+	edad int NOT NULL,
+	genero char(1) NOT NULL,
 	fecha_creacion date NOT NULL
 );
