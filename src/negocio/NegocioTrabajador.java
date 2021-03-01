@@ -86,12 +86,12 @@ public class NegocioTrabajador {
         tmp = worker.index();
         System.out.println("index"+"\n"+tmp+"\n\n");
         
-        worker.create(5001,"777777","IldefonsoLino","Bolivia","1","No presente","Secreatria","c/Alameins","5001@gmail.com","64444408","53","M","2020-08-08");
+        worker.create(5001, "WORK005001","777777","IldefonsoLino","Bolivia","1","No presente","Secreatria","c/Alameins","5001@gmail.com","64444408","53","M","2020-08-08");
         
         tmp = worker.read(5001);
         System.out.println("read"+"\n"+tmp+"\n\n");
         
-        worker.update(5002,"777777","IldefonsoLino","Bolivia","1","No presente","Secreatria","c/Alameins","5001@gmail.com","64444408","53","M","2020-08-08", 5001);
+        worker.update(5002, "WORK005001","777777","IldefonsoLino","Bolivia","1","No presente","Secreatria","c/Alameins","5001@gmail.com","64444408","53","M","2020-08-08", 5001);
         tmp = worker.read(5002);
         System.out.println("read"+"\n"+tmp+"\n\n");
         
@@ -105,16 +105,16 @@ public class NegocioTrabajador {
         resultado = this.getTrabajadorBD().index(this.getTabla());
         return resultado;
     }
-    private void create(int id, String ci, String nombre, String nacionalidad, String especialidad, String cargo, String ocupacion, String direccion, String email, String celular, String edad, String genero, String fecha_creacion) {
-        this.getTrabajadorBD().create(this.getTabla(), id, ci, nombre, nacionalidad, especialidad, cargo, ocupacion, direccion, email, celular, edad, genero, fecha_creacion);
+    private void create(int id, String codigo, String ci, String nombre, String nacionalidad, String especialidad, String cargo, String ocupacion, String direccion, String email, String celular, String edad, String genero, String fecha_creacion) {
+        this.getTrabajadorBD().create(this.getTabla(), id, codigo, ci, nombre, nacionalidad, especialidad, cargo, ocupacion, direccion, email, celular, edad, genero, fecha_creacion);
     }
     private String read(int id) {
         String resultado = "default";
         resultado = this.getTrabajadorBD().read(this.getTabla(), id);
         return resultado;
     }
-    private void update(int id, String ci, String nombre, String nacionalidad, String especialidad, String cargo, String ocupacion, String direccion, String email, String celular, String edad, String genero, String fecha_creacion, int idViejo) {
-        this.getTrabajadorBD().update(this.getTabla(), id, ci, nombre, nacionalidad, especialidad, cargo, ocupacion, direccion, email, celular, edad, genero, fecha_creacion, idViejo);
+    private void update(int id, String codigo, String ci, String nombre, String nacionalidad, String especialidad, String cargo, String ocupacion, String direccion, String email, String celular, String edad, String genero, String fecha_creacion, int idViejo) {
+        this.getTrabajadorBD().update(this.getTabla(), id, codigo, ci, nombre, nacionalidad, especialidad, cargo, ocupacion, direccion, email, celular, edad, genero, fecha_creacion, idViejo);
     }
     private void delete(int id) {
         this.getTrabajadorBD().delete(this.getTabla(), id);

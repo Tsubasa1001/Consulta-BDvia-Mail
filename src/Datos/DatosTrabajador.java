@@ -38,12 +38,13 @@ public class DatosTrabajador {
         
         return resultado;
     }
-    public void create(String tabla, int id, String ci, String nombre, String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero, String fecha_creacion){
+    public void create(String tabla, int id, String codigo, String ci, String nombre, String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero, String fecha_creacion){
         String sql = "";
         
         sql = ""
             + "INSERT INTO "+tabla+" VALUES ("
             + id+",'"
+            + codigo+"','"
             + ci+"','"
             + nombre+"','"
             + nacionalidad+"','"
@@ -81,7 +82,7 @@ public class DatosTrabajador {
         
         return resultado;
     }
-    public void update(String tabla, int id, String ci, String nombre,String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero,String fecha_creacion,int idViejo){
+    public void update(String tabla, int id, String codigo, String ci, String nombre,String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero,String fecha_creacion,int idViejo){
         String sql = "";
         
         sql = ""
@@ -90,6 +91,8 @@ public class DatosTrabajador {
                 + " set "
                 + "id = '"
                 + id
+                + "', codigo = '"
+                + codigo
                 + "', ci = '"
                 + ci
                 + "', nombre = '"
