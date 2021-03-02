@@ -106,7 +106,7 @@ public class DReservaCita {
         
         String resultado="";
         Connection conexion = this.bd.connect();
-        String sql = "INSERT INTO citaConsulta values(default,"+id_p+","+id_p+",?,?,?,?,?);";
+        String sql = "INSERT INTO citaConsulta values(default,"+id_p+","+id_t+",?,?,?,?,?);";
         PreparedStatement ps = conexion.prepareStatement(sql);
 
         ps.setString(1, this.getCodigo());
