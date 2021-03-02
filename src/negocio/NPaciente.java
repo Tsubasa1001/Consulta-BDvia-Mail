@@ -7,6 +7,7 @@ package negocio;
 
 import Datos.DPaciente;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -94,5 +95,25 @@ public class NPaciente {
     return detalle;
     }
     
+    public static void main(String[] args) throws SQLException{
+        NPaciente nPaciente = new NPaciente();
+        List<String> atributos = new ArrayList<>();
+        
+        atributos.add("2");
+        atributos.add("1");
+        atributos.add("1");
+        atributos.add("FC0001");
+        atributos.add("14:30:00");
+        atributos.add("2021-08-25");
+        atributos.add("fatiga");
+        atributos.add("iniciando");
+        
+        System.out.println("lista: "+atributos);
+        System.out.println("lista: \n"+ nPaciente.Ver(atributos));
+        
+        //nreserva.Eliminar(atributos);
+        //System.out.println("lista: \n"+ nreserva.Listar());
+        
+    } 
     
 }
