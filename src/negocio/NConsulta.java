@@ -93,7 +93,7 @@ public class NConsulta {
         NConsulta nconsulta = new NConsulta();
         List<String> atributos = new ArrayList<>();
         
-        atributos.add("1");
+        atributos.add("3");
         atributos.add("1");
         atributos.add("1");
         atributos.add("C0002");
@@ -106,7 +106,8 @@ public class NConsulta {
         
         System.out.println("lista: "+atributos);
         System.out.println("lista: \n"+ nconsulta.Listar());
-        System.out.println(nconsulta.Ver(atributos));
+        //nconsulta.Registrar(atributos);
+        //System.out.println(nconsulta.Ver(atributos));
         System.out.println("lista: \n"+ nconsulta.Listar());
         
         //nreserva.Eliminar(atributos);
