@@ -2,6 +2,8 @@
 package Datos;
 
 import Consultas_Mail.ClientePgSql;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -35,7 +37,10 @@ public class DatosUsuario {
         if (resultado.isEmpty()){
             resultado = "Resultado :: vacio";
         }else{
-            resultado = resultado.replace(" ", "");
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String fecha = sdf.format(date);
+            resultado = fecha + "\n" + resultado;
         }
         
         return resultado;
@@ -72,7 +77,10 @@ public class DatosUsuario {
         if (resultado.isEmpty()){
             resultado = "Resultado :: vacio";
         }else{
-            resultado = resultado.replace(" ", "");
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String fecha = sdf.format(date);
+            resultado = fecha + "\n" + resultado;
         }
         
         return resultado;

@@ -6,7 +6,6 @@
 package Datos;
 
 import Consultas_Mail.ClientePgSql;
-import static java.lang.Thread.sleep;
 
 /**
  *
@@ -34,9 +33,9 @@ public class DatosEstadistica {
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
-        trash = trash.replace("|", "");
-        trash = trash.replace(",", "");
-        trash = trash.substring(0, trash.length() -2);
+        trash = trash.replace(" ", "");
+        trash = trash.substring(0, trash.length()-2);
+        
         resultado = Integer.parseInt(trash);
         
         return resultado;
@@ -46,14 +45,14 @@ public class DatosEstadistica {
         String sql = "default";
         resultado = (int) (Math.random()*1000+1000);
         
-        sql = "select sum(codigo) from usuario";
+        sql = "select sum(id) from usuario";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
-        trash = trash.replace("|", "");
-        trash = trash.replace(",", "");
-        trash = trash.substring(0, trash.length() -2);
+        trash = trash.replace(" ", "");
+        trash = trash.substring(0, trash.length()-2);
+        
         resultado = Integer.parseInt(trash);
         
         return resultado;
@@ -75,9 +74,9 @@ public class DatosEstadistica {
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
-        trash = trash.replace("|", "");
-        trash = trash.replace(",", "");
-        trash = trash.substring(0, trash.length() -2);
+        trash = trash.replace(" ", "");
+        trash = trash.substring(0, trash.length()-2);
+        
         resultado = Integer.parseInt(trash);
         
         return resultado;
@@ -87,14 +86,14 @@ public class DatosEstadistica {
         String sql = "default";
         resultado = (int) (Math.random()*1000+1000);
         
-        sql = "select sum(codigo) from usuario where genero = 'M'";
+        sql = "select sum(id) from usuario where genero = 'M'";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
-        trash = trash.replace("|", "");
-        trash = trash.replace(",", "");
-        trash = trash.substring(0, trash.length() -2);
+        trash = trash.replace(" ", "");
+        trash = trash.substring(0, trash.length()-2);
+        
         resultado = Integer.parseInt(trash);
         
         return resultado;
@@ -116,9 +115,9 @@ public class DatosEstadistica {
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
-        trash = trash.replace("|", "");
-        trash = trash.replace(",", "");
-        trash = trash.substring(0, trash.length() -2);
+        trash = trash.replace(" ", "");
+        trash = trash.substring(0, trash.length()-2);
+        
         resultado = Integer.parseInt(trash);
         
         return resultado;
@@ -128,14 +127,14 @@ public class DatosEstadistica {
         String sql = "default";
         resultado = (int) (Math.random()*1000+1000);
         
-        sql = "select sum(codigo) from usuario where genero = 'F'";
+        sql = "select sum(id) from usuario where genero = 'F'";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
-        trash = trash.replace("|", "");
-        trash = trash.replace(",", "");
-        trash = trash.substring(0, trash.length() -2);
+        trash = trash.replace(" ", "");
+        trash = trash.substring(0, trash.length()-2);
+        
         resultado = Integer.parseInt(trash);
         
         return resultado;
@@ -143,7 +142,6 @@ public class DatosEstadistica {
     public int cantTotalAtencionesMesMujeres() {
         int resultado = -1;
         resultado = cantTotalAtencionesMujeres()/12;
-        
         return resultado;
     }
 }

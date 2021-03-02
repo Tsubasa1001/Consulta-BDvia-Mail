@@ -6,6 +6,8 @@
 package Datos;
 
 import Consultas_Mail.ClientePgSql;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -58,6 +60,30 @@ public class DatosReporte {
     public String indexUsuario(){
         String cadena = ""; //this.getDatosUsuario().index();
         return cadena;
+    }
+
+    public String reporteAtencion() {
+        String sql;
+        String resultado;
+        
+        sql = ""
+            + "select p.nombre as paciente_nombre, p.genero as paciente_genero, t.nombre as trabajador_nombre, t.cargo as trabajador_cargo, c.motivoconsulta, c.estadotratamiento\n"
+            + "from trabajador t, paciente p, citaconsulta c\n"
+            + "where t.ocupacion = 'No presente' and c.id_paciente = p.id and c.id_trabajador = t.id;";
+        this.getPostgres().connect();
+        resultado = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
+        if (resultado.isEmpty()){
+            resultado = "Resultado :: vacio";
+        }else{
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String fecha = sdf.format(date);
+            resultado = fecha + "\n" + resultado;
+        }
+        
+        return resultado;
     }
     
 }

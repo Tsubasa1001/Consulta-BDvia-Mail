@@ -1,6 +1,8 @@
 package Datos;
 
 import Consultas_Mail.ClientePgSql;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -28,17 +30,21 @@ public class DatosTrabajador {
         if (resultado.isEmpty()){
             resultado = "Resultado :: vacio";
         }else{
-            resultado = resultado.replace(" ", "");
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String fecha = sdf.format(date);
+            resultado = fecha + "\n" + resultado;
         }
         
         return resultado;
     }
-    public void create(String tabla, int id, String ci, String nombre, String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero, String fecha_creacion){
+    public void create(String tabla, int id, String codigo, String ci, String nombre, String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero, String fecha_creacion){
         String sql = "";
         
         sql = ""
             + "INSERT INTO "+tabla+" VALUES ("
             + id+",'"
+            + codigo+"','"
             + ci+"','"
             + nombre+"','"
             + nacionalidad+"','"
@@ -60,6 +66,7 @@ public class DatosTrabajador {
         String sql = "";
         String resultado = "";
         
+        sql = "select * from "+tabla+" where id = '"+id+"';";
         this.getPostgres().connect();
         resultado = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
@@ -67,12 +74,15 @@ public class DatosTrabajador {
         if (resultado.isEmpty()){
             resultado = "Resultado :: vacio";
         }else{
-            resultado = resultado.replace(" ", "");
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String fecha = sdf.format(date);
+            resultado = fecha + "\n" + resultado;
         }
         
         return resultado;
     }
-    public void update(String tabla, int id, String ci, String nombre,String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero,String fecha_creacion,int idViejo){
+    public void update(String tabla, int id, String codigo, String ci, String nombre,String nacionalidad, String especialidad,String cargo,String ocupacion,String direccion, String email, String celular, String edad, String genero,String fecha_creacion,int idViejo){
         String sql = "";
         
         sql = ""
@@ -81,6 +91,8 @@ public class DatosTrabajador {
                 + " set "
                 + "id = '"
                 + id
+                + "', codigo = '"
+                + codigo
                 + "', ci = '"
                 + ci
                 + "', nombre = '"

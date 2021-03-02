@@ -3,3 +3,4 @@
 *.properties
 .netbeans*
 build/
+/dist/

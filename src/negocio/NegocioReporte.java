@@ -5,7 +5,6 @@
  */
 package negocio;
 
-import Consultas_Mail.ClientePgSql;
 import Datos.DatosReporte;
 
 /**
@@ -13,24 +12,27 @@ import Datos.DatosReporte;
  * @author eyver-dev
  */
 public class NegocioReporte {
-    private DatosReporte datosReporte;
+    private DatosReporte reporteDB;
 
     public NegocioReporte() {
-        this.datosReporte = new DatosReporte();
+        this.reporteDB = new DatosReporte();
     }
 
-    public DatosReporte getDatosReporte() {return datosReporte;}
-    public void setDatosReporte(DatosReporte datosReporte) {this.datosReporte = datosReporte;}
+    public DatosReporte getDatosReporteDB() {return reporteDB;}
+    public void setDatosReporteDB(DatosReporte datosReporte) {this.reporteDB = datosReporte;}
     
     
     public static void main(String[] args) {
-        NegocioReporte negocioReporte = new NegocioReporte();
+        NegocioReporte worker = new NegocioReporte();
+        String tmp = "default";
         
-        //negocioReporte.getDatosReporte().getDatosUsuario().getPostgres().connect();
-        
-        String tmp = negocioReporte.getDatosReporte().indexUsuario();
-        System.out.println(tmp);
-        
-       //negocioReporte.getDatosReporte().getDatosUsuario().getPostgres().desconectar();
+        tmp = worker.reporteAtencion();
+        System.out.println("reporteAtencion\n" + tmp);
+    }
+
+    private String reporteAtencion() {
+        String resultado = "default";
+        resultado = this.getDatosReporteDB().reporteAtencion();
+        return resultado;
     }
 }
