@@ -226,17 +226,17 @@ public class DPaciente {
        
         String[] detalle = result.split(",");
         result = "El usuario es:\n"
-                + "id: "+detalle[0] +"\n"
-                + "codigo: "+detalle[1]+"\n"
-                + "ci: "+detalle[2]+"\n"
-                + "nombre: "+detalle[3]+"\n"
-                + "nacionalidad: "+detalle[4]+"\n"
-                + "ocupacion: "+detalle[5]+"\n"
-                + "direccion: "+detalle[6]+"\n"
-                + "email: "+detalle[7]+"\n"
-                + "celular: "+detalle[8]+"\n"
-                + "edad: "+detalle[9]+"\n"
-                + "genero: "+detalle[10]+"\n";
+                + "id: "+detalle[0].trim() +"\n"
+                + "codigo: "+detalle[1].trim()+"\n"
+                + "ci: "+detalle[2].trim()+"\n"
+                + "nombre: "+detalle[3].trim()+"\n"
+                + "nacionalidad: "+detalle[4].trim()+"\n"
+                + "ocupacion: "+detalle[5].trim()+"\n"
+                + "direccion: "+detalle[6].trim()+"\n"
+                + "email: "+detalle[7].trim()+"\n"
+                + "celular: "+detalle[8].trim()+"\n"
+                + "edad: "+detalle[9].trim()+"\n"
+                + "genero: "+detalle[10].trim()+"\n";
         
         return result;
     }

@@ -107,8 +107,8 @@ public class NConsulta {
         System.out.println("lista: "+atributos);
         System.out.println("lista: \n"+ nconsulta.Listar());
         //nconsulta.Registrar(atributos);
-        //System.out.println(nconsulta.Ver(atributos));
-        System.out.println("lista: \n"+ nconsulta.Listar());
+        System.out.println(nconsulta.Ver(atributos));
+        //System.out.println("lista: \n"+ nconsulta.Listar());
         
         //nreserva.Eliminar(atributos);
         //System.out.println("lista: \n"+ nreserva.Listar());

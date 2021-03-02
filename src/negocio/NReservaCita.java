@@ -93,7 +93,7 @@ public class NReservaCita {
         atributos.add("iniciando");
         
         System.out.println("lista: "+atributos);
-        System.out.println("lista: \n"+ nreserva.Listar());
+        System.out.println("lista: \n"+ nreserva.Ver(atributos));
         
         //nreserva.Eliminar(atributos);
         //System.out.println("lista: \n"+ nreserva.Listar());

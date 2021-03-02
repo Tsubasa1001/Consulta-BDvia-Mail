@@ -174,14 +174,14 @@ public class DReservaCita {
        
         String[] detalle = result.split(",");
         result = "La cita reserva es:\n"
-                + "id: "+detalle[0] +"\n"
-                + "Paciente: "+detalle[1]+"\n"
-                + "Trabajador: "+detalle[2]+"\n"
-                + "Codigo: "+detalle[3]+"\n"
-                + "Hora: "+detalle[4]+"\n"
-                + "Fecha: "+detalle[5]+"\n"
-                + "Motivo Consulta: "+detalle[6]+"\n"
-                + "Estado tratamiento: "+detalle[7]+"\n"
+                + "id: "+detalle[0].trim() +"\n"
+                + "Paciente: "+detalle[1].trim()+"\n"
+                + "Trabajador: "+detalle[2].trim()+"\n"
+                + "Codigo: "+detalle[3].trim()+"\n"
+                + "Hora: "+detalle[4].trim()+"\n"
+                + "Fecha: "+detalle[5].trim()+"\n"
+                + "Motivo Consulta: "+detalle[6].trim()+"\n"
+                + "Estado tratamiento: "+detalle[7].trim()+"\n"
                 + "";
         
         return result;

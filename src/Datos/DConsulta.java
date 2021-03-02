@@ -193,24 +193,30 @@ public class DConsulta {
         String sql = "SELECT c.id,c.codigo,cita.motivoConsulta, s.nombre,c.horaentrada,c.horasalida,c.fecha,c.precio,c.notas,c.diagnosticofinal" 
                     + " FROM Consulta c, citaconsulta cita, servicio s "
                     +"where c.id_citaconsulta = cita.id and c.id_servicio = s.id and c.id="+id+";";
-        //System.out.println("sql: "+sql);
+        System.out.println("sql: "+sql);
         String result = this.bd.runStatement(sql);
         conexion = null;
-       
+        
+        //result.replaceAll(" ","");
+        
         String[] detalle = result.split(",");
-        result = "La cita reserva es:\n"
-                + "id: "+detalle[0] +"\n"
-                + "Codigo: "+detalle[1]+"\n"
-                + "Motivo consulta: "+detalle[2]+"\n"
-                + "Nombre Servicio: "+detalle[3]+"\n"
-                + "Hora entrada: "+detalle[4]+"\n"
-                + "Hora salida: "+detalle[5]+"\n"
-                + "Fecha: "+detalle[6]+"\n"
-                + "Precio: "+detalle[7]+"\n"
-                + "Notas: "+detalle[8]+"\n"
-                + "Diagnostico final: "+detalle[9]+"\n"
+        System.out.println("result: "+result);
+        result = "La consulta es:\n"
+                + "id: "+detalle[0].trim() +"\n"
+                + "Codigo: "+detalle[1].trim()+"\n"
+                + "Motivo consulta: "+detalle[2].trim()+"\n"
+                + "Nombre Servicio: "+detalle[3].trim()+"\n"
+                + "Hora entrada: "+detalle[4].trim()+"\n"
+                + "Hora salida: "+detalle[5].trim()+"\n"
+                + "Fecha: "+detalle[6].trim()+"\n"
+                + "Precio: "+detalle[7].trim()+"\n"
+                + "Notas: "+detalle[8].trim()+"\n"
+                + "Diagnostico final: "+detalle[9].trim()+"\n"
                 + "";
         
+        
+        //result.replace(" ","");
+        System.err.println(detalle);
         return result;
     }
     
