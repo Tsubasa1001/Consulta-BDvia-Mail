@@ -28,13 +28,18 @@ public class DatosEstadistica {
         String sql = "default";
         resultado = (int) (Math.random()*1000);
         
-        sql = "select count(*) from usuario";
+        sql = "select count(*) from citaconsulta";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
         trash = trash.replace(" ", "");
+        trash = trash.replace(",", "");
         trash = trash.substring(0, trash.length()-2);
+        
+        boolean bandera = trash.equals("null");
+        if (bandera)
+            trash = "0";
         
         resultado = Integer.parseInt(trash);
         
@@ -45,13 +50,21 @@ public class DatosEstadistica {
         String sql = "default";
         resultado = (int) (Math.random()*1000+1000);
         
-        sql = "select sum(id) from usuario";
+        sql = ""
+                + "select sum(precio) "
+                + "from consulta c, citaconsulta cc "
+                + "where cc.id = c.id_citaconsulta";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
         trash = trash.replace(" ", "");
+        trash = trash.replace(",", "");
         trash = trash.substring(0, trash.length()-2);
+        
+        boolean bandera = trash.equals("null");
+        if (bandera)
+            trash = "0";
         
         resultado = Integer.parseInt(trash);
         
@@ -69,13 +82,22 @@ public class DatosEstadistica {
         String sql = "default";
         resultado = (int) (Math.random()*1000);
         
-        sql = "select count(*) from usuario where genero = 'M'";
+        sql = ""
+                + "select count(precio) "
+                + "from consulta c, citaconsulta cc, paciente p "
+                + "where cc.id = c.id_citaconsulta and "
+                + "cc.id_paciente = p.id and p.genero = 'M'";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
         trash = trash.replace(" ", "");
+        trash = trash.replace(",", "");
         trash = trash.substring(0, trash.length()-2);
+        
+        boolean bandera = trash.equals("null");
+        if (bandera)
+            trash = "0";
         
         resultado = Integer.parseInt(trash);
         
@@ -86,13 +108,22 @@ public class DatosEstadistica {
         String sql = "default";
         resultado = (int) (Math.random()*1000+1000);
         
-        sql = "select sum(id) from usuario where genero = 'M'";
+        sql = ""
+                + "select sum(precio) "
+                + "from consulta c, citaconsulta cc, paciente p "
+                + "where cc.id = c.id_citaconsulta and "
+                + "cc.id_paciente = p.id and p.genero = 'M'";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
         trash = trash.replace(" ", "");
+        trash = trash.replace(",", "");
         trash = trash.substring(0, trash.length()-2);
+        
+        boolean bandera = trash.equals("null");
+        if (bandera)
+            trash = "0";
         
         resultado = Integer.parseInt(trash);
         
@@ -110,13 +141,22 @@ public class DatosEstadistica {
         String sql = "default";
         resultado = (int) (Math.random()*1000);
         
-        sql = "select count(*) from usuario where genero = 'F'";
+        sql = ""
+                + "select count(precio) "
+                + "from consulta c, citaconsulta cc, paciente p "
+                + "where cc.id = c.id_citaconsulta and "
+                + "cc.id_paciente = p.id and p.genero = 'F'";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
         trash = trash.replace(" ", "");
+        trash = trash.replace(",", "");
         trash = trash.substring(0, trash.length()-2);
+        
+        boolean bandera = trash.equals("null");
+        if (bandera)
+            trash = "0";
         
         resultado = Integer.parseInt(trash);
         
@@ -127,13 +167,22 @@ public class DatosEstadistica {
         String sql = "default";
         resultado = (int) (Math.random()*1000+1000);
         
-        sql = "select sum(id) from usuario where genero = 'F'";
+        sql = ""
+                + "select sum(precio) "
+                + "from consulta c, citaconsulta cc, paciente p "
+                + "where cc.id = c.id_citaconsulta and "
+                + "cc.id_paciente = p.id and p.genero = 'F'";
         this.getPostgres().connect();
         String trash = this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
         
         trash = trash.replace(" ", "");
+        trash = trash.replace(",", "");
         trash = trash.substring(0, trash.length()-2);
+        
+        boolean bandera = trash.equals("null");
+        if (bandera)
+            trash = "0";
         
         resultado = Integer.parseInt(trash);
         
