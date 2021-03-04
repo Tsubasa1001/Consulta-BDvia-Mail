@@ -20,7 +20,7 @@ public class Comando {
     private String Cu;
     private String Accion;
     private List<String> Atributos;
-    private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","promocion","consulta","citaconsulta","skintest","estaditica","reporte","manual-usuario"};
+    private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","promocion","consulta","citamedica","skintest","estaditica","reporte","manual-usuario"};
     private final String[] listaAcciones = {"ver","listar","registrar","modificar","eliminar","show","help"};
     
     //reportes_reportes_all //estadistica-estadistica_all
@@ -67,7 +67,12 @@ public class Comando {
                     }
                 }
             }
-        }else System.out.println("NO existe :/");
+        }else{
+            setCu("manual-usuario");
+            setAccion("help");
+            System.out.println("NO existe el comando:/");
+        }
+            
     }
     
     public boolean verificarCu(String cu){
@@ -138,15 +143,15 @@ public class Comando {
                             + "RESERVA CITA MEDICA ...falta...\n"
                             + "-----------------------------\n"
                             + "ver:\n"
-                            + "< CITACONSULTA_VER_1 >\n \n"
+                            + "< CITAMEDICA_VER_1 >\n \n"
                             + "Listar:\n"
-                            + "< CITACONSULTA_LISTAR_ALL >\n \n"
+                            + "< CITAMEDICA_LISTAR_ALL >\n \n"
                             + "Registrar:\n"
-                            + "< CITACONSULTA_REGISTRAR_COMPLETAR >\n \n"
+                            + "< CITAMEDICA_REGISTRAR_1,1,RC0001,14:30:00,2021-08-25,dolores,proceso >\n \n"
                             + "Modificar:\n"
-                            + "< CITACONSULTA_MODIFICAR_COMPLETAR >\n \n"
+                            + "< CITAMEDICA_MODIFICAR_2,1,1,RC0001,14:30:00,2021-08-25,dolores,proceso >\n \n"
                             + "Eliminar:\n"
-                            + "< CITACONSULTA_ELIMINAR_1 > \n"
+                            + "< CITAMEDICA_ELIMINAR_1 > \n"
                             + "----------------------------- \n \n \n \n"
                             + "----------------------------- \n"
                             + "EQUIPAMIENTO ...falta...\n"
@@ -224,26 +229,6 @@ public class Comando {
             break;
             
             
-            case "promocion":
-                NPaquete npaquete = new NPaquete();
-                switch(accion){
-                    case "listar":
-                        result = npaquete.Listar();
-                        break;
-                    case "registrar":
-                        npaquete.Registrar(att);
-                        result = "Se registro promocion correctamente :D";
-                        break;
-                    case "modificar":
-                        npaquete.Modificar(att);
-                        result = "Se modifico el promocion correctamente :'D";
-                        break;
-                    case "eliminar":
-                        npaquete.Eliminar(att);
-                        result = "Se elimino el promocion correctamente :(";
-                        break;
-                }
-                break;
             case "usuario-paciente":
                 NPaciente npaciente = new NPaciente();
                 switch(accion){
@@ -267,6 +252,225 @@ public class Comando {
                         result = "Se elimino el paciente correctamente :(";
                         break;
                 }
+            
+            case "usuario-trabajdor":
+                NegocioTrabajador ntrabajdor = new NegocioTrabajador();
+                switch(accion){
+                    case "ver":
+                        //result = ntrabajdor.Ver(att);
+                        break;
+                    case "listar":
+                        //result = ntrabajdor.Listar();
+                        break;
+                    case "registrar":
+                        //ntrabajdor.Registrar(att);
+                        result = "Se registro trabajador correctamente :D";
+                        break;
+                    case "modificar":
+                        //ntrabajdor.Modificar(att);
+                        System.out.println("paso por modificar");
+                        result = "Se modifico el trabajador correctamente :'D";
+                        break;
+                    case "eliminar":
+                        //ntrabajdor.Eliminar(att);
+                        result = "Se elimino el trabajador correctamente :(";
+                        break;
+                }
+                
+            case "servicio":
+                NServicio nservicio = new NServicio();
+                switch(accion){
+                    case "ver":
+                        //result = NServicio.Ver(att);
+                        break;
+                    case "listar":
+                        //result = NServicio.Listar();
+                        break;
+                    case "registrar":
+                        //NServicio.Registrar(att);
+                        result = "Se registro servicio correctamente :D";
+                        break;
+                    case "modificar":
+                        //NServicio.Modificar(att);
+                        System.out.println("paso por modificar");
+                        result = "Se modifico el servicio correctamente :'D";
+                        break;
+                    case "eliminar":
+                        //npaciente.Eliminar(att);
+                        result = "Se elimino el servicio correctamente :(";
+                        break;
+                }   
+                
+            case "citamedica":
+                NReservaCita ncitamedica = new NReservaCita();
+                switch(accion){
+                    case "ver":
+                       result = ncitamedica.Ver(att);
+                        break;
+                    case "listar":
+                        result = ncitamedica.Listar();
+                        break;
+                    case "registrar":
+                        ncitamedica.Registrar(att);
+                        result = "Se registro la reserva cita correctamente :D";
+                        break;
+                    case "modificar":
+                        ncitamedica.Modificar(att);
+                        System.out.println("paso por modificar");
+                        result = "Se modifico la reserva cita correctamente :'D";
+                        break;
+                    case "eliminar":
+                        ncitamedica.Eliminar(att);
+                        result = "Se elimino la reserva cita correctamente :(";
+                        break;
+                } 
+                
+            case "equipamiento":
+                //NEquipamiento nequipamiento = new NEquipamiento();
+                switch(accion){
+                    case "ver":
+                       //result = nequipamiento.Ver(att);
+                        break;
+                    case "listar":
+                        //result = nequipamiento.Listar();
+                        break;
+                    case "registrar":
+                        //nequipamiento.Registrar(att);
+                        //result = "Se registro el equipamiento correctamente :D";
+                        break;
+                    case "modificar":
+                        //nequipamiento.Modificar(att);
+                        System.out.println("paso por modificar");
+                        result = "Se modifico el equipamiento correctamente :'D";
+                        break;
+                    case "eliminar":
+                        //nequipamiento.Eliminar(att);
+                        result = "Se elimino el equipamiento correctamente :(";
+                        break;
+                }
+            
+            case "Consulta":
+                NConsulta nconsulta = new NConsulta();
+                switch(accion){
+                    case "ver":
+                       result = nconsulta.Ver(att);
+                        break;
+                    case "listar":
+                        result = nconsulta.Listar();
+                        break;
+                    case "registrar":
+                        nconsulta.Registrar(att);
+                        result = "Se registro la consulta correctamente :D";
+                        break;
+                    case "modificar":
+                        nconsulta.Modificar(att);
+                        System.out.println("paso por modificar");
+                        result = "Se modifico la consulta correctamente :'D";
+                        break;
+                    case "eliminar":
+                        nconsulta.Eliminar(att);
+                        result = "Se elimino la consulta correctamente :(";
+                        break;
+                }
+                
+            case "skintest":
+                NSkinTest nskintest = new NSkinTest();
+                switch(accion){
+                    case "ver":
+                       result = nskintest.Ver(att);
+                        break;
+                    case "listar":
+                        result = nskintest.Listar();
+                        break;
+                    case "registrar":
+                        nskintest.Registrar(att);
+                        result = "Se registro SkinTest correctamente :D";
+                        break;
+                    case "modificar":
+                        nskintest.Modificar(att);
+                        System.out.println("paso por modificar");
+                        result = "Se modifico SkinTest correctamente :'D";
+                        break;
+                    case "eliminar":
+                        nskintest.Eliminar(att);
+                        result = "Se elimino SkinTest correctamente :(";
+                        break;
+                }
+            
+            case "promocion":
+                NPaquete npaquete = new NPaquete();
+                switch(accion){
+                    case "ver":
+                       //result = npaquete.Ver(att);
+                       break;
+                    
+                    case "listar":
+                        result = npaquete.Listar();
+                        break;
+                    case "registrar":
+                        npaquete.Registrar(att);
+                        result = "Se registro promocion correctamente :D";
+                        break;
+                    case "modificar":
+                        npaquete.Modificar(att);
+                        result = "Se modifico el promocion correctamente :'D";
+                        break;
+                    case "eliminar":
+                        npaquete.Eliminar(att);
+                        result = "Se elimino el promocion correctamente :(";
+                        break;
+                }
+                
+                case "reporte":
+                NegocioReporte nreporte = new NegocioReporte();
+                switch(accion){
+                    case "ver":
+                        //result = nreporte.Ver(att);
+                        break;
+                    case "listar":
+                        //result = nreporte.Listar();
+                        break;
+                    case "registrar":
+                        //nreporte.Registrar(att);
+                        result = "Se registro paciente correctamente :D";
+                        break;
+                    case "modificar":
+                        //nreporte.Modificar(att);
+                        System.out.println("paso por modificar");
+                        result = "Se modifico el paciente correctamente :'D";
+                        break;
+                    case "eliminar":
+                        //nreporte.Eliminar(att);
+                        result = "Se elimino el paciente correctamente :(";
+                        break;
+                }
+                
+                case "estadistica":
+                NegocioEstadistica nestadistica = new NegocioEstadistica();
+                switch(accion){
+                    case "ver":
+                        //result = nestadistica.Ver(att);
+                        break;
+                    case "listar":
+                        //result = nestadistica.Listar();
+                        break;
+                    case "registrar":
+                        //nestadistica.Registrar(att);
+                        result = "Se registro paciente correctamente :D";
+                        break;
+                    case "modificar":
+                        //nestadistica.Modificar(att);
+                        System.out.println("paso por modificar");
+                        result = "Se modifico el paciente correctamente :'D";
+                        break;
+                    case "eliminar":
+                        //nestadistica.Eliminar(att);
+                        result = "Se elimino el paciente correctamente :(";
+                        break;
+                }
+                
+                break;
+            
                 
         }
         return result;
