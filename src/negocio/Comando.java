@@ -147,7 +147,7 @@ public class Comando {
                             + "Listar:\n"
                             + "< CITAMEDICA_LISTAR_ALL >\n \n"
                             + "Registrar:\n"
-                            + "< CITAMEDICA_REGISTRAR_1,1,RC0001,14:30:00,2021-08-25,dolores,proceso >\n \n"
+                            + "< CITAMEDICA_REGISTRAR_1,1,RC0001,14:30:00,2021-08-25,dolores,proceso > \n \n"
                             + "Modificar:\n"
                             + "< CITAMEDICA_MODIFICAR_2,1,1,RC0001,14:30:00,2021-08-25,dolores,proceso >\n \n"
                             + "Eliminar:\n"
@@ -196,16 +196,16 @@ public class Comando {
                             + "< SKINTEST_ELIMINAR_1 >\n"
                             + "----------------------------- \n \n \n \n"
                             + "-----------------------------\n"
-                            + "PROMOCIONES\n"
+                            + "PROMOCION\n"
                             + "-----------------------------\n"
                             + "Listar:\n"
-                            + "< PROMOCIONES_LISTAR_ALL >\n \n"
+                            + "< PROMOCION_LISTAR_ALL >\n \n"
                             + "Registrar:\n"
-                            + "< PROMOCIONES_REGISTRAR_nombrepaquete,4,200.0 >\n \n"
+                            + "< PROMOCION_REGISTRAR_nombrepaquete,4,200.0 >\n \n"
                             + "Modificar:\n"
-                            + "< PROMOCIONES_MODIFICAR_1,nombrepaquete,4,200.0 >\n \n"
+                            + "< PROMOCION_MODIFICAR_1,nombrepaquete,4,200.0 >\n \n"
                             + "Eliminar:\n"
-                            + "< PROMOCIONES_ELIMINAR_1 >\n"
+                            + "< PROMOCION_ELIMINAR_1 >\n"
                             + "----------------------------- \n \n \n \n"
                             + "-----------------------------\n"
                             + "GESTIONAR CONSULTA Y ESTADISTICA ...falta...\n"
@@ -251,7 +251,8 @@ public class Comando {
                         npaciente.Eliminar(att);
                         result = "Se elimino el paciente correctamente :(";
                         break;
-                }
+                    }
+            break;
             
             case "usuario-trabajdor":
                 NegocioTrabajador ntrabajdor = new NegocioTrabajador();
@@ -276,6 +277,7 @@ public class Comando {
                         result = "Se elimino el trabajador correctamente :(";
                         break;
                 }
+            break;
                 
             case "servicio":
                 NServicio nservicio = new NServicio();
@@ -299,7 +301,8 @@ public class Comando {
                         //npaciente.Eliminar(att);
                         result = "Se elimino el servicio correctamente :(";
                         break;
-                }   
+                }
+            break;   
                 
             case "citamedica":
                 NReservaCita ncitamedica = new NReservaCita();
@@ -323,7 +326,8 @@ public class Comando {
                         ncitamedica.Eliminar(att);
                         result = "Se elimino la reserva cita correctamente :(";
                         break;
-                } 
+                }
+            break;
                 
             case "equipamiento":
                 //NEquipamiento nequipamiento = new NEquipamiento();
@@ -348,6 +352,7 @@ public class Comando {
                         result = "Se elimino el equipamiento correctamente :(";
                         break;
                 }
+            break;
             
             case "Consulta":
                 NConsulta nconsulta = new NConsulta();
@@ -372,6 +377,7 @@ public class Comando {
                         result = "Se elimino la consulta correctamente :(";
                         break;
                 }
+            break;
                 
             case "skintest":
                 NSkinTest nskintest = new NSkinTest();
@@ -396,6 +402,7 @@ public class Comando {
                         result = "Se elimino SkinTest correctamente :(";
                         break;
                 }
+            break;
             
             case "promocion":
                 NPaquete npaquete = new NPaquete();
@@ -420,8 +427,9 @@ public class Comando {
                         result = "Se elimino el promocion correctamente :(";
                         break;
                 }
-                
-                case "reporte":
+            break;
+            
+            case "reporte":
                 NegocioReporte nreporte = new NegocioReporte();
                 switch(accion){
                     case "ver":
@@ -444,6 +452,7 @@ public class Comando {
                         result = "Se elimino el paciente correctamente :(";
                         break;
                 }
+            break;
                 
                 case "estadistica":
                 NegocioEstadistica nestadistica = new NegocioEstadistica();
@@ -469,7 +478,7 @@ public class Comando {
                         break;
                 }
                 
-                break;
+            break;
             
                 
         }
