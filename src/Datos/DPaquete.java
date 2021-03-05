@@ -99,8 +99,14 @@ public class DPaquete {
         ps.executeUpdate();
         ps.close();
         conexion = null;
+    }
     
-    //
-    }  
+    public String Ver() throws SQLException{
+        Connection conexion = this.bd.connect();
+        String sql = "SELECT * FROM paquete WHERE id = "+ Integer.toString(this.getId()) +";";
+        String result = this.bd.runStatement(sql);
+        conexion = null;
+        return result;
+    }
 }
 
