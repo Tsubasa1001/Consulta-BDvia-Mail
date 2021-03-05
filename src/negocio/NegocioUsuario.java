@@ -95,6 +95,28 @@ public class NegocioUsuario {
     private String index() {
         String resultado = "default";        
         resultado = this.getUsuarioBD().index(this.getTabla());
+        
+        String[] tmp = resultado.split("\n");
+        resultado = "";
+        
+        /**
+         * Banner
+         */
+        
+        for (int i = 1; i < tmp.length; i++){
+            String[] aux = tmp[i].split(",");
+            for (int j = 0; j < aux.length; j++){
+                aux[j] = aux[j].trim();
+            }
+            
+            resultado += String.format("%-20s", aux[2]);
+            resultado += String.format("%-20s", ","+aux[6]);
+            resultado += String.format("%-5s", ","+aux[8]);
+            resultado += String.format("%-5s", ","+aux[9]);
+            
+            resultado += "\n";
+        }
+        
         return resultado;
     }
     private void create(int id, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion) {
@@ -103,6 +125,35 @@ public class NegocioUsuario {
     private String read(int id) {
         String resultado = "default";
         resultado = this.getUsuarioBD().read(this.getTabla(), id);
+        
+        String[] tmp = resultado.split("\n");
+        resultado = "";
+        
+        /**
+         * Banner
+         */
+        
+        for (int i = 1; i < tmp.length; i++){
+            String[] aux = tmp[i].split(",");
+            for (int j = 0; j < aux.length; j++){
+                aux[j] = aux[j].trim();
+            }
+            
+            resultado += String.format("%-5s", aux[0]);
+            resultado += String.format("%-10s", ","+aux[1]);
+            resultado += String.format("%-20s", ","+aux[2]);
+            resultado += String.format("%-10s", ","+aux[3]);
+            resultado += String.format("%-2s", ","+aux[4]);
+            resultado += String.format("%-20s", ","+aux[5]);
+            resultado += String.format("%-20s", ","+aux[6]);
+            resultado += String.format("%-10s", ","+aux[7]);
+            resultado += String.format("%-5s", ","+aux[8]);
+            resultado += String.format("%-5s", ","+aux[9]);
+            resultado += String.format("%-12s", ","+aux[10]);
+            
+            resultado += "\n";
+        }
+        
         return resultado;
     }
     private void update(int id, String ci, String nombre, String nacionalidad, String especialidad, String direccion, String email, String celular, String edad, String genero, String fecha_creacion, int idViejo) {

@@ -57,7 +57,6 @@ public class DatosTrabajador {
             + edad+"','"
             + genero+"','"
             + fecha_creacion+"');";
-        System.out.println(sql);
         this.getPostgres().connect();
         this.getPostgres().runStatement(sql);
         this.getPostgres().desconectar();
