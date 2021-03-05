@@ -50,5 +50,12 @@ public class NPaquete {
         DPaquete.setId(id);
         DPaquete.Eliminar();
     }
+    
+    public String Ver(List<String> atributos) throws SQLException{
+        int id = Integer.parseInt(atributos.get(0));
+        DPaquete.setId(id);
+        String result = DPaquete.Ver();
+        return result;
+    }
 }
 
