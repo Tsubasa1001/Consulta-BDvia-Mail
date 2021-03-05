@@ -117,6 +117,7 @@ public class NegocioTrabajador {
                 aux[j] = aux[j].trim();
             }
             
+            resultado += String.format("%-5s", ","+aux[0]);
             resultado += String.format("%-20s", aux[3]);
             resultado += String.format("%-10s", ","+aux[4]);
             resultado += String.format("%-50s", ","+aux[6]);
