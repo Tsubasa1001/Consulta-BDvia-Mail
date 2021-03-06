@@ -28,6 +28,7 @@ public class DPaciente {
 	private String celular;
 	private int edad; 
         private char genero;
+        private String fecha_creacion;
         
         private static ClientePgSql bd;
         
@@ -36,7 +37,7 @@ public class DPaciente {
         bd = new ClientePgSql();
     }
 
-    public DPaciente(int id, String codigo, String ci, String nombre, String nacionalidad, String ocupacion, String direccion, String email, String celular, int edad, char genero) {
+    public DPaciente(int id, String codigo, String ci, String nombre, String nacionalidad, String ocupacion, String direccion, String email, String celular, int edad, char genero,String fecha_creacion) {
         this.id = id;
         this.codigo = codigo;
         this.ci = ci;
@@ -48,6 +49,7 @@ public class DPaciente {
         this.celular = celular;
         this.edad = edad;
         this.genero = genero;
+        this.fecha_creacion = fecha_creacion;
     }
 
     public int getId() {
@@ -139,22 +141,34 @@ public class DPaciente {
     public void setGenero(char genero) {
         this.genero = genero;
     }
+    
+    public String getFecha_creacion() {
+        return fecha_creacion;
+    }
+
+    public void setFecha_creacion(String fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
+    }
         
     public String Listar(){
         Connection conexion = this.bd.connect();
-        String sql = "SELECT * FROM paciente ORDER BY id ASC;";
-        String result = this.bd.runStatement(sql);
+        String sql = "SELECT p.id, p.ci, p.codigo,p.nombre,p.celular,p.edad,p.genero FROM paciente p ORDER BY id ASC;";
+        String result = //"\n___________________________________________________________________________________________________________________________ \n"
+                      //+"ID____________________CI_______________CODIGO___________________NOMBRE___________CELULAR___________EDAD______________GENERO \n"+
+                        this.bd.runStatement(sql);
         conexion = null;
         return result;
     }
     
     
-    public String Dregistrar() throws SQLException{
+    public String Dregistrar(int id) throws SQLException{
         
         String resultado="";
         Connection conexion = this.bd.connect();
-        String sql = "INSERT INTO paciente values(default,?,?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO paciente values("+id+",?,?,?,?,?,?,?,?,?,?,?);";
+        System.err.println("sql "+sql);
         PreparedStatement ps = conexion.prepareStatement(sql);
+        
         ps.setString(1, this.getCodigo());
         ps.setString(2, this.getCi());
         ps.setString(3, this.getNombre());
@@ -165,6 +179,7 @@ public class DPaciente {
         ps.setString(8, this.getCelular());
         ps.setInt(9, this.getEdad());
         ps.setString(10, Character.toString(this.getGenero()));
+        ps.setString(11,this.getFecha_creacion());
         ps.executeUpdate();
         ps.close();
         conexion = null;
@@ -180,7 +195,7 @@ public class DPaciente {
         
         Connection conexion = this.bd.connect();
         String sql = "UPDATE paciente SET codigo  = ?, ci = ?, nombre = ?, nacionalidad = ?, ocupacion = ?, "
-                + "direccion = ?, email = ? , celular = ? , edad = ? , genero = ? WHERE id = ?;";
+                + "direccion = ?, email = ? , celular = ? , edad = ? , genero = ?, fecha_creacion = ? WHERE id = ?;";
         PreparedStatement ps = conexion.prepareStatement(sql);
         
         ps.setString(1, this.getCodigo());
@@ -188,12 +203,13 @@ public class DPaciente {
         ps.setString(3, this.getNombre());
         ps.setString(4,this.getNacionalidad());
         ps.setString(5,this.getOcupacion());
-        ps.setString(6, this.getDireccion());
-        ps.setString(7, this.getEmail());
-        ps.setString(8, this.celular);
+        ps.setString(6,this.getDireccion());
+        ps.setString(7,this.getEmail());
+        ps.setString(8,this.getCelular());
         ps.setInt(9, this.getEdad());
-        ps.setString(10, Character.toString(this.getGenero()));
-        ps.setInt(11, this.getId());
+        ps.setString(10,Character.toString(this.getGenero()));
+        ps.setString(11,this.getFecha_creacion());
+        ps.setInt(12, this.getId());
         
         ps.executeUpdate();
         ps.close();
@@ -225,7 +241,7 @@ public class DPaciente {
         conexion = null;
        
         String[] detalle = result.split(",");
-        result = "El usuario es:\n"
+        result = "El usuario id"+id+" es: \n\n"
                 + "id: "+detalle[0].trim() +"\n"
                 + "codigo: "+detalle[1].trim()+"\n"
                 + "ci: "+detalle[2].trim()+"\n"
@@ -236,7 +252,8 @@ public class DPaciente {
                 + "email: "+detalle[7].trim()+"\n"
                 + "celular: "+detalle[8].trim()+"\n"
                 + "edad: "+detalle[9].trim()+"\n"
-                + "genero: "+detalle[10].trim()+"\n";
+                + "genero: "+detalle[10].trim()+"\n"
+                + "Fecha creacion "+detalle[11].trim()+"\n";
         
         return result;
     }

@@ -105,7 +105,7 @@ public class Comando {
                             + "Listar:\n"
                             + "< USUARIO-PACIENTE_LISTAR_ALL >\n \n"
                             + "Registrar:\n"
-                            + "< USUARIO-PACIENTE_REGISTRAR_nombrepaquete,4,200.0 >\n \n"
+                            + "< USUARIO-PACIENTE_REGISTRAR_P00x,00000,Raul,Bolivia,ingeniero,av. bush,raul@gmail.com,65412545,20,M >\n \n"
                             + "Modificar:\n"
                             + "< USUARIO-PACIENTE_MODIFICAR_1,nombrepaquete,4,200.0 >\n \n"
                             + "Eliminar:\n"
@@ -487,10 +487,17 @@ public class Comando {
      
      public static void main(String[] args) throws SQLException{
         Comando comando = new Comando();
-        String texto = "manual-usuario_help_all";
+        //String texto="USUARIO-PACIENTE_VER_1";
+        String texto = "usuario-paciente_REGISTRAR_P00x,00000,Raul,Bolivia,ingeniero,av. bush,raul@gmail.com,65412545,20,M,2021-01-02";
        
-         System.out.println(""+comando.recogerDatos(texto));
-                
+        System.out.println(""+comando.recogerDatos(texto));
+         System.err.println("cu"+comando.getCu());
+         System.err.println("accion"+comando.getAccion());
+         System.err.println("atributos"+comando.getAtributos());
+        
+        
+        texto = "USUARIO-PACIENTE_LISTAR_ALL";
+        System.out.println(""+comando.recogerDatos(texto));       
         
        
     } 
