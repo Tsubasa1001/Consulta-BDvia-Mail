@@ -85,13 +85,14 @@ public class ConsultasBD_Mail {
     public String getQueryString(String correo) {
         //String patron1 = "er => ";
         //String patron2 = "*en*"; 
-        String patron1 = "< ";
-        String patron2 = " >";
+        String patron1 = "<";
+        String patron2 = ">";
         int subjectIndex = -1;/*-1 = valor inicial*/
         
         /*Procesando el mail_content*/
         correo = correo.toUpperCase();
         subjectIndex = correo.indexOf("SUBJECT: ");
+        System.out.println("subjectIndex "+subjectIndex);
         
         if (subjectIndex < 0) {
             return "nosubject";
@@ -100,6 +101,7 @@ public class ConsultasBD_Mail {
         // recortar la linea "SUBJECT"
         String subjectStr = correo.substring(subjectIndex).split("\\R")[0].trim();
         // determinar las posiciones de las cadenas del patron en la linea SUBJECT       
+        subjectStr = subjectStr.toLowerCase();
         ////
         System.err.println("el subject " + subjectStr);
         ////     

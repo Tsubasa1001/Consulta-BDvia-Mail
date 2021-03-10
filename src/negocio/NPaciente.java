@@ -132,14 +132,14 @@ public class NPaciente {
         NPaciente nPaciente = new NPaciente();
         List<String> atributos = new ArrayList<>();
         
-        atributos.add("101");
+        atributos.add("102");
         atributos.add("P00101");
         atributos.add("0000000");
-        atributos.add("Raul Castillo");
+        atributos.add("Fernando");
         atributos.add("Bolivia");
         atributos.add("ingeniero");
         atributos.add("av. bush");
-        atributos.add("raull@gmail.com");
+        atributos.add("fersh@gmail.com");
         atributos.add("65412545");
         atributos.add("20");
         atributos.add("M");
@@ -147,14 +147,13 @@ public class NPaciente {
         
         
         
-        //System.out.println("lista: "+atributos);
-        
-        
-        
+        System.out.println("lista: "+atributos);
+       
         System.out.println("lista: \n"+ nPaciente.Listar());
         
-        //nreserva.Eliminar(atributos);
-        //System.out.println("lista: \n"+ nreserva.Listar());
+        nPaciente.Registrar(atributos);
+        System.out.println("lista: \n"+ nPaciente.Listar());
+        
         
     } 
     
