@@ -243,7 +243,7 @@ public class DPaciente {
         String[] detalle = result.split(",");
         result = "El usuario id"+id+" es: \n\n"
                 + "id: "+detalle[0].trim() +"\n"
-                + "codigo: "+detalle[1].trim()+"\n"
+                + "codigo paciente: "+detalle[1].trim()+"\n"
                 + "ci: "+detalle[2].trim()+"\n"
                 + "nombre: "+detalle[3].trim()+"\n"
                 + "nacionalidad: "+detalle[4].trim()+"\n"

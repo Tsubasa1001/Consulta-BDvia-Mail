@@ -94,7 +94,7 @@ public class DReservaCita {
     public String Listar(){
    
         Connection conexion = this.bd.connect();
-        String sql = "SELECT c.id,p.nombre, t.nombre,c.codigo,c.hora,c.fecha,c.motivoconsulta,c.estadotratamiento \n" +
+        String sql = "SELECT c.id,p.nombre, t.nombre,c.codigo,c.hora,c.fecha \n" +
                      "FROM citaConsulta c, paciente p, trabajador t where c.id_paciente = p.id and c.id_trabajador = t.id\n" +
                      "ORDER BY id ASC;";
         String result = this.bd.runStatement(sql);
@@ -102,11 +102,11 @@ public class DReservaCita {
         return result;  
     }
     
-    public String Dregistrar(int id_p,int id_t) throws SQLException{
+    public String Dregistrar(int id, int id_p,int id_t) throws SQLException{
         
         String resultado="";
         Connection conexion = this.bd.connect();
-        String sql = "INSERT INTO citaConsulta values(default,"+id_p+","+id_t+",?,?,?,?,?);";
+        String sql = "INSERT INTO citaConsulta values("+id+","+id_p+","+id_t+",?,?,?,?,?);";
         PreparedStatement ps = conexion.prepareStatement(sql);
 
         ps.setString(1, this.getCodigo());
@@ -119,7 +119,7 @@ public class DReservaCita {
         ps.close();
         conexion = null;
         
-        resultado="A registrado reservado una cita exitosamente";
+        resultado="A registrado una reserva cita exitosamente";
         return resultado;
     }
     
@@ -173,11 +173,11 @@ public class DReservaCita {
         conexion = null;
        
         String[] detalle = result.split(",");
-        result = "La cita reserva es:\n"
+        result = "La cita reserva id"+id+"es:\n"
                 + "id: "+detalle[0].trim() +"\n"
                 + "Paciente: "+detalle[1].trim()+"\n"
                 + "Trabajador: "+detalle[2].trim()+"\n"
-                + "Codigo: "+detalle[3].trim()+"\n"
+                + "Codigo Reserva cita: "+detalle[3].trim()+"\n"
                 + "Hora: "+detalle[4].trim()+"\n"
                 + "Fecha: "+detalle[5].trim()+"\n"
                 + "Motivo Consulta: "+detalle[6].trim()+"\n"
