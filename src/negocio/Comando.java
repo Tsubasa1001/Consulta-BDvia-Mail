@@ -101,14 +101,18 @@ public class Comando {
                             + "USUARIO-PACIENTE\n"
                             + "-----------------------------\n"
                             + "ver:\n"
+                            + "Introducir los datos id\n"
                             + "<USUARIO-PACIENTE_VER_1>\n \n"
                             + "Listar:\n"
                             + "<USUARIO-PACIENTE_LISTAR_ALL>\n \n"
                             + "Registrar:\n"
+                            + "Introducir los datos       id, codigo, CI, nombre, nacionalidad, profesion, direccion, email, celular, edad,genero,fechaRegistro\n"
                             + "<usuario-paciente_REGISTRAR_103,P00101,0000000,karina,Bolivia,ingeniero,av./bush,kari@gmail.com,65412545,20,M,2021-01-02>\n \n"
                             + "Modificar:\n"
+                            + "Introducir los datos       id, codigo, CI, nombre, nacionalidad, profesion, direccion, email, celular, edad,genero,fechaRegistro\n"
                             + "<usuario-paciente_modificar_103,p00101,0000000,karina,bolivia,ingeniero,av./bush,kari@gmail.com,65412545,20,m,2021-01-02>\n \n"
                             + "Eliminar:\n"
+                            + "Introducir los datos       id\n"
                             + "< USUARIO-PACIENTE_ELIMINAR_1 > \n"
                             + "----------------------------- \n \n \n \n"
                             + "----------------------------- \n"
@@ -488,16 +492,17 @@ public class Comando {
      public static void main(String[] args) throws SQLException{
         Comando comando = new Comando();
         //String texto="USUARIO-PACIENTE_VER_1";
-        String texto = "usuario-paciente_REGISTRAR_103,P00101,0000000,karina,Bolivia,ingeniero,av./bush,kari@gmail.com,65412545,20,M,2021-01-02";
+        //String texto = "usuario-paciente_REGISTRAR_103,P00101,0000000,karina,Bolivia,ingeniero,av./bush,kari@gmail.com,65412545,20,M,2021-01-02";
        
-        System.out.println(""+comando.recogerDatos(texto));
+        String texto = "manual-usuario_help_all"; 
+         System.out.println(""+comando.recogerDatos(texto));
          System.err.println("cu"+comando.getCu());
          System.err.println("accion"+comando.getAccion());
          System.err.println("atributos"+comando.getAtributos());
         
         
-        texto = "USUARIO-PACIENTE_LISTAR_ALL";
-        System.out.println(""+comando.recogerDatos(texto));       
+        //texto = "USUARIO-PACIENTE_LISTAR_ALL";
+        //System.out.println(""+comando.recogerDatos(texto));       
         
        
     } 
