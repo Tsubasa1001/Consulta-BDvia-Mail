@@ -30,7 +30,7 @@ public class NReservaCita {
         resultado += "\n________________________________________________________________________________________________ \n"
                      +"ID______PACIENTE_____________________TRABAJADOR_______________CODIGO_CITA_____HORA_______FECHA__ \n";
         
-        for (int i = 1; i < tmp.length; i++){
+        for (int i = 0; i < tmp.length; i++){
             String[] aux = tmp[i].split(",");
             for (int j = 0; j < aux.length; j++){
                 aux[j] = aux[j].trim();

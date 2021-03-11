@@ -38,8 +38,8 @@ public class ClientePOP3 {
      * para grupo15sa
      */
     public ClientePOP3() {
-        this.m_user = "grupo07sc";
-        this.m_pass = "grup007grup007";
+        this.m_user = "grupo06sc";
+        this.m_pass = "grup006grup006";
         this.m_host = "tecnoweb.org.bo";
         this.m_port = 110;
     }

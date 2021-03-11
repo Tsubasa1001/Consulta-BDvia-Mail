@@ -115,7 +115,7 @@ public class DConsulta {
     public String Listar(){
    
         Connection conexion = this.bd.connect();
-        String sql = "SELECT c.id,c.codigo,cita.motivoConsulta, s.nombre,c.horaentrada,c.horasalida,c.fecha,c.precio,c.notas,c.diagnosticofinal \n" +
+        String sql = "SELECT c.id,c.codigo,cita.motivoConsulta, s.nombre,c.horaentrada,c.fecha \n" +
                      "FROM consulta c, citaconsulta cita, servicio s where c.id_citaconsulta = cita.id and c.id_servicio = s.id\n" +
                      "ORDER BY id ASC;";
         String result = this.bd.runStatement(sql);

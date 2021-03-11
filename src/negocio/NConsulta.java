@@ -24,7 +24,33 @@ public class NConsulta {
     
     public String Listar(){
         String Lista = this.dconsulta.Listar();
-        return Lista;
+        String[] tmp = Lista.split("\n");
+        
+        System.err.println("tmp: "+tmp[1]);
+        String resultado = "";
+        resultado += "\n________________________________________________________________________________________ \n"
+                     +"ID____CODIGO____MOTIVO_CONSULTA______________SERVICIO__________HORA_ENTRADA_____Fecha___ \n";
+        
+        for (int i = 0; i < tmp.length; i++){
+            String[] aux = tmp[i].split(",");
+            for (int j = 0; j < aux.length; j++){
+                aux[j] = aux[j].trim();
+            }
+            
+        
+            
+            
+        resultado += String.format("%-5s", aux[0]);
+        resultado += String.format("%-10s", ","+aux[1]);
+        resultado += String.format("%-30s", ","+aux[2]);
+        resultado += String.format("%-20s", ","+aux[3]);
+        resultado += String.format("%-12s", ","+aux[4]);
+        resultado += String.format("%-12s", ","+aux[5]);
+            
+        resultado += "\n";
+        
+        }
+        return resultado;
     }
     
      public void Registrar(List<String> atributos) throws SQLException{
@@ -104,10 +130,10 @@ public class NConsulta {
         atributos.add("mal sueño");
         atributos.add("mucho estress");
         
-        System.out.println("lista: "+atributos);
+        //System.out.println("lista: "+atributos);
         System.out.println("lista: \n"+ nconsulta.Listar());
         //nconsulta.Registrar(atributos);
-        System.out.println(nconsulta.Ver(atributos));
+        //System.out.println(nconsulta.Ver(atributos));
         //System.out.println("lista: \n"+ nconsulta.Listar());
         
         //nreserva.Eliminar(atributos);
