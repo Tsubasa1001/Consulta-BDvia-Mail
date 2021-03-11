@@ -296,22 +296,22 @@ public class Comando {
                 NServicio nservicio = new NServicio();
                 switch(accion){
                     case "ver":
-                        //result = NServicio.Ver(att);
+                        result = nservicio.Ver(att);
                         break;
                     case "listar":
-                        //result = NServicio.Listar();
+                        result = nservicio.Listar();
                         break;
                     case "registrar":
-                        //NServicio.Registrar(att);
+                        nservicio.Registrar(att);
                         result = "Se registro servicio correctamente :D";
                         break;
                     case "modificar":
-                        //NServicio.Modificar(att);
+                        nservicio.Modificar(att);
                         System.out.println("paso por modificar");
                         result = "Se modifico el servicio correctamente :'D";
                         break;
                     case "eliminar":
-                        //npaciente.Eliminar(att);
+                        nservicio.Eliminar(att);
                         result = "Se elimino el servicio correctamente :(";
                         break;
                 }
@@ -343,25 +343,24 @@ public class Comando {
             break;
                 
             case "equipamiento":
-                //NEquipamiento nequipamiento = new NEquipamiento();
+                NEquipamiento nequipamiento = new NEquipamiento();
                 switch(accion){
                     case "ver":
-                       //result = nequipamiento.Ver(att);
+                       result = nequipamiento.Ver(att);
                         break;
                     case "listar":
-                        //result = nequipamiento.Listar();
+                        result = nequipamiento.Listar();
                         break;
                     case "registrar":
-                        //nequipamiento.Registrar(att);
-                        //result = "Se registro el equipamiento correctamente :D";
+                        nequipamiento.Registrar(att);
+                        result = "Se registro el equipamiento correctamente :D";
                         break;
                     case "modificar":
-                        //nequipamiento.Modificar(att);
-                        System.out.println("paso por modificar");
+                        nequipamiento.Modificar(att);
                         result = "Se modifico el equipamiento correctamente :'D";
                         break;
                     case "eliminar":
-                        //nequipamiento.Eliminar(att);
+                        nequipamiento.Eliminar(att);
                         result = "Se elimino el equipamiento correctamente :(";
                         break;
                 }
@@ -421,7 +420,7 @@ public class Comando {
                 NPaquete npaquete = new NPaquete();
                 switch(accion){
                     case "ver":
-                       //result = npaquete.Ver(att);
+                       result = npaquete.Ver(att);
                        break;
                     
                     case "listar":
@@ -429,15 +428,15 @@ public class Comando {
                         break;
                     case "registrar":
                         npaquete.Registrar(att);
-                        result = "Se registro promocion correctamente :D";
+                        result = "Se registro la promocion correctamente :D";
                         break;
                     case "modificar":
                         npaquete.Modificar(att);
-                        result = "Se modifico el promocion correctamente :'D";
+                        result = "Se modifico la promocion correctamente :'D";
                         break;
                     case "eliminar":
                         npaquete.Eliminar(att);
-                        result = "Se elimino el promocion correctamente :(";
+                        result = "Se elimino la promocion correctamente :(";
                         break;
                 }
             break;
