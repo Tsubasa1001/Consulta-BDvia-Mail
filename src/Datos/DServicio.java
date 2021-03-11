@@ -76,9 +76,9 @@ public class DServicio {
         return result;
     }
     
-    public void Registrar() throws SQLException{
+    public void Registrar(int id) throws SQLException{
         Connection conexion = this.bd.connect();
-        String sql = "INSERT INTO servicio VALUES(default,?,?,?,?);";
+        String sql = "INSERT INTO servicio VALUES("+id+",?,?,?,?);";
         PreparedStatement ps = conexion.prepareStatement(sql);
         ps.setString(1, this.getNombre());
         ps.setFloat(2, this.getPrecio());
@@ -118,6 +118,15 @@ public class DServicio {
         String sql = "SELECT * FROM servicio WHERE id = "+ Integer.toString(this.getId()) +";";
         String result = this.bd.runStatement(sql);
         conexion = null;
+        
+        String[] detalle = result.split(",");
+        result = "El servicio: "+Integer.toString(this.getId())+" es: \n\n"
+                + "id: "+detalle[0].trim() +"\n"
+                + "nombre: "+detalle[1].trim()+"\n"
+                + "precio: "+detalle[2].trim()+"\n"
+                + "id-eqpo: "+detalle[2].trim()+"\n"
+                + "id-paquete: "+detalle[3].trim()+"\n";
+        
         return result;
     }
 }
