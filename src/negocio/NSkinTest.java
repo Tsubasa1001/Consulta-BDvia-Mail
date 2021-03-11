@@ -29,8 +29,8 @@ public class NSkinTest {
         
         System.err.println("tmp: "+tmp[1]);
         String resultado = "";
-        resultado += "\n____________________________________________________________________________ \n"
-                     +"ID___COD.CONSULTA___COD.TEST_____PROBLEMAS_DE_SALUD_____________ALERGIAS____\n";
+        resultado += "\n___________________________________________________________________________________________________ \n"
+                     +"ID___COD.CONSULTA___COD.TEST_____PROBLEMAS_DE_SALUD_____________ALERGIAS__________MEDICACION_______\n";
         
         for (int i = 0; i < tmp.length; i++){
             String[] aux = tmp[i].split(",");
@@ -45,7 +45,8 @@ public class NSkinTest {
         resultado += String.format("%-15s", ","+aux[1]);
         resultado += String.format("%-15s", ","+aux[2]);
         resultado += String.format("%-30s", ","+aux[3]);
-        resultado += String.format("%-20s", ","+aux[4]);
+        resultado += String.format("%-15s", ","+aux[4]);
+        resultado += String.format("%-20s", ","+aux[5]);
             
         resultado += "\n";
         
@@ -147,7 +148,7 @@ public class NSkinTest {
         atributos.add("acne");
         atributos.add("1 vaso/dia");
         atributos.add("Acne grado 2");
-        
+        //<SKINTEST_REGISTRAR_2,3,T-0003,acne,ninguna,higado.graso,regularmente,no,ninguna,medicina.herbarea,acne,1.vaso/dia,acne.grado.2>
                 
         
         System.out.println("lista: "+atributos);

@@ -84,7 +84,17 @@ public class Comando {
                 switch(accion){
                     case "help":
                     result= "\n"
-                            + "-----------------------------MANUAL USUARIO-----------------------------\n"
+                            + "------------------------------------------------------------------------------------------------------------\n"
+                            + "-----------------------------------------------MANUAL USUARIO-----------------------------------------------\n"
+                            + "------------------------------------------------------------------------------------------------------------\n"
+                            + "\n \n"
+                            + "DATOS A CONSIDERAR: "
+                            + "1. LOS COMANDOS INICIAN Y TERMINAN CON ESTOS SIMBOLOS (MENOR Y MAYOR) '< >' \n"
+                            + "2. EN LOS DATOS, AL MOMENTO DE REGISTRAR O MODIFICAR, NO PUEDEN HABER ESPACIOS ENTRE LAS PALABRAS\n"
+                            + "3. LOS ATRIBUTOS EMPIEZAN DESPUES DEL ULTIMO (GUION BAJO) '_' Y SE SEPARAN ENTRE SI POR (COMAS) ','\n"
+                            + "4. SE PUEDEN UTILIZAR LOS SIGUIENTES SIMBOLOS EN VEZ DEL ESPACIO ENTRE PALABRAS:\n"
+                            + "  '.' PUNTO \n"
+                            + "  '/' SLASH\n"
                             + "\n \n"
                             + "----------------------------- \n"
                             + "USUARIO-PACIENTE\n"
@@ -184,14 +194,17 @@ public class Comando {
                             + "GESTIONAR SKINTEST ...falta...\n"
                             + "-----------------------------\n"
                             + "ver:\n"
+                            + "Introducir dato id\n"
                             + "< SKINTEST_VER_1 >\n \n"
                             + "Listar:\n"
                             + "< SKINTEST_LISTAR_ALL >\n \n"
                             + "Registrar:\n"
-                            + "< SKINTEST_REGISTRAR_COMPLETAR >\n \n"
+                            + "Introducir datoS   id,idConsulta,codigoTest,tratamientoDermatologico,cirugia,problemasSalud,fuma,actividadFisica,alergias,medicacion,afeccionPiel,hidratacion,observacionCosmetica \n"
+                            + "<SKINTEST_REGISTRAR_4,3,T-0003,acne,ninguna,higado.graso,regularmente,no,ninguna,medicina.herbarea,acne,2.vasos/dia,acne.grado.2>\n \n"
                             + "Modificar:\n"
-                            + "< SKINTEST_MODIFICAR_COMPLETAR >\n \n"
+                            + "<SKINTEST_MODIFICAR_4,3,T-0003,acne,ninguna,higado.graso,regularmente,no,ninguna,medicina.herbarea,acne,2.vasos/dia,acne.grado.2>\n \n"
                             + "Eliminar:\n"
+                            + "Introducir dato    id\n"
                             + "< SKINTEST_ELIMINAR_1 >\n"
                             + "----------------------------- \n \n \n \n"
                             + "-----------------------------\n"
@@ -464,16 +477,16 @@ public class Comando {
         Comando comando = new Comando();
         //String texto="USUARIO-PACIENTE_VER_1";
         //String texto = "usuario-paciente_REGISTRAR_103,P00101,0000000,karina,Bolivia,ingeniero,av./bush,kari@gmail.com,65412545,20,M,2021-01-02";
-        String texto ="CONSULTA_LISTAR_ALL";
-        //String texto = "CONSULTA_REGISTRAR_4,1,2,c0002,13:30:00,14:00:00,2021-08-22,100.00,mal.sueño,mucho.estress"; 
+        String texto ="SKINTEST_REGISTRAR_3,3,T-0003,acne,ninguna,higado.graso,regularmente,no,ninguna,medicina.herbarea,acne,2.vasos/dia,acne.grado.2";
+        
          System.out.println(""+comando.recogerDatos(texto));
          System.err.println("cu"+comando.getCu());
          System.err.println("accion"+comando.getAccion());
          System.err.println("atributos"+comando.getAtributos());
-        
-        
-        //texto = "USUARIO-PACIENTE_LISTAR_ALL";
-        //System.out.println(""+comando.recogerDatos(texto));       
+         //texto = "CONSULTA_REGISTRAR_12,1,2,c0002,13:30:00,14:00:00,2021-08-22,100.00,mal.sueño,mucho.estress"; 
+        //System.out.println(""+comando.recogerDatos(texto));
+        texto = "SKINTEST_LISTAR_ALL";
+        System.out.println(""+comando.recogerDatos(texto));       
         
        
     } 

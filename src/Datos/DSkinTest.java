@@ -162,7 +162,7 @@ public class DSkinTest {
         Connection conexion = this.bd.connect();
         String sql = "SELECT test.id,c.codigo,test.codigo, \n" +
                       "test.problemas_salud,\n" +
-                      "test.alergias \n" +
+                      "test.alergias, test.medicacion\n" +
                      "FROM skintest test, consulta c\n" +
                      "where test.id_consulta = c.id \n" +
                      "ORDER BY id ASC";
@@ -266,7 +266,7 @@ public class DSkinTest {
         
         String[] detalle = result.split(",");
         System.out.println("result: "+result);
-        result = "El SkinTest id"+id+" es:\n"
+        result = "El SkinTest id"+id+" es:\n\n"
                 + "id SkinTest: "+detalle[0].trim() +"\n"
                 + "Codigo consulta: "+detalle[1].trim() +"\n"
                 + "Codigo SkinTest: "+detalle[2].trim()+"\n"
