@@ -192,7 +192,7 @@ public class Comando {
                             + "<CONSULTA_ELIMINAR_1> \n"
                             + "----------------------------- \n \n \n \n"
                             + "-----------------------------\n"
-                            + "GESTIONAR SKINTEST ...falta...\n"
+                            + "GESTIONAR SKINTEST \n"
                             + "-----------------------------\n"
                             + "ver:\n"
                             + "Introducir dato id\n"
