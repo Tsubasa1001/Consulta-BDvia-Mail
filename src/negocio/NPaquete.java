@@ -20,17 +20,37 @@ public class NPaquete {
     
     public String Listar(){
         String Lista = this.DPaquete.Listar();
-        return Lista;
+        String[] tmp = Lista.split("\n");
+        
+        String resultado = "";
+        resultado += "\n________________________________________________ \n"
+                     +"ID______NOMBRE_______________CANTIDAD_____PRECIO \n";
+        
+        for (int i = 0; i < tmp.length; i++){
+            String[] aux = tmp[i].split(",");
+            for (int j = 0; j < aux.length; j++){
+                aux[j] = aux[j].trim();
+            }
+            resultado += String.format("%-5s", aux[0]);
+            resultado += String.format("%-25s", ","+aux[1]);
+            resultado += String.format("%-12s", ","+aux[2]);
+            resultado += String.format("%-4s", ","+aux[3]);
+
+            resultado += "\n";
+        }
+        
+        return resultado;
     }
     
     public void Registrar(List<String> atributos) throws SQLException{
-        String nombre = atributos.get(0);
-        int cantidad = Integer.parseInt(atributos.get(1));
-        float precio = Float.parseFloat(atributos.get(2));
+        int id = Integer.parseInt(atributos.get(0));
+        String nombre = atributos.get(1);
+        int cantidad = Integer.parseInt(atributos.get(2));
+        float precio = Float.parseFloat(atributos.get(3));
         DPaquete.setNombre(nombre);
         DPaquete.setCantidad(cantidad);
         DPaquete.setPrecio(precio);
-        DPaquete.Registrar();
+        DPaquete.Registrar(id);
     }
     
     public void Modificar(List<String> atributos) throws SQLException{
