@@ -66,9 +66,9 @@ public class DEquipamiento {
         return result;
     }
     
-    public void Registrar() throws SQLException{
+    public void Registrar(int id) throws SQLException{
         Connection conexion = this.bd.connect();
-        String sql = "INSERT INTO equipamiento VALUES(default,?,?,?);";
+        String sql = "INSERT INTO equipamiento VALUES("+id+",?,?,?);";
         PreparedStatement ps = conexion.prepareStatement(sql);
         ps.setString(1, this.getCodigo());
         ps.setString(2, this.getNombre());
@@ -106,6 +106,14 @@ public class DEquipamiento {
         String sql = "SELECT * FROM equipamiento WHERE id = "+ Integer.toString(this.getId()) +";";
         String result = this.bd.runStatement(sql);
         conexion = null;
+        
+        String[] detalle = result.split(",");
+        result = "El equipo: "+Integer.toString(this.getId())+" es: \n\n"
+                + "id: "+detalle[0].trim() +"\n"
+                + "codigo: "+detalle[1].trim()+"\n"
+                + "nombre: "+detalle[2].trim()+"\n"
+                + "id-local: "+detalle[3].trim()+"\n";
+        
         return result;
     }
 }
