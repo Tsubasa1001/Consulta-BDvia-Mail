@@ -29,11 +29,6 @@ public class DatosTrabajador {
         
         if (resultado.isEmpty()){
             resultado = "Resultado :: vacio";
-        }else{
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            String fecha = sdf.format(date);
-            resultado = fecha + "\n" + resultado;
         }
         
         return resultado;
@@ -72,11 +67,6 @@ public class DatosTrabajador {
         
         if (resultado.isEmpty()){
             resultado = "Resultado :: vacio";
-        }else{
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            String fecha = sdf.format(date);
-            resultado = fecha + "\n" + resultado;
         }
         
         return resultado;

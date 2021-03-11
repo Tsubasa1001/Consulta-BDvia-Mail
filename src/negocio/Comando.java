@@ -5,12 +5,10 @@
  */
 package negocio;
 
-import Consultas_Mail.ConsultasBD_Mail;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import negocio.*;
 
 /**
  *
@@ -20,34 +18,25 @@ public class Comando {
     private String Cu;
     private String Accion;
     private List<String> Atributos;
-    private final String[] listaCu = {"usuario-paciente","usuario-trabajador","local","servicio","equipamiento","promocion","consulta","citamedica","skintest","estaditica","reporte","manual-usuario"};
-    private final String[] listaAcciones = {"ver","listar","registrar","modificar","eliminar","show","help"};
+    private final String[] listaCu = {
+        "usuario-paciente","usuario-trabajador","local",
+        "servicio","equipamiento","promocion","consulta",
+        "citamedica","skintest","estadistica","reporte",
+        "manual-usuario"
+    };
+    private final String[] listaAcciones = {
+        "ver","listar","registrar",
+        "modificar","eliminar","show","help"
+    };
     
-    //reportes_reportes_all //estadistica-estadistica_all
+    public Comando(){ this.Atributos = new ArrayList<>(); }
     
-    public Comando(){
-        this.Atributos = new ArrayList<>();
-    }
-    
-    public String getCu(){
-        return this.Cu;
-    }
-    public String getAccion(){
-        return this.Accion;
-    }
-    public List<String> getAtributos(){
-        return this.Atributos;
-    }
-    
-    public void setCu(String cu){
-        this.Cu = cu;
-    }
-    public void setAccion(String accion){
-        this.Accion = accion;
-    }
-    public void setAtributos(List<String> atributos){
-        this.Atributos = atributos;
-    }
+    public String getCu(){ return this.Cu; }
+    public String getAccion(){ return this.Accion; }
+    public List<String> getAtributos(){ return this.Atributos; }
+    public void setCu(String cu){ this.Cu = cu; }
+    public void setAccion(String accion){ this.Accion = accion; }
+    public void setAtributos(List<String> atributos){ this.Atributos = atributos; }
     
     public void separar(String comando){
         String[] ListaComandos = comando.split("_");
@@ -438,55 +427,31 @@ public class Comando {
             case "reporte":
                 NegocioReporte nreporte = new NegocioReporte();
                 switch(accion){
-                    case "ver":
-                        //result = nreporte.Ver(att);
-                        break;
                     case "listar":
-                        //result = nreporte.Listar();
-                        break;
-                    case "registrar":
-                        //nreporte.Registrar(att);
-                        result = "Se registro paciente correctamente :D";
-                        break;
-                    case "modificar":
-                        //nreporte.Modificar(att);
-                        System.out.println("paso por modificar");
-                        result = "Se modifico el paciente correctamente :'D";
-                        break;
-                    case "eliminar":
-                        //nreporte.Eliminar(att);
-                        result = "Se elimino el paciente correctamente :(";
+                        result = nreporte.reporteAtencion();
                         break;
                 }
             break;
-                
                 case "estadistica":
                 NegocioEstadistica nestadistica = new NegocioEstadistica();
                 switch(accion){
-                    case "ver":
-                        //result = nestadistica.Ver(att);
-                        break;
                     case "listar":
-                        //result = nestadistica.Listar();
-                        break;
-                    case "registrar":
-                        //nestadistica.Registrar(att);
-                        result = "Se registro paciente correctamente :D";
-                        break;
-                    case "modificar":
-                        //nestadistica.Modificar(att);
-                        System.out.println("paso por modificar");
-                        result = "Se modifico el paciente correctamente :'D";
-                        break;
-                    case "eliminar":
-                        //nestadistica.Eliminar(att);
-                        result = "Se elimino el paciente correctamente :(";
+                        /*<ESTADISTICA_LISTAR_ALL>*/
+                        String tmp = "";
+        
+                        tmp += nestadistica.mediaAtencionTotal();tmp += "\n";
+                        tmp += nestadistica.mediaAtencionMes();tmp += "\n";
+                        
+                        tmp += nestadistica.mediaAtencionTotalHombres();tmp += "\n";
+                        tmp += nestadistica.mediaAtencionMesHombres();tmp += "\n";
+                        
+                        tmp += nestadistica.mediaAtencionTotalMujeres();tmp += "\n";
+                        tmp += nestadistica.mediaAtencionMesMujeres();tmp += "\n";
+                        
+                        result = tmp;
                         break;
                 }
-                
             break;
-            
-                
         }
         return result;
     }

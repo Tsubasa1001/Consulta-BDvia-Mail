@@ -154,7 +154,11 @@ public class ClientePgSql {
      */
     public void desconectar(){
         try {
-            this.getM_conn().close();
+            if (this.getM_conn() == null){
+                System.out.println("desconectar :: not ok > null");
+            }else{
+                this.getM_conn().close();
+            }
         } catch (SQLException ex) {
             System.out.println("desconectar :: not ok");
         }

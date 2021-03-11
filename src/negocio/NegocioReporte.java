@@ -14,9 +14,7 @@ import Datos.DatosReporte;
 public class NegocioReporte {
     private DatosReporte reporteDB;
 
-    public NegocioReporte() {
-        this.reporteDB = new DatosReporte();
-    }
+    public NegocioReporte() { this.reporteDB = new DatosReporte(); }
 
     public DatosReporte getDatosReporteDB() {return reporteDB;}
     public void setDatosReporteDB(DatosReporte datosReporte) {this.reporteDB = datosReporte;}
@@ -30,7 +28,7 @@ public class NegocioReporte {
         System.out.println("reporteAtencion\n" + tmp);
     }
 
-    private String reporteAtencion() {
+    public String reporteAtencion() {
         String resultado = "default";
         resultado = this.getDatosReporteDB().reporteAtencion();
         

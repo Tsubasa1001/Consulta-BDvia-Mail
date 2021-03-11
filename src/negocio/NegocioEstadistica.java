@@ -17,16 +17,14 @@ public class NegocioEstadistica {
     private String cyan = "\u001B[36m";
     private String purple = "\u001B[35m";
 
-    public NegocioEstadistica() {
-        datosEstadistica = new DatosEstadistica();
-    }
+    public NegocioEstadistica() { datosEstadistica = new DatosEstadistica(); }
 
     public DatosEstadistica getDatosEstadistica() {return datosEstadistica;}
     public void setDatosEstadistica(DatosEstadistica datosEstadistica) {this.datosEstadistica = datosEstadistica;}
     
     /*M E T O D O S   E S T A D I S T I C O S*/
     
-    private String mediaAtencionTotal() {
+    public String mediaAtencionTotal() {
         String resultado = "default";
         int cantTotalAtenciones = -1;
         int sumTotalAtenciones = -1;
@@ -40,10 +38,10 @@ public class NegocioEstadistica {
             mediaTotalAtenciones = 0;
         }
         
-        resultado = this.cyan + "mediaAtencionTotal :: " + mediaTotalAtenciones + this.white;
+        resultado = this.cyan + "     mediaAtencionTotal :: " + mediaTotalAtenciones + "     " + this.white;
         return resultado;
     }
-    private String mediaAtencionMes() {
+    public String mediaAtencionMes() {
         String resultado = "default";
         int cantTotalAtencionesMes = -1;
         int sumTotalAtenciones = -1;
@@ -57,11 +55,11 @@ public class NegocioEstadistica {
             mediaAtencionMes = 0;
         }
         
-        resultado = this.purple + "mediaAtencionMes :: " + mediaAtencionMes + this.white;
+        resultado = this.purple + "     mediaAtencionMes :: " + mediaAtencionMes + "     " + this.white;
         return resultado;
     }
     
-    private String mediaAtencionTotalHombres() {
+    public String mediaAtencionTotalHombres() {
         String resultado = "default";
         int cantTotalAtencionesHombres = -1;
         int sumTotalAtencionesHombres = -1;
@@ -75,10 +73,10 @@ public class NegocioEstadistica {
             mediaTotalAtencionesHombres = 0;
         }
         
-        resultado = this.cyan + "mediaAtencionTotalHombres :: " + mediaTotalAtencionesHombres + this.white;
+        resultado = this.cyan + "     mediaAtencionTotalHombres :: " + mediaTotalAtencionesHombres + "     " + this.white;
         return resultado;
     }
-    private String mediaAtencionMesHombres() {
+    public String mediaAtencionMesHombres() {
         String resultado = "default";
         int cantTotalAtencionesMesHombres = -1;
         int sumTotalAtencionesHombres = -1;
@@ -92,11 +90,11 @@ public class NegocioEstadistica {
             mediaAtencionMesHombres = 0;
         }
         
-        resultado = this.purple + "mediaAtencionMesHombres :: " + mediaAtencionMesHombres + this.white;
+        resultado = this.purple + "     mediaAtencionMesHombres :: " + mediaAtencionMesHombres + "     " + this.white;
         return resultado;
     }
 
-    private String mediaAtencionTotalMujeres() {
+    public String mediaAtencionTotalMujeres() {
         String resultado = "default";
         int cantTotalAtencionesMujeres = -1;
         int sumTotalAtencionesMujeres = -1;
@@ -110,10 +108,10 @@ public class NegocioEstadistica {
             mediaTotalAtencionesMujeres = 0;
         }
         
-        resultado = this.cyan + "mediaAtencionTotalMujeres :: " + mediaTotalAtencionesMujeres + this.white;
+        resultado = this.cyan + "     mediaAtencionTotalMujeres :: " + mediaTotalAtencionesMujeres + "     " + this.white;
         return resultado;
     }
-    private String mediaAtencionMesMujeres() {
+    public String mediaAtencionMesMujeres() {
         String resultado = "default";
         int cantTotalAtencionesMesMujeres = -1;
         int sumTotalAtencionesMujeres = -1;
@@ -127,7 +125,7 @@ public class NegocioEstadistica {
             mediaAtencionMesMujeres = 0;
         }
         
-        resultado = this.purple + "mediaAtencionMesMujeres :: " + mediaAtencionMesMujeres + this.white;
+        resultado = this.purple + "     mediaAtencionMesMujeres :: " + mediaAtencionMesMujeres + "     " + this.white;
         return resultado;
     }
     
