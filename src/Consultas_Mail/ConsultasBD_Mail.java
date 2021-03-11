@@ -246,7 +246,7 @@ public class ConsultasBD_Mail {
                         System.out.println("No se encontraron consultas. Saliendo...");
                     }
                     
-                    sleep(5000);
+                    sleep(15000);
                 if (bandera){
                         System.err.println("[SYSTEM :: CERRANDO SESIÓN]");
                         break;
