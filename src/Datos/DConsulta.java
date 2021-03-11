@@ -123,11 +123,11 @@ public class DConsulta {
         return result;  
     }
     
-    public String Dregistrar(int id_cita,int id_servicio) throws SQLException{
+    public String Dregistrar(int id,int id_cita,int id_servicio) throws SQLException{
         
         String resultado="";
         Connection conexion = this.bd.connect();
-        String sql = "INSERT INTO consulta values(default,"+id_cita+","+id_servicio+",?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO consulta values("+id+","+id_cita+","+id_servicio+",?,?,?,?,?,?,?);";
         PreparedStatement ps = conexion.prepareStatement(sql);
 
         ps.setString(1, this.getCodigo());
@@ -201,7 +201,7 @@ public class DConsulta {
         
         String[] detalle = result.split(",");
         System.out.println("result: "+result);
-        result = "La consulta es:\n"
+        result = "La consulta es id"+id+":\n"
                 + "id: "+detalle[0].trim() +"\n"
                 + "Codigo: "+detalle[1].trim()+"\n"
                 + "Motivo consulta: "+detalle[2].trim()+"\n"

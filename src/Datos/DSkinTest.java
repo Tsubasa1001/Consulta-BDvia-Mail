@@ -160,10 +160,9 @@ public class DSkinTest {
     public String Listar(){
    
         Connection conexion = this.bd.connect();
-        String sql = "SELECT test.id,c.codigo,test.codigo,test.tratamiento_dermatologico, \n" +
-                      "test.cirugia,test.problemas_salud,test.fuma,test.actividad_fisica,\n" +
-                      "test.alergias,test.medicacion,test.afeccion_piel,test.hidratacion,\n" +
-                      "test.observacion_cosmetica \n" +
+        String sql = "SELECT test.id,c.codigo,test.codigo, \n" +
+                      "test.problemas_salud,\n" +
+                      "test.alergias \n" +
                      "FROM skintest test, consulta c\n" +
                      "where test.id_consulta = c.id \n" +
                      "ORDER BY id ASC";
@@ -172,11 +171,11 @@ public class DSkinTest {
         return result;  
     }
     
-    public String Dregistrar(int id_consulta) throws SQLException{
+    public String Dregistrar(int id,int id_consulta) throws SQLException{
         
         String resultado="";
         Connection conexion = this.bd.connect();
-        String sql = "INSERT INTO skintest values(default,"+id_consulta+",?,?,?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO skintest values("+id+","+id_consulta+",?,?,?,?,?,?,?,?,?,?,?);";
         System.out.println("sql: "+sql);
         PreparedStatement ps = conexion.prepareStatement(sql);
 
@@ -267,7 +266,7 @@ public class DSkinTest {
         
         String[] detalle = result.split(",");
         System.out.println("result: "+result);
-        result = "El SkinTest es:\n"
+        result = "El SkinTest id"+id+" es:\n"
                 + "id SkinTest: "+detalle[0].trim() +"\n"
                 + "Codigo consulta: "+detalle[1].trim() +"\n"
                 + "Codigo SkinTest: "+detalle[2].trim()+"\n"

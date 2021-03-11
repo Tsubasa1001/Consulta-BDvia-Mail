@@ -25,22 +25,48 @@ public class NSkinTest {
     
     public String Listar(){
         String Lista = this.dskintest.Listar();
-        return Lista;
+         String[] tmp = Lista.split("\n");
+        
+        System.err.println("tmp: "+tmp[1]);
+        String resultado = "";
+        resultado += "\n____________________________________________________________________________ \n"
+                     +"ID___COD.CONSULTA___COD.TEST_____PROBLEMAS_DE_SALUD_____________ALERGIAS____\n";
+        
+        for (int i = 0; i < tmp.length; i++){
+            String[] aux = tmp[i].split(",");
+            for (int j = 0; j < aux.length; j++){
+                aux[j] = aux[j].trim();
+            }
+            
+        
+            
+            
+        resultado += String.format("%-5s", aux[0]);
+        resultado += String.format("%-15s", ","+aux[1]);
+        resultado += String.format("%-15s", ","+aux[2]);
+        resultado += String.format("%-30s", ","+aux[3]);
+        resultado += String.format("%-20s", ","+aux[4]);
+            
+        resultado += "\n";
+        
+        }
+        return resultado;
     }
     
     public void Registrar(List<String> atributos) throws SQLException{
-        int id_consulta = Integer.parseInt(atributos.get(0));
-        String codigo = atributos.get(1);
-        String tratamiento_dermatologico = atributos.get(2);
-        String cirugia = atributos.get(3);
-        String problemas_salud = atributos.get(4);
-        String fuma = atributos.get(5);
-        String actividad_fisica = atributos.get(6);
-        String alergias = atributos.get(7);
-        String medicacion = atributos.get(8);
-        String afeccion_piel = atributos.get(9);
-        String hidratacion = atributos.get(10);
-        String observacion_cosmetica = atributos.get(11);
+        int id = Integer.parseInt(atributos.get(0));
+        int id_consulta = Integer.parseInt(atributos.get(1));
+        String codigo = atributos.get(2);
+        String tratamiento_dermatologico = atributos.get(3);
+        String cirugia = atributos.get(4);
+        String problemas_salud = atributos.get(5);
+        String fuma = atributos.get(6);
+        String actividad_fisica = atributos.get(7);
+        String alergias = atributos.get(8);
+        String medicacion = atributos.get(9);
+        String afeccion_piel = atributos.get(10);
+        String hidratacion = atributos.get(11);
+        String observacion_cosmetica = atributos.get(12);
         
         dskintest.setCodigo(codigo); 
         dskintest.setTratamiento_dermatologico(tratamiento_dermatologico);
@@ -54,7 +80,7 @@ public class NSkinTest {
         dskintest.setHidratacion(hidratacion);
         dskintest.setObservacion_cosmetica(observacion_cosmetica);
         
-        dskintest.Dregistrar(id_consulta);
+        dskintest.Dregistrar(id,id_consulta);
         
      }
     
@@ -128,7 +154,7 @@ public class NSkinTest {
         System.out.println("lista: \n"+ nskintest.Listar());
         System.out.println(nskintest.Ver(atributos));
         //System.out.println(nconsulta.Ver(atributos));
-        System.out.println("lista: \n"+ nskintest.Listar());
+        //System.out.println("lista: \n"+ nskintest.Listar());
         
         //nreserva.Eliminar(atributos);
         //System.out.println("lista: \n"+ nreserva.Listar());  

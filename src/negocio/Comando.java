@@ -163,18 +163,22 @@ public class Comando {
                             + "< EQUIPAMIENTO_ELIMINAR_1 > \n"
                             + "----------------------------- \n \n \n \n"
                             + "----------------------------- \n"
-                            + "CONSULTAS ...falta...\n"
+                            + "CONSULTAS \n"
                             + "-----------------------------\n"
                             + "ver:\n"
-                            + "< CONSULTAS_VER_1 >\n \n"
+                            + "Introducir dato id\n"
+                            + "<CONSULTA_VER_1>\n \n"
                             + "Listar:\n"
-                            + "< CONSULTAS_LISTAR_ALL >\n \n"
+                            + "<CONSULTA_LISTAR_ALL>\n \n"
                             + "Registrar:\n"
-                            + "< CONSULTAS_REGISTRAR_COMPLETAR >\n \n"
+                            + "Introducir los datos id,idCitaConsulta,idservicio,codigoConsulta,horaEntrada,horaSalida,fecha,precio,notas,diagnosticoFinal\n"
+                            + "<CONSULTA_REGISTRAR_11,1,2,c0002,13:30:00,14:00:00,2021-08-22,100.00,mal.sueño,mucho.estress>\n \n"
                             + "Modificar:\n"
-                            + "< CONSULTAS_MODIFICAR_COMPLETAR >\n \n"
+                            + "Introducir los datos id,idCitaConsulta,idservicio,codigoConsulta,horaEntrada,horaSalida,fecha,precio,notas,diagnosticoFinal\n"
+                            + "<CONSULTA_MODIFICAR_11,1,2,c0002,13:30:00,14:00:00,2021-08-22,100.00,mal.sueño,mucho.estress>\n \n"
                             + "Eliminar:\n"
-                            + "< CONSULTAS_ELIMINAR_1 > \n"
+                            + "Introducir dato   id\n"
+                            + "<CONSULTA_ELIMINAR_1> \n"
                             + "----------------------------- \n \n \n \n"
                             + "-----------------------------\n"
                             + "GESTIONAR SKINTEST ...falta...\n"
@@ -349,7 +353,7 @@ public class Comando {
                 }
             break;
             
-            case "Consulta":
+            case "consulta":
                 NConsulta nconsulta = new NConsulta();
                 switch(accion){
                     case "ver":
@@ -460,8 +464,8 @@ public class Comando {
         Comando comando = new Comando();
         //String texto="USUARIO-PACIENTE_VER_1";
         //String texto = "usuario-paciente_REGISTRAR_103,P00101,0000000,karina,Bolivia,ingeniero,av./bush,kari@gmail.com,65412545,20,M,2021-01-02";
-       
-        String texto = "manual-usuario_help_all"; 
+        String texto ="CONSULTA_LISTAR_ALL";
+        //String texto = "CONSULTA_REGISTRAR_4,1,2,c0002,13:30:00,14:00:00,2021-08-22,100.00,mal.sueño,mucho.estress"; 
          System.out.println(""+comando.recogerDatos(texto));
          System.err.println("cu"+comando.getCu());
          System.err.println("accion"+comando.getAccion());

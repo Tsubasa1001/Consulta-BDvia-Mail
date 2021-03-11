@@ -54,15 +54,16 @@ public class NConsulta {
     }
     
      public void Registrar(List<String> atributos) throws SQLException{
-        int id_citaConsulta = Integer.parseInt(atributos.get(0));
-        int id_servicio = Integer.parseInt(atributos.get(1));
-        String codigo = atributos.get(2);
-        String horaEntrada = atributos.get(3);
-        String horaSalida = atributos.get(4);
-        String fecha = atributos.get(5);
-        float precio = Float.parseFloat(atributos.get(6));
-        String notas = atributos.get(7);
-        String diagnosticoFinal = atributos.get(8);
+        int id = Integer.parseInt(atributos.get(0));
+        int id_citaConsulta = Integer.parseInt(atributos.get(1));
+        int id_servicio = Integer.parseInt(atributos.get(2));
+        String codigo = atributos.get(3);
+        String horaEntrada = atributos.get(4);
+        String horaSalida = atributos.get(5);
+        String fecha = atributos.get(6);
+        float precio = Float.parseFloat(atributos.get(7));
+        String notas = atributos.get(8);
+        String diagnosticoFinal = atributos.get(9);
         
         dconsulta.setCodigo(codigo); 
         dconsulta.setHoraEntrada(horaEntrada);
@@ -72,7 +73,7 @@ public class NConsulta {
         dconsulta.setNotas(notas);
         dconsulta.setDiagnosticoFinal(diagnosticoFinal);
         
-        dconsulta.Dregistrar(id_citaConsulta,id_servicio);
+        dconsulta.Dregistrar(id,id_citaConsulta,id_servicio);
         
      }
      
@@ -119,25 +120,26 @@ public class NConsulta {
         NConsulta nconsulta = new NConsulta();
         List<String> atributos = new ArrayList<>();
         
-        atributos.add("3");
+        atributos.add("4");
         atributos.add("1");
-        atributos.add("1");
+        atributos.add("2");
         atributos.add("C0002");
         atributos.add("13:30:00");
         atributos.add("14:00:00");
-        atributos.add("2021-08-24");
-        atributos.add("100.0");
-        atributos.add("mal sueño");
-        atributos.add("mucho estress");
-        
-        //System.out.println("lista: "+atributos);
+        atributos.add("2021-08-2");
+        atributos.add("100.00");
+        atributos.add("mala.alimentacion");
+        atributos.add("estress");
+        //<CONSULTA_REGISTRAR_2,1,1,c0002,13:30:00,14:00:00,100.00,2021-08-22,mal.sueño,mucho.estress>
+        System.out.println("lista: "+atributos);
+        //nconsulta.Modificar(atributos);
         System.out.println("lista: \n"+ nconsulta.Listar());
         //nconsulta.Registrar(atributos);
         //System.out.println(nconsulta.Ver(atributos));
         //System.out.println("lista: \n"+ nconsulta.Listar());
         
-        //nreserva.Eliminar(atributos);
-        //System.out.println("lista: \n"+ nreserva.Listar());
+        nconsulta.Eliminar(atributos);
+        System.out.println("lista: \n"+ nconsulta.Listar());
         
     } 
 }
