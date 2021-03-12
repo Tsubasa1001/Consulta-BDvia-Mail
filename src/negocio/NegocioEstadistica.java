@@ -13,9 +13,9 @@ import Datos.DatosEstadistica;
  */
 public class NegocioEstadistica {
     private DatosEstadistica datosEstadistica;
-    private String white = "\u001B[37m";
-    private String cyan = "\u001B[36m";
-    private String purple = "\u001B[35m";
+    private String white = "";//"\u001B[37m";
+    private String cyan = "";//"\u001B[36m";
+    private String purple = "";//"\u001B[35m";
 
     public NegocioEstadistica() { datosEstadistica = new DatosEstadistica(); }
 

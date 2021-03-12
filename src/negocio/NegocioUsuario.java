@@ -103,7 +103,7 @@ public class NegocioUsuario {
          * Banner
          */
         
-        for (int i = 1; i < tmp.length; i++){
+        for (int i = 0; i < tmp.length; i++){
             String[] aux = tmp[i].split(",");
             for (int j = 0; j < aux.length; j++){
                 aux[j] = aux[j].trim();
@@ -134,7 +134,7 @@ public class NegocioUsuario {
          * Banner
          */
         
-        for (int i = 1; i < tmp.length; i++){
+        for (int i = 0; i < tmp.length; i++){
             String[] aux = tmp[i].split(",");
             for (int j = 0; j < aux.length; j++){
                 aux[j] = aux[j].trim();
