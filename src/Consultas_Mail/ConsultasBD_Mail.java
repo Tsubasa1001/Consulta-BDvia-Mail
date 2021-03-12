@@ -169,11 +169,16 @@ public class ConsultasBD_Mail {
             if ("stop".equals(consulta.m_query)){
                 this.bandera = true;
             }else{
+                
+                if(clientePg.getM_conn()==null){
+                    consulta.m_result = "Error del servidor al conectar con la BD";
+                  }else{
                 System.err.println("el patron => " + consulta.m_query);
                 Comando comando = new Comando();
                 consulta.m_result = comando.recogerDatos(consulta.m_query);
                 //String sql = "select * from persona where per_nom like '%"+ consulta.m_query+"%'";
                 //consulta.m_result = clientePg.runStatement(sql);
+                }
             }
         }
     }
@@ -218,15 +223,16 @@ public class ConsultasBD_Mail {
                 25
             );
         ClientePgSql clientePg = new ClientePgSql(
-                "localhost",
+                "tecnoweb.org.bo",
                 "5432",
-                "postgres",
-                "",
-                "nativa"
+                "grupo06sc",
+                "grup0006grup006",
+                "db_grupo06sc"
             );
         
 
         clientePg.connect();
+        
 
         // conectar cliente POP3
         //clientePop3.conectar();
@@ -249,6 +255,7 @@ public class ConsultasBD_Mail {
                                         + "consultas. Procesando..."
                         );
                         this.procesarConsultas(consultas,clientePg);
+                        
                         this.responderConsultas(consultas, clienteSmtp);
                         System.out.println("Se ha finalizado el procesamiento. Saliendo...");
                     } else {
