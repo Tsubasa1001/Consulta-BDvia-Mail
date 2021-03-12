@@ -193,4 +193,28 @@ public class DatosEstadistica {
         resultado = cantTotalAtencionesMujeres()/12;
         return resultado;
     }
+
+    public int intervaloTiempo() {
+        int resultado = -1;
+        String sql = "default";
+        resultado = (int) (Math.random()*1000);
+        
+        sql = ""
+                + "SELECT EXTRACT(DAY FROM TO_TIMESTAMP( (select max(fecha) from citaconsulta), 'YYYY-MM-DD')-TO_TIMESTAMP( (select min(fecha) from citaconsulta), 'YYYY-MM-DD'));";
+        this.getPostgres().connect();
+        String trash = this.getPostgres().runStatement(sql);
+        this.getPostgres().desconectar();
+        
+        trash = trash.replace(" ", "");
+        trash = trash.replace(",", "");
+        trash = trash.substring(0, trash.length()-2);
+        
+        boolean bandera = trash.equals("null");
+        if (bandera)
+            trash = "0";
+        
+        resultado = Integer.parseInt(trash);
+        
+        return resultado;
+    }
 }

@@ -28,12 +28,15 @@ public class NegocioEstadistica {
         String resultado = "default";
         int cantTotalAtenciones = -1;
         int sumTotalAtenciones = -1;
-        int mediaTotalAtenciones = -1;
+        double mediaTotalAtenciones = -1;
+        int intervaloTiempo = -1;
         
         cantTotalAtenciones = this.getDatosEstadistica().cantTotalAtenciones();
         sumTotalAtenciones = this.getDatosEstadistica().sumTotalAtenciones();
+        intervaloTiempo = this.getDatosEstadistica().intervaloTiempo();
+        
         try {
-            mediaTotalAtenciones = sumTotalAtenciones/cantTotalAtenciones;
+            mediaTotalAtenciones = cantTotalAtenciones/intervaloTiempo;
         }catch(Exception e){
             mediaTotalAtenciones = 0;
         }
@@ -45,7 +48,7 @@ public class NegocioEstadistica {
         String resultado = "default";
         int cantTotalAtencionesMes = -1;
         int sumTotalAtenciones = -1;
-        int mediaAtencionMes = -1;
+        double mediaAtencionMes = -1;
         
         cantTotalAtencionesMes = this.getDatosEstadistica().cantTotalAtencionesMes();
         sumTotalAtenciones = this.getDatosEstadistica().sumTotalAtenciones();
@@ -63,7 +66,7 @@ public class NegocioEstadistica {
         String resultado = "default";
         int cantTotalAtencionesHombres = -1;
         int sumTotalAtencionesHombres = -1;
-        int mediaTotalAtencionesHombres = -1;
+        double mediaTotalAtencionesHombres = -1;
         
         cantTotalAtencionesHombres = this.getDatosEstadistica().cantTotalAtencionesHombres();
         sumTotalAtencionesHombres = this.getDatosEstadistica().sumTotalAtencionesHombres();
@@ -80,7 +83,7 @@ public class NegocioEstadistica {
         String resultado = "default";
         int cantTotalAtencionesMesHombres = -1;
         int sumTotalAtencionesHombres = -1;
-        int mediaAtencionMesHombres = -1;
+        double mediaAtencionMesHombres = -1;
         
         cantTotalAtencionesMesHombres = this.getDatosEstadistica().cantTotalAtencionesMesHombres();
         sumTotalAtencionesHombres = this.getDatosEstadistica().sumTotalAtencionesHombres();
@@ -98,7 +101,7 @@ public class NegocioEstadistica {
         String resultado = "default";
         int cantTotalAtencionesMujeres = -1;
         int sumTotalAtencionesMujeres = -1;
-        int mediaTotalAtencionesMujeres = -1;
+        double mediaTotalAtencionesMujeres = -1;
         
         cantTotalAtencionesMujeres = this.getDatosEstadistica().cantTotalAtencionesMujeres();
         sumTotalAtencionesMujeres = this.getDatosEstadistica().sumTotalAtencionesMujeres();
@@ -115,7 +118,7 @@ public class NegocioEstadistica {
         String resultado = "default";
         int cantTotalAtencionesMesMujeres = -1;
         int sumTotalAtencionesMujeres = -1;
-        int mediaAtencionMesMujeres = -1;
+        double mediaAtencionMesMujeres = -1;
         
         cantTotalAtencionesMesMujeres = this.getDatosEstadistica().cantTotalAtencionesMesMujeres();
         sumTotalAtencionesMujeres = this.getDatosEstadistica().sumTotalAtencionesMujeres();
