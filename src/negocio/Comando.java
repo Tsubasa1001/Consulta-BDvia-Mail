@@ -40,10 +40,12 @@ public class Comando {
     
     public void separar(String comando){
         String[] ListaComandos = comando.split("_");
+        int longitud;
+        longitud= ListaComandos.length;
         ListaComandos[0] = ListaComandos[0].toLowerCase();
-        ListaComandos[1] = ListaComandos[1].toLowerCase();
         this.Atributos.clear();
-        if (this.verificarCu(ListaComandos[0])){
+        if ((this.verificarCu(ListaComandos[0])) && longitud ==3){
+            ListaComandos[1] = ListaComandos[1].toLowerCase();
             if (this.verificarAccion(ListaComandos[1])){
                 this.setCu(ListaComandos[0]);
                 this.setAccion(ListaComandos[1]);
@@ -55,7 +57,11 @@ public class Comando {
                         this.Atributos.add(att1);
                     }
                 }
-            }
+            }else{
+            setCu("manual-usuario");
+            setAccion("help");
+            System.out.println("NO existe el comando:/");
+        }
         }else{
             setCu("manual-usuario");
             setAccion("help");
