@@ -227,7 +227,7 @@ public class ConsultasBD_Mail {
                 "tecnoweb.org.bo",
                 "5432",
                 "grupo06sc",
-                "grup0006grup006",
+                "grup006grup006",
                 "db_grupo06sc"
             );
         

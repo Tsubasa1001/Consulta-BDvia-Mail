@@ -32,7 +32,7 @@ public class ClientePgSql {
         this.m_host = "tecnoweb.org.bo";
         this.m_port = "5432";
         this.m_user = "grupo06sc";
-        this.m_pass = "grup0006grup006";
+        this.m_pass = "grup006grup006";
         this.m_database = "db_grupo06sc";
         this.m_conn     = null;
     }
