@@ -62,6 +62,14 @@ public class ConsultasBD_Mail {
                 } else {
                     System.out.println("Error al borrar el correo #" + i);
                 }
+            }else{
+                Consulta nuevaConsulta = new Consulta(remitente, "manual-usuario_help_all"); 
+                listaConsultas.add(nuevaConsulta);
+                if (clientePop3.borrarCorreo(i)) {
+                    System.out.println("Borrado el correo #" + i);
+                } else {
+                    System.out.println("Error al borrar el correo #" + i);
+                }
             }
         }
         //////////
@@ -98,7 +106,7 @@ public class ConsultasBD_Mail {
             return "nosubject";
         }
         
-        // recortar la linea "SUBJECT"
+        // recortar la linea "SUBJECT: "
         String subjectStr = correo.substring(subjectIndex).split("\\R")[0].trim();
         // determinar las posiciones de las cadenas del patron en la linea SUBJECT       
         subjectStr = subjectStr.toLowerCase();
@@ -178,7 +186,7 @@ public class ConsultasBD_Mail {
      * @param listaConsultas La lista de consultas a responder via SMTP
      * @param clienteSmtp
      */
-    public void responderConsultas(List<Consulta> listaConsultas, ClienteSMTP clienteSmtp) {
+    public void responderConsultas(List<Consulta> listaConsultas, ClienteSMTP clienteSmtp) throws InterruptedException {
         for (Consulta consulta : listaConsultas) {
             try {
                 boolean couldSend = clienteSmtp.enviarCorreo(
@@ -193,6 +201,7 @@ public class ConsultasBD_Mail {
                 //System.out.println(ex.toString());
                 System.err.println("error en la funcion :: responderConsultas");
             }
+            sleep(5000);
         }
     }
     
@@ -247,7 +256,7 @@ public class ConsultasBD_Mail {
                     }
                     
                     /*1000 = 1 seg*/
-                    sleep(20000);
+                    sleep(5000);
                 if (bandera){
                         System.err.println("[SYSTEM :: CERRANDO SESIÓN]");
                         break;
