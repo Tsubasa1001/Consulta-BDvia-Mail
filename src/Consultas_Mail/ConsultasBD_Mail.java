@@ -168,6 +168,7 @@ public class ConsultasBD_Mail {
             clientePg.connect();
             if ("stop".equals(consulta.m_query)){
                 this.bandera = true;
+                consulta.m_result = "Has matado el programa :'v9";
             }else{
                 
                 if(clientePg.getM_conn()==null){
