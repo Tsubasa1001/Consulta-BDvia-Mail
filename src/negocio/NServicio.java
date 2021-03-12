@@ -20,19 +20,40 @@ public class NServicio {
     
     public String Listar(){
         String Lista = this.DServicio.Listar();
-        return Lista;
+        String[] tmp = Lista.split("\n");
+        
+        String resultado = "";
+        resultado += "\n_________________________________________________________________ \n"
+                     +"ID______NOMBRE_______________PRECIO______ID-EQPO_____ID-PROMOCION \n";
+        
+        for (int i = 0; i < tmp.length; i++){
+            String[] aux = tmp[i].split(",");
+            for (int j = 0; j < aux.length; j++){
+                aux[j] = aux[j].trim();
+            }
+            resultado += String.format("%-5s", aux[0]);
+            resultado += String.format("%-25s", ","+aux[1]);
+            resultado += String.format("%-13s", ","+aux[2]);
+            resultado += String.format("%-12s", ","+aux[3]);
+            resultado += String.format("%-11s", ","+aux[4]);
+
+            resultado += "\n";
+        }
+        
+        return resultado;
     }
     
     public void Registrar(List<String> atributos) throws SQLException{
-        String nombre = atributos.get(0);
-        float precio = Float.parseFloat(atributos.get(1));
-        int id_e = Integer.parseInt(atributos.get(2));
-        int id_p = Integer.parseInt(atributos.get(3));
+        int id = Integer.parseInt(atributos.get(0));
+        String nombre = atributos.get(1);
+        float precio = Float.parseFloat(atributos.get(2));
+        int id_e = Integer.parseInt(atributos.get(3));
+        int id_p = Integer.parseInt(atributos.get(4));
         DServicio.setNombre(nombre);
         DServicio.setPrecio(precio);
         DServicio.setId_equipamiento(id_e);
         DServicio.setId_paquete(id_p);
-        DServicio.Registrar();
+        DServicio.Registrar(id);
     }
     
     public void Modificar(List<String> atributos) throws SQLException{
